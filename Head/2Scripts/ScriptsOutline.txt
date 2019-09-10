@@ -1,0 +1,8 @@
+###############################
+HistOfWholeMutationSpectrum.R
+# PURPOSE   	 : To look at numbers of mutations in whole dataset and in each species
+# AUTHOR, DATE    : Alina, 10 Sep 2019  
+# SCRIPT NAME    : Head/2Scripts/HistOfWholeMutationSpectrum.R
+# INPUT FILE(S)    : Body/3Results/Mutational_spectra_in_Termites.txt Body/2Derived/TermitesFamilies.csv
+# OUTPUT FILE(S): Body/4Figures/HistOfWholeMutationSpectrum.R.pdf
+# FUTURE: Use frequencies, different groups of species
