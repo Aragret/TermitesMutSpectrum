@@ -1,4 +1,27 @@
 ###############################
+# PURPOSE		: To find substitutions between ancestal-descendant pairs and extract them into table
+# AUTHOR, DATE	: Alya, 18 Nov 2017 (modified May 2018) 
+# SCRIPT		: Head/2Scripts/2MTspec_ALYA_codons_sub.R
+# INPUT FILE 	: ../../Body/2Derived/POLARIZEDBR_DATA/SPECIESNAME.GENE.POLARISED.txt (a lot of files)
+# OUTPUT FILE   : ../../Body/2Derived/TOTAL_SUBS_ML/SPECIESNAME.GENE.ANCESTRALSEQUENCENAME.DESCENDANTSEQUENCENAME.SUBS.txt (a lot of files)
+
+###############################
+# PURPOSE		: To create pre-final table
+# AUTHOR, DATE	: Alya, 20 Nov 2017 (modified May 2018) 
+# SCRIPT		: Head/2Scripts/3MTspec_ALYA_create_table.R
+# INPUT FILE 	: ../../Body/2Derived/TOTAL_SUBS_ML/SPECIESNAME.GENE.ANCESTRALSEQUENCENAME.DESCENDANTSEQUENCENAME.SUBS.txt (a lot of files)
+# OUTPUT FILE   : ../../Body/2Derived/1.txt
+
+###############################
+# PURPOSE		: To filter pre-final table deleting more than one subs in one codone
+# AUTHOR, DATE	: Alya, 20 Nov 2017 (modified May 2018) 
+# SCRIPT		: Head/2Scripts/4MTspec_ALYA_fix_table.R
+# INPUT FILE 	: ../../Body/2Derived/1.txt
+# OUTPUT FILE   : ../../Body/3Results/Mutational_spectra_in_Chordata.txt
+
+
+
+###############################
 HistOfWholeMutationSpectrum.R
 # PURPOSE   	 : To look at numbers of mutations in whole dataset and in each species
 # AUTHOR, DATE    : Alina, 10 Sep 2019  
@@ -6,3 +29,50 @@ HistOfWholeMutationSpectrum.R
 # INPUT FILE(S)    : Body/3Results/Mutational_spectra_in_Termites.txt Body/2Derived/TermitesFamilies.csv
 # OUTPUT FILE(S): Body/4Figures/HistOfWholeMutationSpectrum.R.pdf
 # FUTURE: Use frequencies, different groups of species
+
+###############################
+CreateTableForEachSpecies.R
+# PURPOSE   	 : Create table with all mutations one row - one species
+# AUTHOR, DATE    : Alina, 10 Sep 2019  
+# SCRIPT NAME    : Head/2Scripts/CreateTableForEachSpecies.R
+# INPUT FILE(S)    : Body/3Results/Mutational_spectra_in_Termites.txt
+# OUTPUT FILE(S): Body/2Derived/MutNumbersForEachSpecies.txt
+# FUTURE:
+
+###############################
+CompareFamilies.R
+# PURPOSE   	 : Count mut frequencies for any tables, draw histograms
+# AUTHOR, DATE    : Alina, 18 Sep 2019  
+# SCRIPT NAME    : Head/2Scripts/CompareFamilies.R
+# INPUT FILE(S)    : Body/3Results/Mutational_spectra_in_Termites.txt Body/2Derived/TermitesFamilies.csv
+# OUTPUT FILE(S):
+# FUTURE: Termitidae vs others
+
+###############################
+WholeGenomes.NuclContent.ipynb
+# PURPOSE   	 : Calculate whole genome nucleotide content
+# AUTHOR, DATE    : Alina, 19 Sep 2019  
+# SCRIPT NAME    : Head/2Scripts/WholeGenomes.NuclContent.ipynb
+# INPUT FILE(S)    : Body/1Raw/RefSeqs.gb
+# OUTPUT FILE(S): Body/2Derived/WholeGenomes.NuclContent.csv
+# FUTURE: Calculate neutral nucl content
+
+###############################
+GetAllGenes.ipynb
+# PURPOSE   	 : Get nucl and amino sequences for all genes
+# AUTHOR, DATE    : Alina, 19 Sep 2019  
+# SCRIPT NAME    : Head/2Scripts/GetAllGenes.ipynb
+# INPUT FILE(S)    : Body/1Raw/RefSeqs.gb
+# OUTPUT FILE(S): Body/2Derived/WholeGenomes.AllGenes.csv
+# FUTURE: Get codon sequences
+
+###############################
+Polymorphisms.BetweenFamiliesWithoutNormalization.R
+# PURPOSE   	 : Count observed mutations in neutral sites (FourFold Syn Degenerative) without normalization, check equilibrium (From - To) for different nucleotides, plot
+# AUTHOR, DATE    : Alina, 26 Sep 2019  
+# SCRIPT NAME    : Head/2Scripts/Polymorphisms.BetweenFamiliesWithoutNormalization.R
+# INPUT FILE(S)    : Body/3Results/Mutational_spectra_in_Termites.txt Body/2Derived/TermitesFamilies.csv
+# OUTPUT FILE(S): ../../Body/3Results/Polymorphisms.BetweenFamiliesWithoutNormalization.PieChartTable.txt
+../../Body/3Results/Polymorphisms.BetweenFamiliesWithoutNormalization.EquilibriumLog2ToFrom.txt
+../../Body/4Figures/Polymorphisms.BetweenFamiliesWithoutNormalization.R.01.pdf
+# FUTURE: Termitidae vs others, compare Termitidae with Mammals
