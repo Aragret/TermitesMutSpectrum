@@ -1,5 +1,7 @@
 rm(list=ls(all=TRUE))
 
+library("ggpubr")
+
 pdf("../../Body/4Figures/Polymorphisms.BetweenFamiliesWithoutNormalization.R.01.pdf", width = 30, height = 20)
 
 ColG = rgb(0.1,0.1,0.1,0.5)
@@ -45,7 +47,7 @@ VecOfSynFourFoldDegenerateSites <- c('CTT', 'CTC', 'CTA', 'CTG',
                                      'GGT', 'GGC', 'GGA', 'GGG')
 length(unique(VecOfSynFourFoldDegenerateSites)) # 32
 nrow(MUT) # 1675
-MUT4f = MUT[MUT$AncestorCodon %in% VecOfSynFourFoldDegenerateSites & MUT$DescendantCodon %in% VecOfSynFourFoldDegenerateSites,]; nrow(MUT) # 209120
+MUT4f = MUT[MUT$AncestorCodon %in% VecOfSynFourFoldDegenerateSites & MUT$DescendantCodon %in% VecOfSynFourFoldDegenerateSites,]; nrow(MUT4f) # 209120
 # 611 subs
 
 MUT = merge(MUT, Taxa[, c('Species', 'Family')], all.x = TRUE)  ##### NOT ALL SPECIES HAVE TAXONOMY!!!!
@@ -53,18 +55,18 @@ MUT = merge(MUT, Taxa[, c('Species', 'Family')], all.x = TRUE)  ##### NOT ALL SP
 
 PieChartTable = c()
 Equil = c()
-par(mfrow = c(1,5))
+# par(mfrow = c(1,5))
 VecOfFamilies = as.character(unique(MUT$Family))
 for (i in 1:length(VecOfFamilies))
 { # i = 1
   Temp = MUT[MUT$Family == VecOfFamilies[i],]
   NumberOfSpecies = length(unique(Temp$Species))
-  title = paste(VecOfClasses[i],', N = ',NumberOfSpecies, sep = '')
+  title = paste(VecOfFamilies[i], ', N = ', NumberOfSpecies, sep = '')
   Temp$number = 1
   Agg = aggregate(Temp$number, by = list(Temp$Subs), FUN = sum); names(Agg) = c('Subs','Number')
   Agg$Number = Agg$Number/sum(Agg$Number)
   sum(Agg$Number) # 1 - 100%
-  pie(Agg$Number, labels = Agg$Subs, main = title, col=rainbow(length(Agg$Subs)))
+  # pie(Agg$Number, labels = Agg$Subs, main = title, col=rainbow(length(Agg$Subs)))
   
   Agg$Family = VecOfFamilies[i];
   PieChartTable = rbind(PieChartTable,Agg)
@@ -80,6 +82,30 @@ for (i in 1:length(VecOfFamilies))
 PieChartTable = data.frame(PieChartTable)
 write.table(PieChartTable,"../../Body/3Results/Polymorphisms.BetweenFamiliesWithoutNormalization.PieChartTable.txt")
 Equil = data.frame(Equil); names(Equil) = c('i','Classes','G','T','C','A')
+
+###################################
+
+a = ggbarplot(PieChartTable, 'Subs', 'Number', xlab="Substitution types", title = 'all',
+          fill = 'Subs', color = 'Subs', palette = c("#bdbdbd", "#7fcdbb", "#bdbdbd", "#bdbdbd", "#bdbdbd", "#feb24c", "#f03b20", "#bdbdbd", "#bdbdbd", "#bdbdbd", "#2c7fb8", "#bdbdbd"), combine = TRUE)
+
+b = ggbarplot(PieChartTable[PieChartTable$Family == 'Termitidae',], 'Subs', 'Number', xlab="Substitution types", title = 'Termitidae',
+          fill = 'Subs', color = 'Subs', palette = c("#bdbdbd", "#7fcdbb", "#bdbdbd", "#bdbdbd", "#bdbdbd", "#feb24c", "#f03b20", "#bdbdbd", "#bdbdbd", "#bdbdbd", "#2c7fb8", "#bdbdbd"), combine = TRUE)
+
+c = ggbarplot(PieChartTable[PieChartTable$Family == 'Rhinotermitidae',], 'Subs', 'Number', xlab="Substitution types", title = 'Rhinotermitidae',
+          fill = 'Subs', color = 'Subs', palette = c("#bdbdbd", "#7fcdbb", "#bdbdbd", "#bdbdbd", "#feb24c", "#f03b20", "#bdbdbd", "#bdbdbd", "#bdbdbd", "#2c7fb8", "#bdbdbd"), combine = TRUE)
+
+ggarrange(a,                                                 # First row with scatter plot
+          ggarrange(b, c, ncol = 2, labels = c("B", "C")), # Second row with box and dot plots
+          nrow = 2, 
+          labels = "A"                                        # Labels of the scatter plot
+) 
+
+# ggbarplot(PieChartTable[PieChartTable$Family == 'Hodotermitidae',], 'Subs', 'Number', xlab="Substitution types", title = 'Hodotermitidae',
+#           fill = 'Subs', color = 'Subs', palette = c("#bdbdbd", "#7fcdbb", "#bdbdbd", "#bdbdbd", "#bdbdbd", "#feb24c", "#f03b20", "#bdbdbd", "#bdbdbd", "#bdbdbd", "#2c7fb8", "#bdbdbd"))
+
+# ggbarplot(PieChartTable[PieChartTable$Family == 'Termopsidae',], 'Subs', 'Number', xlab="Substitution types", title = 'Termopsidae',
+#           fill = 'Subs', color = 'Subs', palette = c("#bdbdbd", "#7fcdbb", "#bdbdbd", "#bdbdbd", "#feb24c", "#f03b20", "#bdbdbd", "#bdbdbd", "#bdbdbd", "#2c7fb8", "#bdbdbd"))
+
 
 ### equilibrium for each species:
 Equilibrium = c()
@@ -110,7 +136,9 @@ boxplot(
   Equilibrium[Equilibrium$Family == 'Rhinotermitidae',]$G, Equilibrium[Equilibrium$Family == 'Rhinotermitidae',]$T, Equilibrium[Equilibrium$Family == 'Rhinotermitidae',]$C, Equilibrium[Equilibrium$Family == 'Rhinotermitidae',]$A, 
   Equilibrium[Equilibrium$Family == 'Hodotermitidae',]$G, Equilibrium[Equilibrium$Family == 'Hodotermitidae',]$T, Equilibrium[Equilibrium$Family == 'Hodotermitidae',]$C, Equilibrium[Equilibrium$Family == 'Hodotermitidae',]$A, 
   Equilibrium[Equilibrium$Family == 'Termopsidae',]$G, Equilibrium[Equilibrium$Family == 'Termopsidae',]$T, Equilibrium[Equilibrium$Family == 'Termopsidae',]$C, Equilibrium[Equilibrium$Family == 'Termopsidae',]$A, 
+  at = c(1,2,3,4, 6,7,8,9, 11,12,13,14, 16,17,18,19),
   outline = FALSE, notch = FALSE, col = c(ColG,ColT,ColC,ColA), names = rep(c('G','T','C','A'),4))
+title(xlab = 'Termitidae, Rhinotermitidae, Hodotermitidae, Termopsidae')
 abline(h = 0, col = 'red')
 
 dev.off()
