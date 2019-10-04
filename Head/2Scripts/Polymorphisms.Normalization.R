@@ -50,7 +50,7 @@ for (i in 1:length(List)){
 }
 
 Final = as.data.frame(Final); names(Final)=c('Species','Gene','A','T','G','C','NumberOfAllCodons',"NumberOfFourFoldDegenCodons")
-write.table(Final, "../../Body/3Results/Polymorphisms.Normalization.NeutralATGC.txt", quote = FALSE, row.names = FALSE)
+write.table(Final, "../../Body/3Results/Polymorphisms.Normalization.NeutralATGC.txt", quote = FALSE, row.names = FALSE, sep='\t')
 
 ## delete all unziped files
 files <- list.files("../../Body/2Derived/POLARIZEDBR_DATA_ML/")

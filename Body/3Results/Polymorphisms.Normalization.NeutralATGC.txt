@@ -1,38 +1,38 @@
-Species Gene A T G C NumberOfAllCodons NumberOfFourFoldDegenCodons Family Notes
-Cavitermes_tuberosus Cox2 480 55 35 84 1547 654 Termitidae Crystall
-Coptotermes_formosanus Cox2 2309 254 79 576 7072 3218 Rhinotermitidae 
-Coptotermes_lacteus Cox2 681 82 56 147 2180 966 Rhinotermitidae 
-Embiratermes_brevinasus Cox2 257 40 35 38 884 370 Termitidae 
-Embiratermes_neotenicus Cox2 260 28 25 52 884 365 Termitidae 
-Labiotermes_labralis Cox2 241 54 28 22 884 345 Termitidae 
-Macrotermes_carbonarius Cox2 283 32 22 33 900 370 Termitidae 
-Macrotermes_falciger Cox2 330 16 27 21 900 394 Termitidae 
-Macrotermes_gilvus Cox2 3489 251 207 395 10575 4342 Termitidae 
-Macrotermes_malaccensis Cox2 346 37 20 43 1085 446 Termitidae 
-Macrotermes_natalensis Cox2 305 21 22 17 868 365 Termitidae 
-Macrotermes_subhyalinus Cox2 998 68 97 95 2982 1258 Termitidae 
-Mastotermes_darwiniensis Cox2 228 108 66 71 1218 473 Mastotermitidae Most primitive
-Microcerotermes_crassus Cox2 622 45 72 80 1998 819 Termitidae 
-Microhodotermes_viator Cox2 275 22 7 44 888 348 Hodotermitidae 
-Nasutitermes_corniger Cox2 381 50 48 59 1314 538 Termitidae 
-Nasutitermes_exitiosus Cox2 533 51 52 84 1792 720 Termitidae 
-Nasutitermes_graveolus Cox2 353 41 40 39 1135 473 Termitidae 
-Nasutitermes_longipennis Cox2 294 24 19 39 908 376 Termitidae 
-Nasutitermes_octopilis Cox2 254 22 48 51 892 375 Termitidae 
-Nasutitermes_similis Cox2 489 43 49 67 1561 648 Termitidae 
-Nasutitermes_triodiae Cox2 650 73 81 104 2250 908 Termitidae 
-Odontotermes_hainanensis Cox2 407 44 44 95 1338 590 Termitidae 
-Pseudacanthotermes_spiniger Cox2 295 18 9 50 892 372 Termitidae 
-Reticulitermes_aculabialis Cox2 413 65 32 50 1350 560 Rhinotermitidae 
-Reticulitermes_chinensis Cox2 849 99 94 131 2847 1173 Rhinotermitidae 
-Reticulitermes_flaviceps Cox2 795 115 99 110 2700 1119 Rhinotermitidae 
-Reticulitermes_flavipes Cox2 5053 701 419 742 16206 6915 Rhinotermitidae 
-Reticulitermes_hageni Cox2 679 80 74 93 2190 926 Rhinotermitidae 
-Reticulitermes_labralis Cox2 726 91 88 118 2475 1023 Rhinotermitidae 
-Reticulitermes_leptomandibularis Cox2 337 56 28 35 1095 456 Rhinotermitidae 
-Reticulitermes_santonensis Cox2 618 86 50 91 1998 845 Rhinotermitidae 
-Reticulitermes_virginicus Cox2 1553 154 134 253 5037 2094 Rhinotermitidae 
-Termes_fatalis Cox2 262 58 26 32 880 378 Termitidae 
-Tumulitermes_pastinator Cox2 501 42 44 64 1589 651 Termitidae 
-Zootermopsis_angusticollis Cox2 308 53 12 56 1050 429 Termopsidae 
-Zootermopsis_nevadensis Cox2 423 105 17 89 1503 634 Termopsidae 
+Species	Gene	A	T	G	C	NumberOfAllCodons	NumberOfFourFoldDegenCodons
+Cavitermes_tuberosus	Cox2	480	55	35	84	1547	654
+Coptotermes_formosanus	Cox2	2309	254	79	576	7072	3218
+Coptotermes_lacteus	Cox2	681	82	56	147	2180	966
+Embiratermes_brevinasus	Cox2	257	40	35	38	884	370
+Embiratermes_neotenicus	Cox2	260	28	25	52	884	365
+Labiotermes_labralis	Cox2	241	54	28	22	884	345
+Macrotermes_carbonarius	Cox2	283	32	22	33	900	370
+Macrotermes_falciger	Cox2	330	16	27	21	900	394
+Macrotermes_gilvus	Cox2	3489	251	207	395	10575	4342
+Macrotermes_malaccensis	Cox2	346	37	20	43	1085	446
+Macrotermes_natalensis	Cox2	305	21	22	17	868	365
+Macrotermes_subhyalinus	Cox2	998	68	97	95	2982	1258
+Mastotermes_darwiniensis	Cox2	228	108	66	71	1218	473
+Microcerotermes_crassus	Cox2	622	45	72	80	1998	819
+Microhodotermes_viator	Cox2	275	22	7	44	888	348
+Nasutitermes_corniger	Cox2	381	50	48	59	1314	538
+Nasutitermes_exitiosus	Cox2	533	51	52	84	1792	720
+Nasutitermes_graveolus	Cox2	353	41	40	39	1135	473
+Nasutitermes_longipennis	Cox2	294	24	19	39	908	376
+Nasutitermes_octopilis	Cox2	254	22	48	51	892	375
+Nasutitermes_similis	Cox2	489	43	49	67	1561	648
+Nasutitermes_triodiae	Cox2	650	73	81	104	2250	908
+Odontotermes_hainanensis	Cox2	407	44	44	95	1338	590
+Pseudacanthotermes_spiniger	Cox2	295	18	9	50	892	372
+Reticulitermes_aculabialis	Cox2	413	65	32	50	1350	560
+Reticulitermes_chinensis	Cox2	849	99	94	131	2847	1173
+Reticulitermes_flaviceps	Cox2	795	115	99	110	2700	1119
+Reticulitermes_flavipes	Cox2	5053	701	419	742	16206	6915
+Reticulitermes_hageni	Cox2	679	80	74	93	2190	926
+Reticulitermes_labralis	Cox2	726	91	88	118	2475	1023
+Reticulitermes_leptomandibularis	Cox2	337	56	28	35	1095	456
+Reticulitermes_santonensis	Cox2	618	86	50	91	1998	845
+Reticulitermes_virginicus	Cox2	1553	154	134	253	5037	2094
+Termes_fatalis	Cox2	262	58	26	32	880	378
+Tumulitermes_pastinator	Cox2	501	42	44	64	1589	651
+Zootermopsis_angusticollis	Cox2	308	53	12	56	1050	429
+Zootermopsis_nevadensis	Cox2	423	105	17	89	1503	634
