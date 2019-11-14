@@ -1,0 +1,47 @@
+~560 CDS + Ales Kalo data
+
+0. rename all '**.fasta' sequences to '**_mod.fasta' because of problems with transeq
+
+1. Concatenate all Kalo the sequences 
+cat *.fasta > AllKalo.fasta
+
+2. Convert multiline fasta to one line
+perl -pe '$. > 1 and /^>/ ? print "\n" : chomp' AllKalo.fasta > AllKalo.fasta.out
+
+3. Get all the genes
+grep 'nad4' -A 1 -w AllKalo.fasta.out > ND4.fasta
+grep 'atp6' -A 1 AllKalo.fasta.out > ATP6.fasta
+and so on 
+4. Add Kalo genes to Thomas data
+
+MAFFT: run_mafft.slurm
+
+Concatenate all files:
+perl catfasta2phyml/catfasta2phyml.pl -fi results/*.fna > align_cat.fasta
+
+IQTREE: run_iqtree.slurm
+root(tree, 'Locusta_migratoria_1') - outgroup
+
+
+################################################################################################
+### SCRIPTS
+
+PolarizeMutations.R
+1. input: results/phylogeny/iqtree_mito.treefile, results/phylogeny/iqtree_mito.state
+2. output: results/PolarizeMutations.CodonsTable.txt
+3. purpose: to get ancestral-descendant codons changes
+4. future: more accurate species merge!!! I lost some species. 
+
+
+
+################################################################################################
+### TO DO
+
+- get synonimous and 4f substitutions
+- plot hists for different subsets of mutations
+
+
+ERRORS:
+transeq can't work with sequence names less than 3 chars
+MEGA can't work with '?' in sequence names. To replace: sed -i 's/original/new/g' file.txt
+(still can't figure out why MEGA is not working, but tree looks ok)
