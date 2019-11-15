@@ -63,3 +63,29 @@ table(mut$Subs)
 syn = mut[as.character(mut$AncestralAA) == as.character(mut$DescendantAA),]
 ggplot(syn, aes(x = Subs)) +
   geom_histogram(stat = 'count')
+
+####
+
+write.table(mut, 'results/AllSubs.txt', sep='\t', row.names = FALSE, quote = FALSE)
+write.table(syn, 'results/SynSubs.txt', sep='\t', row.names = FALSE, quote = FALSE)
+
+################################################################
+### 4fold deg
+
+VecOfSynFourFoldDegenerateSites <- c('CTT', 'CTC', 'CTA', 'CTG', 
+                                     'GTT', 'GTC', 'GTA', 'GTG', 
+                                     'TCT', 'TCC', 'TCA', 'TCG', 
+                                     'CCT', 'CCC', 'CCA', 'CCG', 
+                                     'ACT', 'ACC', 'ACA', 'ACG', 
+                                     'GCT', 'GCC', 'GCA', 'GCG', 
+                                     'CGT', 'CGC', 'CGA', 'CGG', 
+                                     'GGT', 'GGC', 'GGA', 'GGG',
+                                     'AGT', 'AGC', 'AGA', 'AGG')
+length(unique(VecOfSynFourFoldDegenerateSites)) # 36
+
+mut4f = mut[mut$AncestorCodon %in% VecOfSynFourFoldDegenerateSites & mut$DescendantCodon %in% VecOfSynFourFoldDegenerateSites,]; nrow(mut4f) # 209120
+# 69484 subs
+
+write.table(mut4f, 'results/4foldSubs.txt', sep='\t', row.names = FALSE, quote = FALSE)
+
+table(mut4f$Species)
