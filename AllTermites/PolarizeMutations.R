@@ -53,7 +53,16 @@ a = data.frame(Species=names(aligns), Seqs=unlist(getSequence(aligns, as.string=
 data$Species = as.character(data$Species)
 a$Species = as.character(a$Species)
 
+# a$Species = sapply(a$Species, function(x) sub('?', '', x))
+a$Species = str_replace_all(a$Species, fixed('?'), '')
+a$Species = str_replace_all(a$Species, fixed(';'), '')
+a$Species = str_replace_all(a$Species, fixed('__'), '_')
+
+data$Species = str_replace_all(data$Species, fixed('__'), '_')
+
 anc_desSeqs = merge(data, a, by='Species')
+
+setdiff(data$Species, anc_desSeqs$Species)
 
 ######## get codons
 
@@ -99,5 +108,7 @@ for (y in 1:nrow(anc_desSeqs)){
 }
 
 table(codonTable$Species)
+
+setdiff(anc_desSeqs$Species, as.character(codonTable$Species)) # nothing !
 
 write.table(codonTable, 'results/PolarizeMutations.CodonsTable.txt', sep = '\t', quote = FALSE, row.names = FALSE)

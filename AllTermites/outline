@@ -26,11 +26,41 @@ root(tree, 'Locusta_migratoria_1') - outgroup
 ################################################################################################
 ### SCRIPTS
 
+0. date:
+1. input:
+2. output:
+3. purpose:
+4. future
+
 PolarizeMutations.R
+0. date: 19.11.19 (mod)
 1. input: results/phylogeny/iqtree_mito.treefile, results/phylogeny/iqtree_mito.state
 2. output: results/PolarizeMutations.CodonsTable.txt
 3. purpose: to get ancestral-descendant codons changes
-4. future: more accurate species merge!!! I lost some species. 
+4. future: more accurate species merge!!! I lost some species. - DONE
+
+HistOfSubs.R
+0. date: 19.11.19 (mod)
+1. input: results/PolarizeMutations.CodonsTable.txt
+2. output: results/AllSubs.txt, results/SynSubs.txt, results/4foldSubs.txt
+3. purpose: draw hists for all subs, synonimous and 4fold-deg (without gaps and shit). Save tables
+4. future:
+
+getSubsRates.R
+0. date: 19.11.19 (mod)
+1. input: results/4foldSubs.txt, results/phylogeny/iqtree_mito.treefile
+2. output: results/rootedTree.newick, results/4foldSubsRatesBrLen02.txt
+3. purpose: to root tree, add branch lengths to calculate rates (subs number / branch length) for each species
+4. future: 
+
+getResidualsWithoutBrLen.R
+0. date: 19.11.19 (mod)
+1. input: results/4foldSubsRatesBrLen02.txt
+2. output: results/4foldSubsRatesBrLen02Residuals.txt
+3. purpose: get residuals from linear model (rate ~ branch length), to eliminate influence of branch length on substitution rate
+4. future: 
+
+
 
 
 
@@ -40,8 +70,11 @@ PolarizeMutations.R
 - get synonimous and 4f substitutions
 - plot hists for different subsets of mutations
 
+strands ?
 
-ERRORS:
+################################################################################################
+### ERRORS
+
 transeq can't work with sequence names less than 3 chars
 MEGA can't work with '?' in sequence names. To replace: sed -i 's/original/new/g' file.txt
 (still can't figure out why MEGA is not working, but tree looks ok)

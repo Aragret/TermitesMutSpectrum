@@ -28,4 +28,4 @@ plot(mut$A_G_rate.res, mut$BranchLength)
 cor.test(mut$A_G_rate, mut$BranchLength)
 cor.test(mut$A_G_rate.res, mut$BranchLength)
 
-write.table(mut, 'results/4foldSubsRatesBrLen02Residuals.txt')
+write.table(mut, 'results/4foldSubsRatesBrLen02Residuals.txt', row.names = FALSE, quote = FALSE)

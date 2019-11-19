@@ -4,6 +4,11 @@ codonTable = read.table('results/PolarizeMutations.CodonsTable.txt', sep='\t', h
 
 withoutGapsCodonTable = codonTable[as.character(codonTable$DescendantCodon) != '---',]
 
+length(unique(codonTable$Species)) #533
+length(unique(withoutGapsCodonTable$Species)) #510
+
+setdiff(codonTable$Species, withoutGapsCodonTable$Species)
+
 FirstCodon = withoutGapsCodonTable$AncestorCodon
 SecondCodon = withoutGapsCodonTable$DescendantCodon
 
@@ -42,11 +47,15 @@ withoutGapsCodonTable$Subs = data$Subst
 
 tableSubs = withoutGapsCodonTable[withoutGapsCodonTable$Subs != 'MoreThanOne_SUBST',]
 
+length(unique(tableSubs$Species)) #510
+
 #### all subs
 
 tableSubs$Subs = as.character(tableSubs$Subs)
 mut = tableSubs[which(!(tableSubs$Subs %in% c('A_N', 'A_R', 'C_N', 'G_N', 'T_K', 'T_N', 'T_Y',
                                               '-_A', '-_C', 'C_Y', '-_G', 'G_R', '-_T'))),]
+
+length(unique(mut$Species)) #510
 
 pdf('results/HistOfSubs.pdf')
 
@@ -85,6 +94,9 @@ length(unique(VecOfSynFourFoldDegenerateSites)) # 36
 
 mut4f = mut[mut$AncestorCodon %in% VecOfSynFourFoldDegenerateSites & mut$DescendantCodon %in% VecOfSynFourFoldDegenerateSites,]; nrow(mut4f) # 209120
 # 69484 subs
+# 79105 subs with all species
+
+length(unique(mut4f$Species)) #489
 
 write.table(mut4f, 'results/4foldSubs.txt', sep='\t', row.names = FALSE, quote = FALSE)
 

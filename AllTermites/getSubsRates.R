@@ -46,8 +46,14 @@ for(i in 1:nrow(mut)){
 
 table(mut[mut$Species == "AUS49_Tumulitermes_sp._1",]$Subs)
 
+# externalBranches$Species = str_replace_all(externalBranches$Species, fixed('?'), '')
+# externalBranches$Species = str_replace_all(externalBranches$Species, fixed(';'), '')
+externalBranches$Species = str_replace_all(externalBranches$Species, fixed('__'), '_')
+
 
 data = merge(mutTable, externalBranches[, c('Species', 'BranchLength')], by='Species')
+
+setdiff(mutTable$Species, externalBranches$Species)
 
 dataMore05 = data[data$BranchLength > 0.05, ]
 dataMore02 = data[data$BranchLength > 0.02, ]
