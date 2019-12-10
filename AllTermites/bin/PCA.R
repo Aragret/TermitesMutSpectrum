@@ -16,7 +16,8 @@ names(fractions) = sub(' ', '', paste(names(mut[, 2:13]), '_fr'))
 
 mutFr = cbind(mut, fractions)
 
-write.table(mutFr[, c(1:14, 39:51)], 'results/4foldSubsBrLen02Fractions.txt')
+write.table(mutFr[, c(1:14, 39:51)], 'results/4foldSubsBrLen02Fractions.txt', sep='\t',
+            row.names = FALSE, quote = FALSE)
 
 # MATRIX = mut[, c(27:38)] # residuals
 # MATRIX = mut[, c(2:13)] # subs number

@@ -65,12 +65,23 @@ getResidualsWithoutBrLen.R
 
 
 ################################################################################################
-### TO DO
+### TO DO, QUESTIONS
 
 - get synonimous and 4f substitutions
 - plot hists for different subsets of mutations
+- match the sequence names from phylo and mutations data
 
 strands ?
+
+adding cockroaches
+
+different number of samples in each gene file:
+- reverse seqs from different strands
+
+filters: tree vs table
+
+Negative correlation between some fractions and branch length: why?
+Lots of transitions in 4f: why?
 
 ################################################################################################
 ### ERRORS
@@ -78,3 +89,4 @@ strands ?
 transeq can't work with sequence names less than 3 chars
 MEGA can't work with '?' in sequence names. To replace: sed -i 's/original/new/g' file.txt
 (still can't figure out why MEGA is not working, but tree looks ok)
+

@@ -1,11 +1,14 @@
-library(ggplot2)
+rm(list=ls(all=TRUE))
 
-codonTable = read.table('results/PolarizeMutations.CodonsTable.txt', sep='\t', header=TRUE)
+library(ggplot2)
+library(ggpubr)
+
+codonTable = read.table('../results/cockroaches11_19/PolarizeMutations.CodonsTable.Cockroaches.txt', sep='\t', header=TRUE)
 
 withoutGapsCodonTable = codonTable[as.character(codonTable$DescendantCodon) != '---',]
 
-length(unique(codonTable$Species)) #533
-length(unique(withoutGapsCodonTable$Species)) #510
+length(unique(codonTable$Species)) #677
+length(unique(withoutGapsCodonTable$Species)) #626
 
 setdiff(codonTable$Species, withoutGapsCodonTable$Species)
 
@@ -47,7 +50,7 @@ withoutGapsCodonTable$Subs = data$Subst
 
 tableSubs = withoutGapsCodonTable[withoutGapsCodonTable$Subs != 'MoreThanOne_SUBST',]
 
-length(unique(tableSubs$Species)) #510
+length(unique(tableSubs$Species)) #624
 
 #### all subs
 
@@ -55,14 +58,23 @@ tableSubs$Subs = as.character(tableSubs$Subs)
 mut = tableSubs[which(!(tableSubs$Subs %in% c('A_N', 'A_R', 'C_N', 'G_N', 'T_K', 'T_N', 'T_Y',
                                               '-_A', '-_C', 'C_Y', '-_G', 'G_R', '-_T'))),]
 
-length(unique(mut$Species)) #510
+length(unique(mut$Species)) #623
 
-pdf('results/HistOfSubs.pdf')
+pdf('../results/cockroaches11_19/HistOfSubs.pdf')
 
 ggplot(mut, aes(x = Subs)) +
   geom_histogram(stat = 'count')
 
-dev.off()
+Temp = mut
+Temp$number = 1
+Agg = aggregate(Temp$number, by = list(Temp$Subs), FUN = sum); names(Agg) = c('Subs','Number')
+Agg$Number = Agg$Number/sum(Agg$Number)
+
+ggbarplot(Agg, 'Subs', 'Number', xlab="Substitution types", title = 'all', 
+          fill = 'Subs', color = 'Subs', palette = c("#bdbdbd", "#7fcdbb", "#bdbdbd", "#bdbdbd", "#bdbdbd", "#feb24c", "#f03b20", "#bdbdbd", "#bdbdbd", "#bdbdbd", "#2c7fb8", "#bdbdbd"), combine = TRUE)
+
+
+# dev.off()
 
 
 table(mut$Subs)
@@ -71,12 +83,12 @@ table(mut$Subs)
 
 syn = mut[as.character(mut$AncestralAA) == as.character(mut$DescendantAA),]
 ggplot(syn, aes(x = Subs)) +
-  geom_histogram(stat = 'count')
+  geom_histogram(stat = 'count') + ggtitle('Synonymous')
 
 ####
 
-write.table(mut, 'results/AllSubs.txt', sep='\t', row.names = FALSE, quote = FALSE)
-write.table(syn, 'results/SynSubs.txt', sep='\t', row.names = FALSE, quote = FALSE)
+write.table(mut, '../results/cockroaches11_19/AllSubs.Cockroaches.txt', sep='\t', row.names = FALSE, quote = FALSE)
+write.table(syn, '../results/cockroaches11_19/SynSubs.Cockroaches.txt', sep='\t', row.names = FALSE, quote = FALSE)
 
 ################################################################
 ### 4fold deg
@@ -93,11 +105,20 @@ VecOfSynFourFoldDegenerateSites <- c('CTT', 'CTC', 'CTA', 'CTG',
 length(unique(VecOfSynFourFoldDegenerateSites)) # 36
 
 mut4f = mut[mut$AncestorCodon %in% VecOfSynFourFoldDegenerateSites & mut$DescendantCodon %in% VecOfSynFourFoldDegenerateSites,]; nrow(mut4f) # 209120
-# 69484 subs
-# 79105 subs with all species
+# ~100k subs
 
-length(unique(mut4f$Species)) #489
+length(unique(mut4f$Species)) #593
 
-write.table(mut4f, 'results/4foldSubs.txt', sep='\t', row.names = FALSE, quote = FALSE)
+Temp = mut4f
+Temp$number = 1
+Agg = aggregate(Temp$number, by = list(Temp$Subs), FUN = sum); names(Agg) = c('Subs','Number')
+Agg$Number = Agg$Number/sum(Agg$Number)
+
+ggbarplot(Agg, 'Subs', 'Number', xlab="Substitution types", title = '4-fold degenerate sites', 
+          fill = 'Subs', color = 'Subs', palette = c("#bdbdbd", "#7fcdbb", "#bdbdbd", "#bdbdbd", "#bdbdbd", "#feb24c", "#f03b20", "#bdbdbd", "#bdbdbd", "#bdbdbd", "#2c7fb8", "#bdbdbd"), combine = TRUE)
+
+write.table(mut4f, '../results/cockroaches11_19/4foldSubs.Cockroaches.txt', sep='\t', row.names = FALSE, quote = FALSE)
 
 table(mut4f$Species)
+
+dev.off()
