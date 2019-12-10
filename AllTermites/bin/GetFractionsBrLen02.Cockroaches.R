@@ -58,11 +58,14 @@ summary(mutFr$BranchLength)
 
 mutFrBrlen02 = mutFr[mutFr$BranchLength >= 0.02,]
 
+pdf('../results/cockroaches11_19/CorrBrLenFractions.pdf')
+
 cor.test(mutFrBrlen02$BranchLength, mutFrBrlen02$sumOfSubs)
 plot(mutFrBrlen02$BranchLength, mutFrBrlen02$sumOfSubs)
 
 cor.test(mutFrBrlen02$BranchLength, mutFrBrlen02$C_T_fr)
 plot(mutFrBrlen02$BranchLength, mutFrBrlen02$C_T_fr)
+plot(mutFrBrlen02$BranchLength, mutFrBrlen02$A_G_fr)
 
 summary(mutFrBrlen02$BranchLength)
 
@@ -71,6 +74,32 @@ for(i in 16:27){
   print(cor.test(mutFrBrlen02[, i], mutFrBrlen02$BranchLength))
 }
 
+
+################
+# check different branch length
+
+brLenLess1 = mutFrBrlen02[mutFrBrlen02$BranchLength <= 0.1,]
+brLenMore1 = mutFrBrlen02[mutFrBrlen02$BranchLength > 0.1,]
+
+plot(brLenLess1$C_T_fr, brLenLess1$BranchLength, main = 'brlen less than 0.1')
+plot(brLenLess1$A_G_fr, brLenLess1$BranchLength, main = 'brlen less than 0.1')
+cor.test(brLenLess1$C_T_fr, brLenLess1$BranchLength, method = 'spearman')
+
+plot(brLenMore1$C_T_fr, brLenMore1$BranchLength, main = 'brlen more than 0.1')
+plot(brLenMore1$A_G_fr, brLenMore1$BranchLength, main = 'brlen more than 0.1')
+cor.test(brLenMore1$C_T_fr, brLenMore1$BranchLength, method = 'spearman')
+
+for(i in 16:27){
+  print(names(brLenLess1)[i])
+  print(cor.test(brLenLess1[, i], brLenLess1$BranchLength, method = 'spearman'))
+}
+
+for(i in 16:27){
+  print(names(brLenMore1)[i])
+  print(cor.test(brLenMore1[, i], brLenMore1$BranchLength, method = 'spearman'))
+}
+
+dev.off()
 
 ####### add meta data
 
