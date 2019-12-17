@@ -1,6 +1,7 @@
 rm(list=ls(all=TRUE))
 
 library(gdata)
+library(ggplot2)
 
 mut = read.table('../results/cockroaches11_19/4foldSubs.Cockroaches.txt', header = TRUE, sep='\t')
 
@@ -98,6 +99,11 @@ for(i in 16:27){
   print(names(brLenMore1)[i])
   print(cor.test(brLenMore1[, i], brLenMore1$BranchLength, method = 'spearman'))
 }
+
+ggplot(data=mutFrBrlen02) +
+  geom_point()
+
+# plot(mutFrBrlen02[, c(2:13, 15)])
 
 dev.off()
 
