@@ -90,12 +90,12 @@ for(i in 1:nrow(mut)){
 mut$Cockroaches = as.factor(mut$Cockroaches)
 summary(mut$Cockroaches)
 
-pdf('../results/cockroaches11_19/TsTvCockroaceshVsTermites.pdf')
+pdf('../results/cockroaches11_19/TsTvCockroachesVsTermites.pdf')
 
 ggplot(mut, aes(TsTv, fill = mut$Cockroaches, stat(count))) +
   geom_density(alpha = 0.3)
 
-ggplot(mut, aes(TsTv, fill = mut$Cockroaches, stat(count))) +
+ggplot(mut, aes(TsTv, fill = mut$Cockroaches)) +
   geom_density(alpha = 0.3)
 
 ggplot(mut, aes(TsTv, fill = mut$Cockroaches)) +
