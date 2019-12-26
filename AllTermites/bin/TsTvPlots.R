@@ -48,6 +48,9 @@ mut$TsTv = (mut$C_T + mut$A_G + mut$T_C + mut$G_A) / (mut$G_T + mut$A_T + mut$G_
                                                         mut$A_C + mut$C_A + mut$C_G +
                                                         mut$T_A + mut$T_G)
 
+mut$Ts = mut$C_T + mut$A_G + mut$T_C + mut$G_A
+mut$Tv = mut$G_T + mut$A_T + mut$G_C +  mut$A_C + mut$C_A + mut$C_G + mut$T_A + mut$T_G
+
 workers = mut[mut$Worker == 1,]
 workers = workers[!is.na(workers$Worker),]
 withoutWorkers = mut[(mut$Worker == 0) & !is.na(mut$Worker),]
@@ -110,3 +113,5 @@ plot_hist(mut[mut$Cockroaches == 1, 2:13], 'cockroaches')
 plot_hist(mut[mut$Cockroaches == 0, 2:13], 'termites')
 
 dev.off()
+
+write.table(mut, '../results/cockroaches11_19/MutSpecCockroachesTsTv.txt', sep='\t', quote = FALSE, row.names = FALSE)
