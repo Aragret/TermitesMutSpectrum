@@ -1,7 +1,7 @@
 rm(list=ls(all=TRUE))
 
 # install.packages("scales")
-install.packages('ggsci')
+# install.packages('ggsci')
 library(ggsci)
 library(scales)
 library(ggplot2)
@@ -45,20 +45,17 @@ ggplot(mut, aes(Ts, Tv, col = Cockroaches)) +
   geom_point(aes(size = HigherTermites))
 
 ggplot(mut[mut$HigherTermites == 1,], aes(Ts, Tv, col = Taxonomy)) +
-  geom_point() + # scale_colour_manual(values=pal_simpsons(palette = c("springfield"), alpha = 1))
+  geom_point(aes(size = 1.5)) + # scale_colour_manual(values=pal_simpsons(palette = c("springfield"), alpha = 1))
   scale_color_simpsons(palette = c("springfield"))
 
 unique(mut[mut$Cockroaches == 0, 'Taxonomy'])
 
-manualcolors<-c('black','forestgreen', 'red2', 'orange', 'cornflowerblue', 
-                'magenta', 'darkolivegreen4',  
-                'indianred1', 'tan4', 'darkblue', 
-                'mediumorchid1','firebrick4',  'yellowgreen', 'lightsalmon', 'tan3',
-                "tan1",'darkgray', 'wheat4', '#DDAD4B', 'chartreuse', 'seagreen1',
-                'moccasin', 'mediumvioletred', 'seagreen','cadetblue1', "darkolivegreen1")
+manualcolors<-c('#543005','#8c510a','#bf812d','#dfc27d','#f6e8c3','#f5f5f5','#c7eae5','#80cdc1','#35978f','#01665e','#003c30',
+                '#a50026','#d73027','#f46d43','#fdae61','#fee090','#ffffbf','#e0f3f8','#abd9e9','#74add1','#4575b4','#313695',
+                '#8e0152','#c51b7d','#de77ae','#f1b6da','#fde0ef','#f7f7f7','#e6f5d0','#b8e186','#7fbc41','#4d9221','#276419')
 
 ggplot(mut[mut$Cockroaches == 0,], aes(Ts, Tv, col = Taxonomy)) +
-  geom_point() +
+  geom_point(aes(size = 1.5)) +
   scale_color_manual(values = manualcolors)
 
 ggplot(mut[mut$Cockroaches == 0,], aes(Ts, Tv, col = Taxonomy)) +
