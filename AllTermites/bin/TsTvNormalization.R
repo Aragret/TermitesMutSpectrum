@@ -1,5 +1,7 @@
 rm(list=ls(all=TRUE))
 
+library(ggplot2)
+
 mut = read.table('../results/cockroaches11_19/MutSpecCockroachesTsTv.txt', sep='\t', header=TRUE)
 
 plot(mut$sumOfSubs, mut$BranchLength)
@@ -8,10 +10,14 @@ cor.test(mut$sumOfSubs, mut$TsTv, method = 'spearman')
 
 pdf('../results/cockroaches11_19/TsTvNormalization.R.pdf')
 
+plot(mut$sumOfSubs, mut$TsTv)
 plot(mut$sumOfSubs, mut$Ts)
 plot(mut$sumOfSubs, mut$Tv)
 plot(mut$Ts, mut$Tv)
-plot(mut$sumOfSubs, mut$TsTv)
+
+ggplot(mut, aes(Ts, Tv, col = as.factor(Cockroaches))) + 
+  geom_point() 
+
 
 dev.off()
 
@@ -24,5 +30,10 @@ res = a$residuals
 
 cor.test(mut$BranchLength, res, method = 'spearman')
 
+summary(glm(Cockroaches ~ TsTv, data=mut))
+summary(glm(Cockroaches ~ sumOfSubs, data=mut))
 summary(glm(Cockroaches ~ TsTv + sumOfSubs, data=mut))
-summary(glm(Cockroaches ~ TsTv*sumOfSubs, data=mut))
+# summary(glm(Cockroaches ~ TsTv*sumOfSubs, data=mut))
+
+summary(glm(TsTv ~ Cockroaches + sumOfSubs, data=mut))
+
