@@ -1,5 +1,9 @@
 rm(list=ls(all=TRUE))
 
+# install.packages("scales")
+install.packages('ggsci')
+library(ggsci)
+library(scales)
 library(ggplot2)
 
 mut = read.table('../results/cockroaches11_19/MutSpecCockroachesTsTv.txt', sep='\t', header=TRUE)
@@ -9,21 +13,23 @@ plot(mut$sumOfSubs, mut$TsTv)
 cor.test(mut$sumOfSubs, mut$TsTv, method = 'spearman')
 
 
-higher_termites = c('Apicotermitinae', 'Cubitermitinae', 'Foraminitermitinae',
-                    'Macrotermitinae', 'Nasutitermitinae', 'Sphaerotermitinae',
-                    'Syntermitinae', 'Termes-group')
+higher_termites = c("Apicotermitinae", "Cephalo-group", "Microcerotermes", 
+                    "Termes-group", "Nasutitermitinae", "Amitermes-group", 
+                    "Promiro", "Macrotermitinae", "Cubitermitinae", "Foraminitermitinae", 
+                    "Syntermitinae", "Sphaerotermitinae", "Neocapri-group", 
+                    'Pericapritermes-group', "pericapritermes-group")
 
 for(i in 1:nrow(mut)){
   # i = 1
   if(mut[i, 'Taxonomy'] %in% higher_termites){
-    mut[i, 'Higher_termites'] = 1
+    mut[i, 'HigherTermites'] = 1
   }
-  else{mut[i, 'Higher_termites'] = 0}
+  else{mut[i, 'HigherTermites'] = 0}
 }
 
-mut$Higher_termites = as.factor(mut$Higher_termites)
+mut$HigherTermites = as.factor(mut$HigherTermites)
 
-pdf('../results/cockroaches11_19/TsTvNormalization.R.pdf')
+pdf('../results/cockroaches11_19/TsTvNormalization.R.pdf', width = 11)
 
 plot(mut$sumOfSubs, mut$TsTv)
 plot(mut$sumOfSubs, mut$Ts)
@@ -36,8 +42,28 @@ ggplot(mut, aes(Ts, Tv, col = Cockroaches)) +
   geom_point()
 
 ggplot(mut, aes(Ts, Tv, col = Cockroaches)) + 
-  geom_point(aes(size = Higher_termites))
+  geom_point(aes(size = HigherTermites))
 
+ggplot(mut[mut$HigherTermites == 1,], aes(Ts, Tv, col = Taxonomy)) +
+  geom_point() + # scale_colour_manual(values=pal_simpsons(palette = c("springfield"), alpha = 1))
+  scale_color_simpsons(palette = c("springfield"))
+
+unique(mut[mut$Cockroaches == 0, 'Taxonomy'])
+
+manualcolors<-c('black','forestgreen', 'red2', 'orange', 'cornflowerblue', 
+                'magenta', 'darkolivegreen4',  
+                'indianred1', 'tan4', 'darkblue', 
+                'mediumorchid1','firebrick4',  'yellowgreen', 'lightsalmon', 'tan3',
+                "tan1",'darkgray', 'wheat4', '#DDAD4B', 'chartreuse', 'seagreen1',
+                'moccasin', 'mediumvioletred', 'seagreen','cadetblue1', "darkolivegreen1")
+
+ggplot(mut[mut$Cockroaches == 0,], aes(Ts, Tv, col = Taxonomy)) +
+  geom_point() +
+  scale_color_manual(values = manualcolors)
+
+ggplot(mut[mut$Cockroaches == 0,], aes(Ts, Tv, col = Taxonomy)) +
+  geom_point(aes(size = HigherTermites)) +
+  scale_color_manual(values = manualcolors)
 
 dev.off()
 
