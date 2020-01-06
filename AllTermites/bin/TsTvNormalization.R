@@ -8,6 +8,8 @@ library(ggplot2)
 
 mut = read.table('../results/cockroaches11_19/MutSpecCockroachesTsTv.txt', sep='\t', header=TRUE)
 
+mut = mut[mut$Taxonomy != '',]
+
 plot(mut$sumOfSubs, mut$BranchLength)
 plot(mut$sumOfSubs, mut$TsTv)
 cor.test(mut$sumOfSubs, mut$TsTv, method = 'spearman')
@@ -39,14 +41,17 @@ plot(mut$Ts, mut$Tv)
 mut$Cockroaches = as.factor(mut$Cockroaches)
 
 ggplot(mut, aes(Ts, Tv, col = Cockroaches)) + 
-  geom_point()
+  geom_point() +
+  geom_abline()
 
 ggplot(mut, aes(Ts, Tv, col = Cockroaches)) + 
-  geom_point(aes(size = HigherTermites))
+  geom_point(aes(size = HigherTermites)) +
+  geom_abline()
 
 ggplot(mut[mut$HigherTermites == 1,], aes(Ts, Tv, col = Taxonomy)) +
   geom_point(aes(size = 1.5)) + # scale_colour_manual(values=pal_simpsons(palette = c("springfield"), alpha = 1))
-  scale_color_simpsons(palette = c("springfield"))
+  scale_color_simpsons(palette = c("springfield")) +
+  geom_abline()
 
 unique(mut[mut$Cockroaches == 0, 'Taxonomy'])
 
@@ -56,11 +61,42 @@ manualcolors<-c('#543005','#8c510a','#bf812d','#dfc27d','#f6e8c3','#f5f5f5','#c7
 
 ggplot(mut[mut$Cockroaches == 0,], aes(Ts, Tv, col = Taxonomy)) +
   geom_point(aes(size = 1.5)) +
-  scale_color_manual(values = manualcolors)
+  scale_color_manual(values = manualcolors) +
+  geom_abline()
 
 ggplot(mut[mut$Cockroaches == 0,], aes(Ts, Tv, col = Taxonomy)) +
   geom_point(aes(size = HigherTermites)) +
-  scale_color_manual(values = manualcolors)
+  scale_color_manual(values = manualcolors) + 
+  geom_abline()
+
+ggplot(mut[mut$Cockroaches == 0,], aes(Ts, Tv)) +
+  geom_point() +
+  geom_abline() +
+  facet_wrap(~ Taxonomy)
+
+ggplot(mut[mut$Cockroaches == 1,], aes(Ts, Tv)) +
+  geom_point() +
+  geom_abline() +
+  facet_wrap(~ Taxonomy)
+
+########################################################################
+
+Cryptocercus = c('Cryptocercus_hirtus_1', 'Cryptocercus_meridianus_1',
+                 'Cryptocercus_punctulatus_sp_CR18_1')
+
+for(i in 1:nrow(mut)){
+  # i = 1
+  if(mut[i, 'Species'] %in% Cryptocercus){
+    mut[i, 'Cryptocercus'] = 1
+  }
+  else{mut[i, 'Cryptocercus'] = 0}
+}
+mut$Cryptocercus = as.factor(mut$Cryptocercus)
+
+ggplot(mut[mut$Cockroaches == 1,], aes(Ts, Tv, col = Cryptocercus)) + 
+  geom_point(aes(size = 1.5)) +
+  geom_abline() + ggtitle('Cockroaches')
+
 
 dev.off()
 
