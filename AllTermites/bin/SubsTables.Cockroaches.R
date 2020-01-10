@@ -6,6 +6,7 @@ library(ggpubr)
 codonTable = read.table('../results/cockroaches11_19/mod_PolarizeMutations.CodonsTable.Cockroaches.txt', sep='\t', header=TRUE)
 
 withoutGapsCodonTable = codonTable[as.character(codonTable$DescendantCodon) != '---',]
+# 911912 subs
 
 length(unique(codonTable$Species)) # 567
 length(unique(withoutGapsCodonTable$Species)) # 567
@@ -57,6 +58,7 @@ length(unique(tableSubs$Species)) #567
 tableSubs$Subs = as.character(tableSubs$Subs)
 mut = tableSubs[which(!(tableSubs$Subs %in% c('A_N', 'A_R', 'C_N', 'G_N', 'T_K', 'T_N', 'T_Y',
                                               '-_A', '-_C', 'C_Y', '-_G', 'G_R', '-_T', 'A_Y'))),]
+# 701096
 
 length(unique(mut$Species)) # 567
 
@@ -87,8 +89,8 @@ ggplot(syn, aes(x = Subs)) +
 
 ####
 
-write.table(mut, '../results/cockroaches11_19/AllSubs.Cockroaches.txt', sep='\t', row.names = FALSE, quote = FALSE)
-write.table(syn, '../results/cockroaches11_19/SynSubs.Cockroaches.txt', sep='\t', row.names = FALSE, quote = FALSE)
+write.table(mut, '../results/cockroaches11_19/mod_AllSubs.Cockroaches.txt', sep='\t', row.names = FALSE, quote = FALSE)
+write.table(syn, '../results/cockroaches11_19/mod_SynSubs.Cockroaches.txt', sep='\t', row.names = FALSE, quote = FALSE)
 
 ################################################################
 ### 4fold deg

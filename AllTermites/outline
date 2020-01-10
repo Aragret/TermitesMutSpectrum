@@ -21,6 +21,7 @@ perl catfasta2phyml/catfasta2phyml.pl -fi results/*.fna > align_cat.fasta
 
 IQTREE: run_iqtree.slurm
 root(tree, 'Locusta_migratoria_1') - outgroup
+GTR+F+R10 model
 
 
 ################################################################################################
@@ -88,6 +89,7 @@ Termitidae vs others
 play with different subs types
 use MP to prove robustness
 corr between colony size and Ts/Tv ratio
+phylogenetic t-test
 
 future:
 -exomes
