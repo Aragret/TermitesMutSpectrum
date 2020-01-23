@@ -12,3 +12,15 @@ AllTermites/results/align_cat\.fasta
 AllTermites/results/cockroaches11_19/phylogeny/
 
 AllTermites/results/cockroaches11_19/aligns/
+
+AllTermites/src/tnt/
+
+AllTermites/bin/\.Rhistory
+
+AllTermites/results/nd6_22_01/phylogeny/
+
+AllTermites/results/nd6_22_01/align_cat_ND6\.fasta
+
+AllTermites/results/nd6_22_01/rooted_Tree\.nd6\.newick
+
+AllTermites/bin/\.ipynb_checkpoints/fasta2phylip-checkpoint\.ipynb
