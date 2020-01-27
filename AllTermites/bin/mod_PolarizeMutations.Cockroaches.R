@@ -1,3 +1,5 @@
+rm(list = ls(all=TRUE))
+
 library(ape)
 library(seqinr)
 library(stringr)
@@ -26,14 +28,16 @@ table(anc$Node)
 
 #############################################################################
 
-tree = read.tree('../results/rootedTreeCockroaches.newick')
+# tree = read.tree('../results/rootedTreeCockroaches.newick')
+
+tree = read.tree('../results/cockroaches11_19/phylogeny/iqtree_mito.treefile')
 
 a = as.data.frame(tree$edge)
 a = cbind(a, tree$edge.length)
 
 names(a) = c('Node', 'Tip', 'BranchLength')
 
-externalBranches = a[a$V2 <= numberOfSpecies,]
+externalBranches = a[a$Tip <= numberOfSpecies,]
 externalBranches = cbind(externalBranches, tree$tip.label)
 
 names(externalBranches) = c('Node', 'Tip', 'BranchLength', 'Species')
@@ -67,7 +71,7 @@ for(i in 1:nrow(sistersBranchL)){
   }
 }
 
-smallBranches = sistersBranchL[-toRemove,]
+smallBranches = sistersBranchL[-toRemove,] #110 rows
 
 tipsToRemove = c()
 nodesNeeded = c()
@@ -88,6 +92,10 @@ for(i in 1:nrow(smallBranches)){
   brLenPrevAnc = a[a$Tip == previousAnc,]$BranchLength
   while(brLenPrevAnc <= 0.02){
     previousAnc = a[a$Tip == previousAnc,]$Node
+    if(previousAnc == 680){
+      print('680 ancestor')
+      break
+    }
     brLenPrevAnc = brLenPrevAnc + a[a$Tip == previousAnc,]$BranchLength
   }
   nodesNeeded = rbind(nodesNeeded, c(as.character(smallBranches[i,]$Species1), 
@@ -110,6 +118,8 @@ modExternalBranches$Node = as.integer(modExternalBranches$Node)
 modExternalBranches$BranchLength = as.numeric(modExternalBranches$BranchLength)
 
 summary(modExternalBranches$BranchLength)
+
+a = merge(externalBranches, modExternalBranches)
 
 ############################################################################
 numberOfSpecies = length(tree$tip.label)
@@ -194,3 +204,5 @@ nrow(data[data$BranchLength < 0.02,])
 lessThan02 = data[data$BranchLength < 0.02,]
 
 write.table(codonTable, '../results/cockroaches11_19/mod_PolarizeMutations.CodonsTable.Cockroaches.txt', sep = '\t', quote = FALSE, row.names = FALSE)
+
+old_codonTable = read.table('../results/cockroaches11_19/PolarizeMutations.CodonsTable.Cockroaches.txt', header = TRUE, sep='\t')

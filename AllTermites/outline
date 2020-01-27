@@ -19,6 +19,20 @@ MAFFT: run_mafft.slurm
 Concatenate all files:
 perl catfasta2phyml/catfasta2phyml.pl -fi results/*.fna > align_cat.fasta
 
+ATP6.fasta.align.fna = 1-687
+ATP8.fasta.align.fna = 688-867
+COI.fasta.align.fna = 868-2433
+COII.fasta.align.fna = 2434-3120
+COIII.fasta.align.fna = 3121-3918
+CyB.fasta.align.fna = 3919-5091
+ND1.fasta.align.fna = 5092-6051
+ND2.fasta.align.fna = 6052-7128
+ND3.fasta.align.fna = 7129-7488
+ND4.fasta.align.fna = 7489-8871
+ND4L.fasta.align.fna = 8872-9171
+ND5.fasta.align.fna = 9172-10968
+ND6.fasta.align.fna = 10969-11556
+
 IQTREE: run_iqtree.slurm
 root(tree, 'Locusta_migratoria_1') - outgroup
 GTR+F+R10 model
@@ -94,6 +108,16 @@ phylogenetic t-test
 future:
 -exomes
 
+--------------------
+
+when to add nd6? (check)
+should I do that before leaving? Yep
+rerun Ts/Tv: check species with collapsed and non-collapsed branches: why all species now have Ts/Tv ratio less than 1?
+ancestral sequences are different for the same node - why?
+
+add info about lost species (check) and colony size?
+
+phylip on cluster: how to change files for appropriate format for phylip? Make dicts for align, then run iqtree again?
 
 ################################################################################################
 ### ERRORS
@@ -101,4 +125,5 @@ future:
 transeq can't work with sequence names less than 3 chars
 MEGA can't work with '?' in sequence names. To replace: sed -i 's/original/new/g' file.txt
 (still can't figure out why MEGA is not working, but tree looks ok)
-
+phylip format sucks
+Node numbers are changing after rooting a tree in ape

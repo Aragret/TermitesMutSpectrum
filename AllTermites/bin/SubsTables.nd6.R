@@ -3,13 +3,13 @@ rm(list=ls(all=TRUE))
 library(ggplot2)
 library(ggpubr)
 
-codonTable = read.table('../results/nd6_22_01//mod_PolarizeMutations.CodonsTable.nd6.txt', sep='\t', header=TRUE)
+codonTable = read.table('../results/nd6_22_01/mod_PolarizeMutations.CodonsTable.nd6.txt', sep='\t', header=TRUE)
 
 withoutGapsCodonTable = codonTable[as.character(codonTable$DescendantCodon) != '---',]
-# 982204 subs
+# 321174 subs
 
-length(unique(codonTable$Species)) # 571
-length(unique(withoutGapsCodonTable$Species)) # 571
+length(unique(codonTable$Species)) # 568
+length(unique(withoutGapsCodonTable$Species)) # 567
 
 # setdiff(codonTable$Species, withoutGapsCodonTable$Species)
 
@@ -51,18 +51,18 @@ withoutGapsCodonTable$Subs = data$Subst
 
 tableSubs = withoutGapsCodonTable[withoutGapsCodonTable$Subs != 'MoreThanOne_SUBST',]
 
-length(unique(tableSubs$Species)) #571
+length(unique(tableSubs$Species)) #567
 
 #### all subs
 
 tableSubs$Subs = as.character(tableSubs$Subs)
 mut = tableSubs[which(!(tableSubs$Subs %in% c('A_N', 'A_R', 'C_N', 'G_N', 'T_K', 'T_N', 'T_Y',
                                               '-_A', '-_C', 'C_Y', '-_G', 'G_R', '-_T', 'A_Y'))),]
-# 749328
+# 297169
 
-length(unique(mut$Species)) # 571
+length(unique(mut$Species)) # 567
 
-pdf('../results/nd6_22_01//mod_HistOfSubs.pdf')
+pdf('../results/nd6_22_01/mod_HistOfSubs.pdf')
 
 ggplot(mut, aes(x = Subs)) +
   geom_histogram(stat = 'count')
@@ -107,9 +107,9 @@ VecOfSynFourFoldDegenerateSites <- c('CTT', 'CTC', 'CTA', 'CTG',
 length(unique(VecOfSynFourFoldDegenerateSites)) # 36
 
 mut4f = mut[mut$AncestorCodon %in% VecOfSynFourFoldDegenerateSites & mut$DescendantCodon %in% VecOfSynFourFoldDegenerateSites,]; nrow(mut4f) # 209120
-# ~300k subs
+# 121k subs
 
-length(unique(mut4f$Species)) #571
+length(unique(mut4f$Species)) #564
 
 Temp = mut4f
 Temp$number = 1

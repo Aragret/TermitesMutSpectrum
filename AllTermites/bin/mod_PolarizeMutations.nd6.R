@@ -2,35 +2,18 @@ library(ape)
 library(seqinr)
 library(stringr)
 
-tree = read.tree('../results/nd6_22_01/phylogeny/iqtree_mito.treefile')
+tree = read.tree('../results/nd6_22_01/phylogeny_rooted/iqtree_mito.treefile')
 
 numberOfSpecies = length(tree$tip.label)
 
-tree = root(tree, 'Locusta_migratoria_1', resolve.root = TRUE)
-
-a = as.data.frame(tree$edge)
-a = cbind(a, tree$edge.length)
-externalBranches = a[a$V2 <= numberOfSpecies,]
-externalBranches = cbind(externalBranches, tree$tip.label)
-
-# names(externalBranches) = c('Node', 'Tip', 'BranchLength', 'Species')
-
-tempTree = drop.tip(tree, 'ISO845_Zootermopsis_angusticollis_1')
-tempExtBranches = a[a$V2 <= numberOfSpecies - 1,]
-tempExtBranches = cbind(tempExtBranches, tempTree$tip.label)
-
-anc = read.table('../results/nd6_22_01/phylogeny/iqtree_mito.state', header=TRUE)
+anc = read.table('../results/nd6_22_01/phylogeny_rooted/iqtree_mito.state', header=TRUE)
 # anc$Node = sub('Node', '', anc$Node)
 
 agg = aggregate(State ~ Node, anc, paste, collapse = "")
 
 table(anc$Node)
 
-write.tree(tree, '../results/nd6_22_01/rooted_Tree.nd6.newick')
-
 #############################################################################
-
-tree = read.tree('../results/nd6_22_01/rooted_Tree.nd6.newick')
 
 a = as.data.frame(tree$edge)
 a = cbind(a, tree$edge.length)
@@ -197,4 +180,4 @@ nrow(data[data$BranchLength < 0.02,])
 
 lessThan02 = data[data$BranchLength < 0.02,]
 
-write.table(codonTable, '../results/nd6_22_01//mod_PolarizeMutations.CodonsTable.nd6.txt', sep = '\t', quote = FALSE, row.names = FALSE)
+write.table(codonTable, '../results/nd6_22_01/mod_PolarizeMutations.CodonsTable.nd6.txt', sep = '\t', quote = FALSE, row.names = FALSE)

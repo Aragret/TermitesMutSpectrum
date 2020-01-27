@@ -50,7 +50,7 @@ mutFr = cbind(mutTableBrlen, fractions)
 
 summary(mutFr$A_T_fr)
 
-pdf('../results/cockroaches11_19/histOfMutFreqs.pdf')
+pdf('../results/nd6_22_01/histOfMutFreqs.nd6.pdf')
 par(mfrow=c(3,4))
 for(i in 16:27){
   # i = 16
