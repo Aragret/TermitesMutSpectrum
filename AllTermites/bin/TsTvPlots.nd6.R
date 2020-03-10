@@ -103,4 +103,20 @@ ggplot(mut[mut$Cockroaches == 1,], aes(Ts, Tv)) +
   ylim(min(mut$Tv), max(mut$Tv)) +
   facet_wrap(~ Taxonomy)
 
+#####################################################################
+mut$HigherTermites = as.numeric(mut$HigherTermites)
+mut$Cockroaches = as.numeric(mut$Cockroaches)
+
+mut$TermitesCockroaches = mut$HigherTermites + 1
+mut$TermitesCockroaches = mut$TermitesCockroaches - mut$Cockroaches
+mut$TermitesCockroaches = as.factor(mut$TermitesCockroaches)
+
+summary(mut$TermitesCockroaches)
+
+ggplot(mut, aes(x=TermitesCockroaches, y=TsTv, fill=mut$TermitesCockroaches)) +
+  geom_violin() +
+  scale_fill_discrete(name = "", labels = c("Cockroaches (n=98)", "Lower termites (n=130)", 'Higher termites (n=272)')) +
+  xlab('') + stat_summary(fun.y="median", geom="point",size=2)
+  
+
 dev.off()

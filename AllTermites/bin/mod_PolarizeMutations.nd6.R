@@ -2,11 +2,11 @@ library(ape)
 library(seqinr)
 library(stringr)
 
-tree = read.tree('../results/nd6_22_01/phylogeny_rooted/iqtree_mito.treefile')
+tree = read.tree('../results/nucl_genes31_01/rooted_phylogeny/Fin16b.treefile')
 
 numberOfSpecies = length(tree$tip.label)
 
-anc = read.table('../results/nd6_22_01/phylogeny_rooted/iqtree_mito.state', header=TRUE)
+anc = read.table('../results/nucl_genes31_01/rooted_phylogeny/Fin16b.state', header=TRUE)
 # anc$Node = sub('Node', '', anc$Node)
 
 agg = aggregate(State ~ Node, anc, paste, collapse = "")
@@ -33,6 +33,7 @@ max_node_number = max(tree$edge)
 min_node_number = length(tree$tip.label) + 1
 
 one_line = c()
+
 for (i in min_node_number:max_node_number){
   descendants = tips(tree, i)
   if (length(descendants) == 2){
@@ -108,19 +109,12 @@ data = merge(agg, modExternalBranches, by='Node')
 
 ### adding aligns
 
-aligns = read.fasta('../results/nd6_22_01/align_cat_ND6.fasta', as.string = TRUE)
+aligns = read.fasta('../results/nucl_genes31_01/FcC_supermatrix.fas_with3rd', as.string = TRUE)
 
 a = data.frame(Species=names(aligns), Seqs=unlist(getSequence(aligns, as.string=T)))
 
 data$Species = as.character(data$Species)
 a$Species = as.character(a$Species)
-
-# a$Species = sapply(a$Species, function(x) sub('?', '', x))
-a$Species = str_replace_all(a$Species, fixed('?'), '')
-a$Species = str_replace_all(a$Species, fixed(';'), '')
-a$Species = str_replace_all(a$Species, fixed('__'), '_')
-
-data$Species = str_replace_all(data$Species, fixed('__'), '_')
 
 anc_desSeqs = merge(data, a, by='Species')
 

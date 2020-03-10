@@ -28,3 +28,15 @@ AllTermites/bin/\.ipynb_checkpoints/fasta2phylip-checkpoint\.ipynb
 AllTermites/bin/\.ipynb_checkpoints/
 
 AllTermites/results/nd6_22_01/phylogeny_rooted/
+
+AllTermites/bucketArchive-04_02_20\.tar\.gz
+
+AllTermites/results/nucl_genes31_01/FcC_supermatrix\.fas_with3rd
+
+AllTermites/results/nucl_genes31_01/geneAndCodon_partitinoning_scheme_with3rd\.txt
+
+*.out
+
+AllTermites/results/nucl_genes31_01/phylogeny/
+
+AllTermites/results/nucl_genes31_01/rooted_phylogeny/
