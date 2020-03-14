@@ -115,8 +115,10 @@ summary(mut$TermitesCockroaches)
 
 ggplot(mut, aes(x=TermitesCockroaches, y=TsTv, fill=mut$TermitesCockroaches)) +
   geom_violin() +
-  scale_fill_discrete(name = "", labels = c("Cockroaches (n=98)", "Lower termites (n=130)", 'Higher termites (n=272)')) +
-  xlab('') + stat_summary(fun.y="median", geom="point",size=2)
+  #scale_fill_discrete(name = "", labels = c("Cockroaches (n=98)", "Lower termites (n=130)", 'Higher termites (n=272)')) +
+  xlab('') + stat_summary(fun.y="median", geom="point",size=2) +
+  scale_fill_grey(name = "", labels = c("Cockroaches (n=98)", "Lower termites (n=130)", 'Higher termites (n=272)'),
+                  start = 1, end = 0.3)
   
 
 dev.off()
