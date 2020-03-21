@@ -142,3 +142,22 @@ title(xlab = 'Termitidae, Rhinotermitidae, Hodotermitidae, Termopsidae')
 abline(h = 0, col = 'red')
 
 dev.off()
+
+#################################################################################
+### Ts/Tv 
+
+MUT4f = merge(MUT4f, Taxa[, c('Species', 'Family')], all.x = TRUE)
+MUT4f$Ts = replicate(nrow(MUT4f), 0)
+MUT4f$Tv = replicate(nrow(MUT4f), 0)
+
+for(i in 1:nrow(MUT4f)){
+  # i = 1
+  if(MUT4f[i, 'Subs'] %in% c('A_G', 'G_A', 'T_C', 'C_T')){
+    MUT4f[i, 'Ts'] = 1
+  }
+  else(MUT4f[i, 'Tv'] = 1)
+}
+
+agg = aggregate(MUT4f[, c('Ts', 'Tv')], by=list(MUT4f$Family), sum)
+names(agg) = c('Family', 'Ts', 'Tv')
+

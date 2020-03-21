@@ -115,7 +115,7 @@ write.table(PieChartTable,"../../Body/3Results/Polymorphisms.Normalization.Norma
 
 par(mfrow=c(1,5))
 VecOfFamilies = as.character(unique(Agg$Family))
-for (i in 1:length(VecOfClasses))
+for (i in 1:length(VecOfFamilies))
 {
   pie(PieChartTable[PieChartTable$Family == VecOfFamilies[i],]$Normalised2Number, labels = PieChartTable[PieChartTable$Family == VecOfFamilies[i],]$Subs, main = VecOfFamilies[i], col=rainbow(12))
 }
