@@ -122,3 +122,41 @@ ggplot(mut, aes(x=TermitesCockroaches, y=TsTv, fill=mut$TermitesCockroaches)) +
   
 
 dev.off()
+
+
+#####################################################################################
+mut$HigherTermites = as.factor(mut$HigherTermites)
+mut$Cockroaches = as.factor(mut$Cockroaches)
+
+wilcox.test(mut[mut$TermitesCockroaches == 0,]$TsTv, mut[mut$TermitesCockroaches == 1,]$TsTv)
+# W = 3167, p-value = 1.852e-10
+
+wilcox.test(mut[mut$TermitesCockroaches == 1,]$TsTv, mut[mut$TermitesCockroaches == 2,]$TsTv)
+# W = 15564, p-value = 0.08751
+
+wilcox.test(mut[mut$TermitesCockroaches == 0,]$TsTv, mut[mut$TermitesCockroaches == 2,]$TsTv)
+# W = 5408, p-value < 2.2e-16
+
+
+mut$HigherTermites = as.factor(as.numeric(mut$HigherTermites) - 1)
+mut$Cockroaches = as.factor(as.numeric(mut$Cockroaches) - 1)
+
+finiteMut = mut[mut$TsTv != 'Inf',]
+summary(lm(scale(TsTv) ~ HigherTermites + Cockroaches + scale(BranchLength), data = finiteMut))
+
+# Coefficients:
+#   Estimate Std. Error t value Pr(>|t|)    
+# (Intercept)          0.14592    0.08252   1.768   0.0776 .  
+# HigherTermites1     -0.07631    0.10072  -0.758   0.4490    
+# Cockroaches1        -0.52973    0.12877  -4.114 4.56e-05 ***
+#   scale(BranchLength) -0.25638    0.04469  -5.736 1.69e-08 ***
+
+pdf('../results/nd6_22_01/TsTvPlotsBranchLength.nd6.pdf')
+
+ggplot(finiteMut, aes(y = TsTv, x = BranchLength, col = Cockroaches)) +
+  geom_point()
+
+ggplot(finiteMut, aes(y = TsTv, x = sumOfSubs, col = Cockroaches)) +
+  geom_point()
+
+dev.off()
