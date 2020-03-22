@@ -151,6 +151,19 @@ summary(lm(scale(TsTv) ~ HigherTermites + Cockroaches + scale(BranchLength), dat
 # Cockroaches1        -0.52973    0.12877  -4.114 4.56e-05 ***
 #   scale(BranchLength) -0.25638    0.04469  -5.736 1.69e-08 ***
 
+summary(lm(scale(TsTv) ~ 0 + (HigherTermites + Cockroaches)*scale(BranchLength), data = finiteMut))
+
+# Coefficients:
+#   Estimate Std. Error t value Pr(>|t|)    
+# HigherTermites0                      0.15032    0.07802   1.927  0.05460 .  
+# HigherTermites1                     -0.18061    0.06913  -2.612  0.00926 ** 
+#   Cockroaches1                        -0.63304    0.12255  -5.165 3.49e-07 ***
+#   scale(BranchLength)                 -0.76501    0.11973  -6.389 3.87e-10 ***
+#   HigherTermites1:scale(BranchLength) -0.50888    0.21449  -2.373  0.01805 *  
+#   Cockroaches1:scale(BranchLength)     0.65600    0.12851   5.105 4.75e-07 ***
+
+tapply(mut$BranchLength, mut$TermitesCockroaches, summary)
+
 pdf('../results/nd6_22_01/TsTvPlotsBranchLength.nd6.pdf')
 
 ggplot(finiteMut, aes(y = TsTv, x = BranchLength, col = Cockroaches)) +
@@ -159,4 +172,37 @@ ggplot(finiteMut, aes(y = TsTv, x = BranchLength, col = Cockroaches)) +
 ggplot(finiteMut, aes(y = TsTv, x = sumOfSubs, col = Cockroaches)) +
   geom_point()
 
+ggplot(mut, aes(x=TermitesCockroaches, y=BranchLength, fill=mut$TermitesCockroaches)) +
+  geom_violin() +
+  #scale_fill_discrete(name = "", labels = c("Cockroaches (n=98)", "Lower termites (n=130)", 'Higher termites (n=272)')) +
+  xlab('') + stat_summary(fun.y="median", geom="point",size=2) +
+  scale_fill_grey(name = "", labels = c("Cockroaches (n=98)", "Lower termites (n=130)", 'Higher termites (n=272)'),
+                  start = 1, end = 0.3)
+
+
 dev.off()
+
+###############################################################################
+# ANCOVA 
+
+# termites vs cockroaches
+
+result1 <- aov(Ts ~ Tv * TermitesCockroaches, data = finiteMut)
+print(summary(result1))
+
+result2 <- aov(Ts ~ Tv + TermitesCockroaches, data = finiteMut)
+print(summary(result2))
+
+print(anova(result1,result2))
+
+
+# cockroaches vs higher termites vs lower termites
+
+result1 <- aov(Ts ~ Tv * Cockroaches, data = finiteMut)
+print(summary(result1))
+
+result2 <- aov(Ts ~ Tv + Cockroaches, data = finiteMut)
+print(summary(result2))
+
+print(anova(result1,result2))
+
