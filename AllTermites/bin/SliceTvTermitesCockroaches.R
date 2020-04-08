@@ -11,31 +11,6 @@ mut$Tv = mut$G_T + mut$A_T + mut$G_C +  mut$A_C + mut$C_A + mut$C_G + mut$T_A + 
 
 ############################################################################
 
-workers = mut[mut$Worker == 1,]
-workers = workers[!is.na(workers$Worker),]
-withoutWorkers = mut[(mut$Worker == 0) & !is.na(mut$Worker),]
-
-filter_workers = rbind(workers, withoutWorkers)
-
-mut$Soldier = as.factor(mut$Soldier)
-filter_soldiers = mut[!is.na(mut$Soldier),]
-
-higher_termites = c("Apicotermitinae", "Cephalo-group", "Microcerotermes", 
-                    "Termes-group", "Nasutitermitinae", "Amitermes-group", 
-                    "Promiro", "Macrotermitinae", "Cubitermitinae", "Foraminitermitinae", 
-                    "Syntermitinae", "Sphaerotermitinae", "Neocapri-group", 
-                    'Pericapritermes-group', "pericapritermes-group")
-
-for(i in 1:nrow(mut)){
-  # i = 1
-  if(mut[i, 'Taxonomy'] %in% higher_termites){
-    mut[i, 'HigherTermites'] = 1
-  }
-  else{mut[i, 'HigherTermites'] = 0}
-}
-
-mut$HigherTermites = as.factor(mut$HigherTermites)
-
 cockroaches = c('Ectobiidae1', 'Tryonicidae', 'Blaberidae', 'Corydiidae', 'Ectobiidae2',
                 'Lamproblattidae', 'Anaplectidae', 'Blattidae', 'Cryptocercidae', 'Ectobiidae3',
                 'Nocticolidae')
@@ -54,46 +29,60 @@ mut$Cockroaches = as.factor(mut$Cockroaches)
 
 ###############################################################################
 
-summary(mut$Tv)
+summary(mut$Ts)
 
-quantile(mut$Tv, probs = seq(0, 1, 1/5))[2]
+quantile(mut$Ts, probs = seq(0, 1, 1/5))
 
-nrow(mut[mut$Tv == quantile(mut$Tv, probs = seq(0, 1, 1/5))[2],])
+nrow(mut[mut$Ts == quantile(mut$Ts, probs = seq(0, 1, 1/5))[2],])
 
 one_line = c()
 for(i in 1:5){
   # i = 3
-  start = quantile(mut$Tv, probs = seq(0, 1, 1/5))[i]
-  end = quantile(mut$Tv, probs = seq(0, 1, 1/5))[i + 1]
-  temp_mut = mut[mut$Tv >= start & mut$Tv < end,]
+  start = quantile(mut$Ts, probs = seq(0, 1, 1/5))[i]
+  end = quantile(mut$Ts, probs = seq(0, 1, 1/5))[i + 1]
+  temp_mut = mut[mut$Ts >= start & mut$Ts < end,]
   if(i == 4){
-    temp_mut = mut[mut$Tv >= start & mut$Tv <= end,]
+    temp_mut = mut[mut$Ts >= start & mut$Ts <= end,]
   }
   cockroaches = temp_mut[temp_mut$Cockroaches == 1,]
   termites = temp_mut[temp_mut$Cockroaches == 0,]
-  result = wilcox.test(cockroaches$Ts, termites$Ts)
-  one_line = rbind(one_line, c(nrow(cockroaches), nrow(termites), end, result$statistic, result$p.value))
+  cockroachesTv = median(cockroaches$Tv)
+  termitesTv = median(termites$Tv)
+  result = wilcox.test(cockroaches$Tv, termites$Tv)
+  one_line = rbind(one_line, c(nrow(cockroaches), nrow(termites), end, cockroachesTv, termitesTv, result$statistic, result$p.value))
 }
 
 wilcoxTableQuantiles = as.data.frame(one_line)
-names(wilcoxTableQuantiles) = c('N_cockroaches', 'N_termites', 'End', 'W', 'Pvalue')
+names(wilcoxTableQuantiles) = c('N_cockroaches', 'N_termites', 'End', 'medianTvCockroaches', 'medianTvTermites', 'W', 'Pvalue')
 
 write.table(wilcoxTableQuantiles, '../results/nd6_22_01/wilcoxTableQuantiles.txt', 
             sep = '\t', quote = FALSE, row.names = FALSE)
 
 ##########################
 
-vecTv = seq(0, max(mut$Tv), 100)
+vecTs = seq(0, max(mut$Ts), 50)
 
 one_line = c()
-for(i in 1:(length(vecTv) - 1)){
+for(i in 1:(length(vecTs) - 1)){
   # i = 1
-  start = vecTv[i]; end = vecTv[i + 1]
-  temp_mut = mut[mut$Tv >= start & mut$Tv < end,]
+  start = vecTs[i]; end = vecTs[i + 1]
+  temp_mut = mut[mut$Ts >= start & mut$Ts < end,]
+  if(i == (length(vecTs) - 1)){
+    end = max(mut$Ts)
+    temp_mut = mut[mut$Ts >= start & mut$Ts <= end,]
+  }
   cockroaches = temp_mut[temp_mut$Cockroaches == 1,]
   termites = temp_mut[temp_mut$Cockroaches == 0,]
-  result = wilcox.test(cockroaches$Ts, termites$Tv)
-  one_line = rbind(one_line, c(nrow(cockroaches), nrow(termites), result$statistic, result$p.value))
+  cockroachesTv = median(cockroaches$Tv)
+  termitesTv = median(termites$Tv)
+  result = wilcox.test(cockroaches$Tv, termites$Tv)
+  one_line = rbind(one_line, c(nrow(cockroaches), nrow(termites), end, cockroachesTv, termitesTv, result$statistic, result$p.value))
 }
 
-# not enough observations after 200 transitions
+wilcoxTableSegments = as.data.frame(one_line)
+names(wilcoxTableSegments) = c('N_cockroaches', 'N_termites', 'End', 'medianTvCockroaches', 'medianTvTermites', 'W', 'Pvalue')
+
+write.table(wilcoxTableSegments, '../results/nd6_22_01/wilcoxTableSegments.txt', 
+            sep = '\t', quote = FALSE, row.names = FALSE)
+
+# not enough observations after 150 transitions
