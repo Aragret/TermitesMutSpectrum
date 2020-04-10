@@ -58,6 +58,30 @@ names(wilcoxTableQuantiles) = c('N_cockroaches', 'N_termites', 'End', 'medianTvC
 write.table(wilcoxTableQuantiles, '../results/nd6_22_01/wilcoxTableQuantiles.txt', 
             sep = '\t', quote = FALSE, row.names = FALSE)
 
+
+one_line = c()
+for(i in 1:5){
+  # i = 3
+  start = quantile(mut$Ts, probs = seq(0, 1, 1/5))[i]
+  end = quantile(mut$Ts, probs = seq(0, 1, 1/5))[i + 1]
+  temp_mut = mut[mut$Ts >= start & mut$Ts < end,]
+  if(i == 4){
+    temp_mut = mut[mut$Ts >= start & mut$Ts <= end,]
+  }
+  cockroaches = temp_mut[temp_mut$Cockroaches == 1,]
+  termites = temp_mut[temp_mut$Cockroaches == 0,]
+  cockroachesTsTv = median(cockroaches$TsTv)
+  termitesTsTv = median(termites$TsTv)
+  result = wilcox.test(cockroaches$TsTv, termites$TsTv)
+  one_line = rbind(one_line, c(nrow(cockroaches), nrow(termites), end, cockroachesTsTv, termitesTsTv, result$statistic, result$p.value))
+}
+
+wilcoxTableQuantilesTsTv = as.data.frame(one_line)
+names(wilcoxTableQuantilesTsTv) = c('N_cockroaches', 'N_termites', 'End', 'medianTsTvCockroaches', 'medianTsTvTermites', 'W', 'Pvalue')
+
+write.table(wilcoxTableQuantilesTsTv, '../results/nd6_22_01/wilcoxTableQuantilesTsTv.txt', 
+            sep = '\t', quote = FALSE, row.names = FALSE)
+
 ##########################
 
 vecTs = seq(0, max(mut$Ts), 50)
