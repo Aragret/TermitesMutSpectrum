@@ -11,31 +11,6 @@ mut$Tv = mut$G_T + mut$A_T + mut$G_C +  mut$A_C + mut$C_A + mut$C_G + mut$T_A + 
 
 ############################################################################
 
-workers = mut[mut$Worker == 1,]
-workers = workers[!is.na(workers$Worker),]
-withoutWorkers = mut[(mut$Worker == 0) & !is.na(mut$Worker),]
-
-filter_workers = rbind(workers, withoutWorkers)
-
-mut$Soldier = as.factor(mut$Soldier)
-filter_soldiers = mut[!is.na(mut$Soldier),]
-
-higher_termites = c("Apicotermitinae", "Cephalo-group", "Microcerotermes", 
-                    "Termes-group", "Nasutitermitinae", "Amitermes-group", 
-                    "Promiro", "Macrotermitinae", "Cubitermitinae", "Foraminitermitinae", 
-                    "Syntermitinae", "Sphaerotermitinae", "Neocapri-group", 
-                    'Pericapritermes-group', "pericapritermes-group")
-
-for(i in 1:nrow(mut)){
-  # i = 1
-  if(mut[i, 'Taxonomy'] %in% higher_termites){
-    mut[i, 'HigherTermites'] = 1
-  }
-  else{mut[i, 'HigherTermites'] = 0}
-}
-
-mut$HigherTermites = as.factor(mut$HigherTermites)
-
 cockroaches = c('Ectobiidae1', 'Tryonicidae', 'Blaberidae', 'Corydiidae', 'Ectobiidae2',
                 'Lamproblattidae', 'Anaplectidae', 'Blattidae', 'Cryptocercidae', 'Ectobiidae3',
                 'Nocticolidae')
@@ -51,36 +26,13 @@ for(i in 1:nrow(mut)){
 }
 
 mut$Cockroaches = as.factor(mut$Cockroaches)
+
 summary(mut$Cockroaches)
-
-mut$HigherTermites = as.numeric(mut$HigherTermites)
-mut$Cockroaches = as.numeric(mut$Cockroaches)
-
-mut$TermitesCockroaches = mut$HigherTermites + 1
-mut$TermitesCockroaches = mut$TermitesCockroaches - mut$Cockroaches
-mut$TermitesCockroaches = as.factor(mut$TermitesCockroaches)
-
-summary(mut$TermitesCockroaches)
-
-mut$HigherTermites = as.factor(as.numeric(mut$HigherTermites) - 1)
-mut$Cockroaches = as.factor(as.numeric(mut$Cockroaches) - 1)
-
 
 finiteMut = mut[mut$TsTv != 'Inf',]
 
 
 # termites vs cockroaches
-
-result1 <- aov(Ts ~ Tv * TermitesCockroaches, data = finiteMut)
-print(summary(result1))
-
-result2 <- aov(Ts ~ Tv + TermitesCockroaches, data = finiteMut)
-print(summary(result2))
-
-print(anova(result1,result2))
-
-
-# cockroaches vs higher termites vs lower termites
 
 result1 <- aov(Ts ~ Tv * Cockroaches, data = finiteMut)
 print(summary(result1))
@@ -96,6 +48,31 @@ pdf('../results/nd6_22_01/TsTvCockroachesTermites.R.pdf')
 
 hist(mut$Ts, breaks = 50)
 hist(mut$Tv, breaks = 50)
+
+
+plot(mut$Tv, mut$Ts)
+plot(mut$Tv, log(mut$Ts))
+plot(log(mut$Tv), mut$Ts)
+
+
+### residuals
+
+Lm1 <- lm(Ts ~ Tv, mut)
+
+mut$res <- residuals(Lm1)
+
+hist(mut$res)
+plot(mut$Tv, mut$res)
+
+
+Lm1 <- lm(log(Ts) ~ Tv, mut)
+
+mut$resLog <- residuals(Lm1)
+
+hist(mut$resLog, breaks = 20)
+plot(mut$Tv, mut$resLog)
+
+#######################################################################
 
 Result <- glm(Ts ~ Tv + Cockroaches, data = mut, family = poisson)
 summary(Result)
