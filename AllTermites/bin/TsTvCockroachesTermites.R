@@ -53,6 +53,7 @@ hist(mut$Tv, breaks = 50)
 plot(mut$Tv, mut$Ts)
 plot(mut$Tv, log(mut$Ts))
 plot(log(mut$Tv), mut$Ts)
+plot(log(mut$Tv), log(mut$Ts))
 
 
 ### residuals
@@ -61,16 +62,26 @@ Lm1 <- lm(Ts ~ Tv, mut)
 
 mut$res <- residuals(Lm1)
 
-hist(mut$res)
-plot(mut$Tv, mut$res)
+hist(mut$res, main = 'Ts ~ Tv res')
+plot(mut$Tv, mut$res, main = 'Ts ~ Tv res')
 
 
 Lm1 <- lm(log(Ts) ~ Tv, mut)
 
 mut$resLog <- residuals(Lm1)
 
-hist(mut$resLog, breaks = 20)
-plot(mut$Tv, mut$resLog)
+hist(mut$resLog, breaks = 20, main='log(Ts) ~ Tv res')
+plot(mut$Tv, mut$resLog, main='log(Ts) ~ Tv res')
+
+
+Lm1 <- lm(log(Tv) ~ Ts, finiteMut)
+
+finiteMut$resLog <- residuals(Lm1)
+
+hist(finiteMut$resLog, breaks = 20, main='log(Tv) ~ Ts res')
+plot(finiteMut$Ts, finiteMut$resLog, main='log(Ts) ~ Tv res')
+plot(log(finiteMut$Ts), finiteMut$resLog, main='log(Ts) ~ Tv res')
+
 
 #######################################################################
 
