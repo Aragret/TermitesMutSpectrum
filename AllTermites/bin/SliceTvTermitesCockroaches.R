@@ -27,13 +27,15 @@ for(i in 1:nrow(mut)){
 
 mut$Cockroaches = as.factor(mut$Cockroaches)
 
+finiteMut = mut[mut$TsTv != 'Inf',]
+
 ###############################################################################
 
 summary(mut$Ts)
 
-quantile(mut$Ts, probs = seq(0, 1, 1/5))
+mut = mut[mut$Ts <= 150,] # not enough observations for cockroaches after 150 Ts
 
-nrow(mut[mut$Ts == quantile(mut$Ts, probs = seq(0, 1, 1/5))[2],])
+quantile(mut$Ts, probs = seq(0, 1, 1/5)) # 5 segments of transitions
 
 one_line = c()
 for(i in 1:5){
@@ -41,72 +43,43 @@ for(i in 1:5){
   start = quantile(mut$Ts, probs = seq(0, 1, 1/5))[i]
   end = quantile(mut$Ts, probs = seq(0, 1, 1/5))[i + 1]
   temp_mut = mut[mut$Ts >= start & mut$Ts < end,]
-  if(i == 4){
+  if(i == 5){
     temp_mut = mut[mut$Ts >= start & mut$Ts <= end,]
   }
   cockroaches = temp_mut[temp_mut$Cockroaches == 1,]
   termites = temp_mut[temp_mut$Cockroaches == 0,]
   cockroachesTv = median(cockroaches$Tv)
   termitesTv = median(termites$Tv)
-  result = wilcox.test(cockroaches$Tv, termites$Tv)
+  result = t.test(cockroaches$Tv, termites$Tv)
   one_line = rbind(one_line, c(nrow(cockroaches), nrow(termites), end, cockroachesTv, termitesTv, result$statistic, result$p.value))
 }
 
-wilcoxTableQuantiles = as.data.frame(one_line)
-names(wilcoxTableQuantiles) = c('N_cockroaches', 'N_termites', 'End', 'medianTvCockroaches', 'medianTvTermites', 'W', 'Pvalue')
+TtestTableQuantiles = as.data.frame(one_line)
+names(TtestTableQuantiles) = c('N_cockroaches', 'N_termites', 'End', 'medianTvCockroaches', 'medianTvTermites', 't', 'Pvalue')
 
-write.table(wilcoxTableQuantiles, '../results/nd6_22_01/wilcoxTableQuantiles.txt', 
+write.table(TtestTableQuantiles, '../results/nd6_22_01/tTestTableQuantiles.txt', 
             sep = '\t', quote = FALSE, row.names = FALSE)
 
 
 one_line = c()
 for(i in 1:5){
   # i = 3
-  start = quantile(mut$Ts, probs = seq(0, 1, 1/5))[i]
-  end = quantile(mut$Ts, probs = seq(0, 1, 1/5))[i + 1]
-  temp_mut = mut[mut$Ts >= start & mut$Ts < end,]
-  if(i == 4){
-    temp_mut = mut[mut$Ts >= start & mut$Ts <= end,]
+  start = quantile(finiteMut$Ts, probs = seq(0, 1, 1/5))[i]
+  end = quantile(finiteMut$Ts, probs = seq(0, 1, 1/5))[i + 1]
+  temp_mut = finiteMut[finiteMut$Ts >= start & finiteMut$Ts < end,]
+  if(i == 5){
+    temp_mut = finiteMut[finiteMut$Ts >= start & finiteMut$Ts <= end,]
   }
   cockroaches = temp_mut[temp_mut$Cockroaches == 1,]
   termites = temp_mut[temp_mut$Cockroaches == 0,]
   cockroachesTsTv = median(cockroaches$TsTv)
   termitesTsTv = median(termites$TsTv)
-  result = wilcox.test(cockroaches$TsTv, termites$TsTv)
+  result = t.test(cockroaches$TsTv, termites$TsTv)
   one_line = rbind(one_line, c(nrow(cockroaches), nrow(termites), end, cockroachesTsTv, termitesTsTv, result$statistic, result$p.value))
 }
 
-wilcoxTableQuantilesTsTv = as.data.frame(one_line)
-names(wilcoxTableQuantilesTsTv) = c('N_cockroaches', 'N_termites', 'End', 'medianTsTvCockroaches', 'medianTsTvTermites', 'W', 'Pvalue')
+tTestTableQuantilesTsTv = as.data.frame(one_line)
+names(tTestTableQuantilesTsTv) = c('N_cockroaches', 'N_termites', 'End', 'medianTsTvCockroaches', 'medianTsTvTermites', 't', 'Pvalue')
 
-write.table(wilcoxTableQuantilesTsTv, '../results/nd6_22_01/wilcoxTableQuantilesTsTv.txt', 
+write.table(tTestTableQuantilesTsTv, '../results/nd6_22_01/tTestTableQuantilesTsTv.txt', 
             sep = '\t', quote = FALSE, row.names = FALSE)
-
-##########################
-
-vecTs = seq(0, max(mut$Ts), 50)
-
-one_line = c()
-for(i in 1:(length(vecTs) - 1)){
-  # i = 1
-  start = vecTs[i]; end = vecTs[i + 1]
-  temp_mut = mut[mut$Ts >= start & mut$Ts < end,]
-  if(i == (length(vecTs) - 1)){
-    end = max(mut$Ts)
-    temp_mut = mut[mut$Ts >= start & mut$Ts <= end,]
-  }
-  cockroaches = temp_mut[temp_mut$Cockroaches == 1,]
-  termites = temp_mut[temp_mut$Cockroaches == 0,]
-  cockroachesTv = median(cockroaches$Tv)
-  termitesTv = median(termites$Tv)
-  result = wilcox.test(cockroaches$Tv, termites$Tv)
-  one_line = rbind(one_line, c(nrow(cockroaches), nrow(termites), end, cockroachesTv, termitesTv, result$statistic, result$p.value))
-}
-
-wilcoxTableSegments = as.data.frame(one_line)
-names(wilcoxTableSegments) = c('N_cockroaches', 'N_termites', 'End', 'medianTvCockroaches', 'medianTvTermites', 'W', 'Pvalue')
-
-write.table(wilcoxTableSegments, '../results/nd6_22_01/wilcoxTableSegments.txt', 
-            sep = '\t', quote = FALSE, row.names = FALSE)
-
-# not enough observations after 150 transitions
