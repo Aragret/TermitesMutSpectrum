@@ -11,11 +11,12 @@ mut$Tv = mut$G_T + mut$A_T + mut$G_C +  mut$A_C + mut$C_A + mut$C_G + mut$T_A + 
 
 ############################################################################
 
+# families of cockroaches 
 cockroaches = c('Ectobiidae1', 'Tryonicidae', 'Blaberidae', 'Corydiidae', 'Ectobiidae2',
                 'Lamproblattidae', 'Anaplectidae', 'Blattidae', 'Cryptocercidae', 'Ectobiidae3',
                 'Nocticolidae')
 
-mut = mut[!is.na(mut$Taxonomy),]
+mut = mut[!is.na(mut$Taxonomy),] # remove Mantids
 
 for(i in 1:nrow(mut)){
   if(mut$Taxonomy[i] %in% cockroaches){
@@ -31,17 +32,6 @@ summary(mut$Cockroaches)
 
 finiteMut = mut[mut$TsTv != 'Inf',]
 
-
-# termites vs cockroaches
-
-result1 <- aov(Ts ~ Tv * Cockroaches, data = finiteMut)
-print(summary(result1))
-
-result2 <- aov(Ts ~ Tv + Cockroaches, data = finiteMut)
-print(summary(result2))
-
-print(anova(result1,result2))
-
 #########################################################################
 
 pdf('../results/nd6_22_01/TsTvCockroachesTermites.R.pdf')
@@ -56,7 +46,7 @@ plot(log(mut$Tv), mut$Ts)
 plot(log(mut$Tv), log(mut$Ts))
 
 
-### residuals
+### residuals from models of Ts vs Tv
 
 Lm1 <- lm(Ts ~ Tv, mut)
 
@@ -84,25 +74,17 @@ plot(log(finiteMut$Ts), finiteMut$resLog, main='log(Ts) ~ Tv res')
 
 
 #######################################################################
+# 1 paragraph of results
 
-Result <- glm(Ts ~ Tv + Cockroaches, data = mut, family = poisson)
+Result <- glm(Tv ~ Ts + Cockroaches, data = mut, family = poisson)
 summary(Result)
 
 # Coefficients:
 #   Estimate Std. Error z value Pr(>|z|)    
-# (Intercept)   4.592e+00  6.928e-03  662.81   <2e-16 ***
-#   Tv            2.336e-03  5.122e-05   45.60   <2e-16 ***
-#   Cockroaches1 -4.308e-01  1.202e-02  -35.84   <2e-16 ***
+# (Intercept)  3.433e+00  1.437e-02  238.94   <2e-16 ***
+#   Ts           8.171e-03  9.522e-05   85.81   <2e-16 ***
+#   Cockroaches1 8.225e-01  9.905e-03   83.04   <2e-16 ***
 
-Result <- glm(Ts ~ Tv * Cockroaches, data = mut, family = poisson)
-summary(Result)
-
-# Coefficients:
-#   Estimate Std. Error z value Pr(>|z|)    
-# (Intercept)      4.536e+00  7.641e-03 593.622  < 2e-16 ***
-#   Tv               2.870e-03  5.826e-05  49.257  < 2e-16 ***
-#   Cockroaches1    -9.446e-02  2.154e-02  -4.386 1.16e-05 ***
-#   Tv:Cockroaches1 -2.095e-03  1.165e-04 -17.975  < 2e-16 ***
 
 
 dev.off()
