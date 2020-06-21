@@ -220,7 +220,7 @@ mutWithNuclMajorNormalized = mutWithNuclMajor %>%
     G_C_norm = G_C_fr / G_fr,
     C_A_norm = C_A_fr / C_fr,
     C_T_norm = C_T_fr / C_fr,
-    C_G_norm = C_G_fr / C_fr,
+    C_G_norm = C_G_fr / C_fr
   )
 
 ### merge with families 
@@ -337,3 +337,13 @@ major = ggbarplot(DFtallMajor, 'Subs', 'Value', xlab="Substitution types",
 plots = plot_grid(major_cockroaches, minor_cockroaches, major, minor, nrow = 2)
 
 save_plot('../results/nucleotide_content06_20/normMutSpecCockroachesTermites.pdf', plots, base_height = 10)
+
+write.table(mutWithNuclMajorNormalized, '../results/nucleotide_content06_20/normMutSpecMajorStrand.txt', 
+            sep='\t', row.names = FALSE, quote = FALSE)
+write.table(mutWithNuclMinorNormalized, '../results/nucleotide_content06_20/normMutSpecMinorStrand.txt', 
+            sep='\t', row.names = FALSE, quote = FALSE)
+
+write.table(DFtallMajor, '../results/nucleotide_content06_20/normMutSpecMajorStrandLong.txt', 
+            sep='\t', row.names = FALSE, quote = FALSE)
+write.table(DFtallMinor, '../results/nucleotide_content06_20/normMutSpecMinorStrandLong.txt', 
+            sep='\t', row.names = FALSE, quote = FALSE)
