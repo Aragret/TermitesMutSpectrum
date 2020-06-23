@@ -4,8 +4,6 @@ library("Biostrings")
 library("seqinr")
 library(dplyr)
 
-current_dir = getwd()
-
 align_dir = '../../AllTermites/data/forAlign/'
 
 setwd(align_dir)
@@ -63,3 +61,54 @@ data = final %>% mutate(MajorStrand = case_when(.$Gene %in% majorGenes ~ 1,
 
 write.table(data, '../../results/nucleotide_content06_20/ATGCforEachGene4fold.txt',
             sep = '\t', row.names = FALSE, quote = FALSE)
+
+##################################################################################
+# check Reticulitermes genes to be sure
+
+atp6 = read.fasta('ATP6.fasta', as.string = TRUE)
+
+seq = atp6$Reticulitermes_flavipes_IS58[1]
+
+translate(s2c(seq), numcode = 5)
+
+# [1] "M" "M" "S" "N" "L" "F" "S" "I" "F" "D" "P" "T" "T" "E" "I" "N" "S" "L" "P" "M" "N"
+# [211] "S" "Y" "V" "F" "A" "I" "L" "S" "T" "L" "Y" "S" "S" "E" "V" "N" "*"
+
+# /translation="MSNLFSIFDPTTEINSLPMNWTSTMVGLLLIPTSIWLTPSRNSM
+#                      ALNLLMNKLHAEMKTILSKGNQNKGNSFIFTSLFLMILMNNFLGLFPYIFTSTSHLTL
+#                      TLTLALPLWMTFMLFGWIKNTNHMFEHLVPQGTPTMLMPFMVIIETISNLIRPGTLAV
+#                      RLTANMIAGHLLLTLLGNNGPNMSHTLLTVLIIAQILLLILESAVAIIQSYVFAILST
+#                      LYSSEVN"
+
+nd5 = read.fasta('ND5.fasta', as.string = TRUE)
+
+seq2 = nd5$Reticulitermes_flavipes_IS58[1]
+
+translate(s2c(seq2), numcode = 5)
+
+# [1] "M" "M" "P" "I" "S" "I" "C" "F" "A" "S" "F" "I" "F" "L" "F" "G" "L" "G" "W" "V" "C"
+# [568] "V" "L" "L" "F" "V" "L" "I" "Y"
+
+# /translation="MMPISICFASFIFLFGLGWVCCFLGVYLVLSDLVYFVDWGIVSL
+#                      NGSSVIMTFLFDWMSLLFLGFVFIISSLVILYSDDYMSGDFNIFRFIMLVLMFVVSMM
+#                      FLIISPNMISILLGWDGLGLVSYCLVIYYQNVSSYGAGMLTVLSNRIGDVALLMVIAW
+#                      MINFGSWNFIYYLEFMAGSVEMELISFLVVLAAMTSSAQIPFSSWLPAAMAAPTPVSA
+#                      LVHSSTLVTAGVYLLIRFSPSFSCLLNTILLLVSALTMFMAGLGANFEYDLKKIIALS
+#                      TLSQLGLMIMTVSVGLSSLAFFHLLTHALFKALLFMCAGGVIHSMGDSQDIRFMGGLS
+#                      VYMPFTSSCLMVSSFALCGMPFLAGFYSSDFILEMISMSYVNVFGFLLLFVSTGLTVC
+#                      YSFRLFYFVLCGDFNFVSLYSMVDTNYNMVMGMVGLLVLSVLGGGALMWLICPTPSVI
+#                      CLPYYLSFLTFFFVSLGGFIGYEMAGFNFGDYLLSMYYYKVSSFSGSMWFMPFFSTYG
+#                      VSFGPLGFGYSSMRVFDSGWMEYFGGQGLYWVLFNLGKFNQWVQHSSLKLFLGFFVMW
+#                      VVLLFVLIY"
+
+nd4 = read.fasta('ND4.fasta', as.string = TRUE)
+
+seq3 = nd4$Reticulitermes_flavipes_IS58[1]
+
+translate(s2c(seq3), numcode = 5)
+
+# [1] "M" "L" "S" "F" "L" "C" "F" "L" "F" "F" "L" "T" "P" "L" "C" "I" "F" "P" "G" "S" "W"
+# [442] "A" "V" "F" "W" "M" "*"
+
+seq3
+

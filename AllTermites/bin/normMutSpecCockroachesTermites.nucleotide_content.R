@@ -4,11 +4,15 @@ if(!require(dplyr)){install.packages('dplyr')}
 if(!require(tidyr)){install.packages('tidyr')}
 if(!require(ggplot2)){install.packages('ggplot2')}
 if(!require(ggpubr)){install.packages('ggpubr')}
+if(!require(seqinr)){install.packages('seqinr')}
+if(!require(cowplot)){install.packages('cowplot')}
 
 library(dplyr)
 library(tidyr)
 library(ggplot2)
 library(ggpubr)
+library(seqinr)
+library(cowplot)
 
 mut = read.table('../results/nd6_22_01/mod_PolarizeMutations.CodonsTable.nd6.txt',
                  header=TRUE, sep='\t')
@@ -248,9 +252,26 @@ DFtallMinor <- mutWithNuclMinorNormalized %>%
   select(Species, Cockroaches, A_T_norm:C_G_norm) %>%
   gather(key = Subs, value = Value, A_T_norm:C_G_norm)
 
+complSubs = unlist(lapply(DFtallMinor$Subs, 
+       function(x){
+        y = paste(toupper(comp(s2c(x)[c(1, 3)])), collapse = '_')
+        y
+       }
+))
+
+DFtallMinor$ComplSubs = complSubs
+
 DFtallMajor <- mutWithNuclMajorNormalized %>% 
   select(Species, Cockroaches, A_T_norm:C_G_norm) %>%
   gather(key = Subs, value = Value, A_T_norm:C_G_norm)
+
+DFtallMajor$Subs = sub('_norm', '', DFtallMajor$Subs)
+
+AllStrands = merge(DFtallMajor, DFtallMinor[, c('Species', 'ComplSubs', 'Value')], by.x = c('Species', 'Subs'),
+                by.y = c('Species', 'ComplSubs'))
+
+AllStrands$Value = AllStrands$Value.x + AllStrands$Value.y
+AllStrands$Cockroaches = as.factor(AllStrands$Cockroaches)
 
 DFtallMinor$Cockroaches = as.factor(DFtallMinor$Cockroaches)
 DFtallMajor$Cockroaches = as.factor(DFtallMajor$Cockroaches)
@@ -272,6 +293,13 @@ major_cockroaches =
           title = 'Major genes') + 
   scale_fill_discrete(name = '', labels = c("Termites", "Cockroaches")) + 
   scale_x_discrete(labels = sub('_norm', '', unique(DFtallMajor$Subs)))
+
+allStrandsCockroaches = ggbarplot(AllStrands, 'Subs', 'Value', xlab="Substitution types",
+                                  fill = 'Cockroaches',
+                                  position = position_dodge(),
+                                  add = 'mean_se',
+                                  title = 'All genes') + 
+  scale_fill_discrete(name = '', labels = c("Termites", "Cockroaches"))
 
 
 DFtallMajor[DFtallMajor$Value == max(DFtallMajor$Value),] # Reticulitermes_flavipes
@@ -308,18 +336,36 @@ DFtallMajor <- mutWithNuclMajorNormalized %>%
   select(Species, Sociality, A_T_norm:C_G_norm) %>%
   gather(key = Subs, value = Value, A_T_norm:C_G_norm)
 
+complSubs = unlist(lapply(DFtallMinor$Subs, 
+                          function(x){
+                            y = paste(toupper(comp(s2c(x)[c(1, 3)])), collapse = '_')
+                            y
+                          }
+))
+
+DFtallMinor$ComplSubs = complSubs
+
+DFtallMajor$Subs = sub('_norm', '', DFtallMajor$Subs)
+
+AllStrands = merge(DFtallMajor, DFtallMinor[, c('Species', 'ComplSubs', 'Value')], by.x = c('Species', 'Subs'),
+                   by.y = c('Species', 'ComplSubs'))
+
+AllStrands$Value = AllStrands$Value.x + AllStrands$Value.y
+AllStrands$Sociality = as.factor(AllStrands$Sociality)
+
 DFtallMinor$Sociality = as.factor(DFtallMinor$Sociality)
 DFtallMajor$Sociality = as.factor(DFtallMajor$Sociality)
 
 DFtallMajor = DFtallMajor[!is.na(DFtallMajor$Sociality),]
 DFtallMinor = DFtallMinor[!is.na(DFtallMinor$Sociality),]
+AllStrands = AllStrands[!is.na(AllStrands$Sociality),]
 
 minor = ggbarplot(DFtallMinor, 'Subs', 'Value', xlab="Substitution types",
           fill = 'Sociality',
           position = position_dodge(),
           add = 'mean_se',
           title = 'Minor genes') + 
-  scale_fill_manual(name = '', labels = c("Cockroaches", "Less sociale termites", 'More Social termites'),
+  scale_fill_manual(name = '', labels = c("Cockroaches", "Less social termites", 'More social termites'),
                       values = RColorBrewer::brewer.pal(n = 3, name = "Purples")) +
   # scale_fill_brewer(palette = "Purples", breaks=c("Cockroaches", "Less sociale termites", 'More Social termites')) +
   scale_x_discrete(labels = sub('_norm', '', unique(DFtallMinor$Subs))) 
@@ -329,14 +375,24 @@ major = ggbarplot(DFtallMajor, 'Subs', 'Value', xlab="Substitution types",
           position = position_dodge(),
           add = 'mean_se',
           title = 'Major genes') + 
-  scale_fill_manual(name = '', labels = c("Cockroaches", "Less sociale termites", 'More Social termites'),
+  scale_fill_manual(name = '', labels = c("Cockroaches", "Less social termites", 'More social termites'),
                     values = RColorBrewer::brewer.pal(n = 3, name = "Purples")) +
   # scale_fill_brewer(palette = "Purples", breaks=c("Cockroaches", "Less sociale termites", 'More Social termites')) +
   scale_x_discrete(labels = sub('_norm', '', unique(DFtallMajor$Subs))) 
 
+allStrands = ggbarplot(AllStrands, 'Subs', 'Value', xlab="Substitution types",
+                                  fill = 'Sociality',
+                                  position = position_dodge(),
+                                  add = 'mean_se',
+                                  title = 'All genes') + 
+  scale_fill_manual(name = '', labels = c("Cockroaches", "Less social termites", 'More social termites'),
+                      values = RColorBrewer::brewer.pal(n = 3, name = "Purples"))
+
 plots = plot_grid(major_cockroaches, minor_cockroaches, major, minor, nrow = 2)
+plots2 = plot_grid(allStrandsCockroaches, allStrands)
 
 save_plot('../results/nucleotide_content06_20/normMutSpecCockroachesTermites.pdf', plots, base_height = 10)
+save_plot('../results/nucleotide_content06_20/normMutSpecCockroachesTermitesBothStrands.pdf', plots2, base_height = 8)
 
 write.table(mutWithNuclMajorNormalized, '../results/nucleotide_content06_20/normMutSpecMajorStrand.txt', 
             sep='\t', row.names = FALSE, quote = FALSE)
