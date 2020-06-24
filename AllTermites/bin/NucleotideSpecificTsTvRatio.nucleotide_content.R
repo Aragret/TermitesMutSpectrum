@@ -4,11 +4,13 @@ if(!require(dplyr)){install.packages('dplyr')}
 if(!require(tidyr)){install.packages('tidyr')}
 if(!require(ggpubr)){install.packages('ggpubr')}
 if(!require(cowplot)){install.packages('cowplot')}
+if(!require(seqinr)){install.packages('seqinr')}
 
 library(dplyr)
 library(tidyr)
 library(ggpubr)
 library(cowplot)
+library(seqinr)
 
 mutMajor = read.table('../results/nucleotide_content06_20/normMutSpecMajorStrand.txt',
                       header = TRUE, sep='\t')
@@ -59,13 +61,32 @@ DFtallMajor <- mutMajorTsTv %>%
   select(Species, Sociality, A_tstv:C_tstv) %>%
   gather(key = Tstv, value = Value, A_tstv:C_tstv)
 
+
+complSubs = unlist(lapply(DFtallMinor$Tstv, 
+                          function(x){
+                            y = paste(toupper(comp(s2c(x)[1])), collapse = '_')
+                            y
+                          }
+))
+
+DFtallMinor$ComplSubs = complSubs
+
+DFtallMajor$Tstv = sub('_tstv', '', DFtallMajor$Tstv)
+
+AllStrands = merge(DFtallMajor, DFtallMinor[, c('Species', 'ComplSubs', 'Value')], by.x = c('Species', 'Tstv'),
+                   by.y = c('Species', 'ComplSubs'))
+
+AllStrands$Value = AllStrands$Value.x + AllStrands$Value.y
+
 DFtallMinor$Sociality = as.factor(DFtallMinor$Sociality)
 DFtallMajor$Sociality = as.factor(DFtallMajor$Sociality)
+AllStrands$Sociality = as.factor(AllStrands$Sociality)
 
 DFtallMajor = DFtallMajor[!is.na(DFtallMajor$Sociality),]
 DFtallMinor = DFtallMinor[!is.na(DFtallMinor$Sociality),]
+AllStrands = AllStrands[!is.na(AllStrands$Sociality),]
 
-minor = ggboxplot(DFtallMinor, 'Tstv', 'Value', xlab="Ts/Tv ratio",
+minor = ggboxplot(DFtallMinor, 'Tstv', 'Value', xlab="Ts fractions",
                   fill = 'Sociality',
                   notch = TRUE,
                   # position = position_dodge(),
@@ -75,7 +96,7 @@ minor = ggboxplot(DFtallMinor, 'Tstv', 'Value', xlab="Ts/Tv ratio",
   # scale_fill_brewer(palette = "Purples", breaks=c("Cockroaches", "Less sociale termites", 'More Social termites')) +
   scale_x_discrete(labels = c('A', 'T', 'G', 'C'))
 
-major = ggboxplot(DFtallMajor, 'Tstv', 'Value', xlab="Ts/Tv ratio",
+major = ggboxplot(DFtallMajor, 'Tstv', 'Value', xlab="Ts fractions",
                   fill = 'Sociality',
                   notch = TRUE,
                   # position = position_dodge(),
@@ -85,6 +106,16 @@ major = ggboxplot(DFtallMajor, 'Tstv', 'Value', xlab="Ts/Tv ratio",
   # scale_fill_brewer(palette = "Purples", breaks=c("Cockroaches", "Less sociale termites", 'More Social termites')) +
   scale_x_discrete(labels = c('A', 'T', 'G', 'C'))
 
-plots = plot_grid(minor, major, nrow = 2)
+all = ggboxplot(AllStrands, 'Tstv', 'Value', xlab="Ts fractions",
+                fill = 'Sociality',
+                notch = TRUE,
+                # position = position_dodge(),
+                title = 'All genes') + 
+  scale_fill_manual(name = '', labels = c("Cockroaches", "Less social termites", 'More social termites'),
+                    values = RColorBrewer::brewer.pal(n = 3, name = "Purples")) +
+  # scale_fill_brewer(palette = "Purples", breaks=c("Cockroaches", "Less sociale termites", 'More Social termites')) +
+  scale_x_discrete(labels = c('A', 'T', 'G', 'C'))
 
-save_plot('../results/nucleotide_content06_20/NucleotideSpecificTsTvRatio.pdf', plots, base_height = 8)
+plots = plot_grid(minor, major, all, nrow = 3)
+
+save_plot('../results/nucleotide_content06_20/NucleotideSpecificTsTvRatio.pdf', plots, base_height = 12)

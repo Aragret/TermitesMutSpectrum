@@ -64,6 +64,9 @@ major_strand = data[data$MajorStrand == 1,]
 
 minor_strand = data[data$MajorStrand == 0,]
 
+names(minor_strand) = c('Species', 'Gene', 'T', 'A', 'C', 'G', 'MajorStrand',
+                        'Taxonomy', 'T_fr', 'A_fr', 'C_fr', 'G_fr', 'Cockroaches')
+
 a_major = ggplot(major_strand, aes(Cockroaches, A_fr, fill = Cockroaches)) +
   geom_violin() + 
   # scale_fill_brewer(palette="Purples") +
@@ -249,3 +252,127 @@ g = ggplot(data, aes(Sociality, G_fr, fill = Sociality)) +
 plots = plot_grid(a, t, g, c, nrow = 1)
 
 save_plot('../results/nucleotide_content06_20/ATGCplotsSociality.pdf', plots, base_height = 15)
+
+############################################################
+## merge both strands
+
+names(minor_strand) = c('Species', 'Gene', 'T', 'A', 'C', 'G', 'MajorStrand',
+                        'Taxonomy', 'T_fr', 'A_fr', 'C_fr', 'G_fr', 'Cockroaches')
+
+all_strands = full_join(major_strand, minor_strand)
+
+all_strands = all_strands %>% 
+  mutate(
+    Sociality = case_when(
+      .$Cockroaches == 1 ~ 0,
+      .$Taxonomy %in% lessSocial ~ 1,
+      .$Taxonomy %in% moreSocial ~ 2
+    )
+  )
+
+all_strands$Sociality = as.factor(all_strands$Sociality)
+all_strands$Cockroaches = as.factor(all_strands$Cockroaches)
+
+all_strands = all_strands[!is.na(all_strands$Sociality),]
+
+
+a_all = ggplot(all_strands, aes(Sociality, A_fr, fill = Sociality)) +
+  geom_violin() + 
+  # scale_fill_brewer(palette="Set3") +
+  theme_minimal() + 
+  stat_summary(fun.y = 'median', geom = 'point', shape = 20, size = 3, col = 'midnightblue') +
+  theme(axis.text.x = element_text(color = "black", size = 12), 
+        axis.text.y = element_text(color = "black", size = 12),
+        legend.position = "none") + 
+  scale_x_discrete(labels=c('Cockroaches', 'Less\n social\n termites', 'More\n social\n termites')) +
+  xlab('') + ylab('') + ggtitle('A fraction') +
+  scale_fill_brewer(palette="Purples")
+
+t_all = ggplot(all_strands, aes(Sociality, T_fr, fill = Sociality)) +
+  geom_violin() + 
+  # scale_fill_brewer(palette="Set3") +
+  theme_minimal() + 
+  stat_summary(fun.y = 'median', geom = 'point', shape = 20, size = 3, col = 'midnightblue') +
+  theme(axis.text.x = element_text(color = "black", size = 12), 
+        axis.text.y = element_text(color = "black", size = 12),
+        legend.position = "none") + 
+  scale_x_discrete(labels=c('Cockroaches', 'Less\n social\n termites', 'More\n social\n termites')) +
+  xlab('') + ylab('') + ggtitle('T fraction') +
+  scale_fill_brewer(palette="Purples")
+
+c_all = ggplot(all_strands, aes(Sociality, C_fr, fill = Sociality)) +
+  geom_violin() + 
+  # scale_fill_brewer(palette="Set3") +
+  theme_minimal() + 
+  stat_summary(fun.y = 'median', geom = 'point', shape = 20, size = 3, col = 'midnightblue') +
+  theme(axis.text.x = element_text(color = "black", size = 12), 
+        axis.text.y = element_text(color = "black", size = 12),
+        legend.position = "none") + 
+  scale_x_discrete(labels=c('Cockroaches', 'Less\n social\n termites', 'More\n social\n termites')) +
+  xlab('') + ylab('') + ggtitle('C fraction') +
+  scale_fill_brewer(palette="Purples")
+
+g_all = ggplot(all_strands, aes(Sociality, G_fr, fill = Sociality)) +
+  geom_violin() + 
+  # scale_fill_brewer(palette="Set3") +
+  theme_minimal() + 
+  stat_summary(fun.y = 'median', geom = 'point', shape = 20, size = 3, col = 'midnightblue') +
+  theme(axis.text.x = element_text(color = "black", size = 12), 
+        axis.text.y = element_text(color = "black", size = 12),
+        legend.position = "none") + 
+  scale_x_discrete(labels=c('Cockroaches', 'Less\n social\n termites', 'More\n social\n termites')) +
+  xlab('') + ylab('') + ggtitle('G fraction') +
+  scale_fill_brewer(palette="Purples")
+
+# cockroaches
+
+a_all_roaches = ggplot(all_strands, aes(Cockroaches, A_fr, fill = Cockroaches)) +
+  geom_violin() + 
+  # scale_fill_brewer(palette="Set3") +
+  theme_minimal() + 
+  stat_summary(fun.y = 'median', geom = 'point', shape = 20, size = 3, col = 'midnightblue') +
+  theme(axis.text.x = element_text(color = "black", size = 12), 
+        axis.text.y = element_text(color = "black", size = 12),
+        legend.position = "none") + 
+  scale_x_discrete(labels=c('Termites', 'Cockroaches')) +
+  xlab('') + ylab('') + ggtitle('A fraction')
+
+t_all_roaches = ggplot(all_strands, aes(Cockroaches, T_fr, fill = Cockroaches)) +
+  geom_violin() + 
+  # scale_fill_brewer(palette="Set3") +
+  theme_minimal() + 
+  stat_summary(fun.y = 'median', geom = 'point', shape = 20, size = 3, col = 'midnightblue') +
+  theme(axis.text.x = element_text(color = "black", size = 12), 
+        axis.text.y = element_text(color = "black", size = 12),
+        legend.position = "none") + 
+  scale_x_discrete(labels=c('Termites', 'Cockroaches')) +
+  xlab('') + ylab('') + ggtitle('T fraction')
+  
+
+c_all_roaches = ggplot(all_strands, aes(Cockroaches, C_fr, fill = Cockroaches)) +
+  geom_violin() + 
+  # scale_fill_brewer(palette="Set3") +
+  theme_minimal() + 
+  stat_summary(fun.y = 'median', geom = 'point', shape = 20, size = 3, col = 'midnightblue') +
+  theme(axis.text.x = element_text(color = "black", size = 12), 
+        axis.text.y = element_text(color = "black", size = 12),
+        legend.position = "none") + 
+  scale_x_discrete(labels=c('Termites', 'Cockroaches')) +
+  xlab('') + ylab('') + ggtitle('C fraction')
+
+g_all_roaches = ggplot(all_strands, aes(Cockroaches, G_fr, fill = Cockroaches)) +
+  geom_violin() + 
+  # scale_fill_brewer(palette="Set3") +
+  theme_minimal() + 
+  stat_summary(fun.y = 'median', geom = 'point', shape = 20, size = 3, col = 'midnightblue') +
+  theme(axis.text.x = element_text(color = "black", size = 12), 
+        axis.text.y = element_text(color = "black", size = 12),
+        legend.position = "none") + 
+  scale_x_discrete(labels=c('Termites', 'Cockroaches')) +
+  xlab('') + ylab('') + ggtitle('G fraction')
+
+plots3 = plot_grid(a_all, t_all, g_all, c_all, a_all_roaches, t_all_roaches, 
+                   g_all_roaches, c_all_roaches, nrow = 2)
+
+save_plot('../results/nucleotide_content06_20/ATGCplotMergedStrands.pdf',
+          plots3, base_height = 10)
