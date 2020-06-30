@@ -237,19 +237,19 @@ mutWithNuclMajorNormalized = merge(mutWithNuclMajorNormalized, families, by='Spe
 mutWithNuclMinorNormalized = mutWithNuclMinorNormalized %>%
   filter(!is.na(Taxonomy)) %>%
   mutate(
-    Cockroaches = case_when(.$Taxonomy %in% cockroaches ~ 1,
-                           !(.$Taxonomy %in% cockroaches) ~ 0)
+    Termites = case_when(.$Taxonomy %in% cockroaches ~ 0,
+                           !(.$Taxonomy %in% cockroaches) ~ 1)
   )
 
 mutWithNuclMajorNormalized = mutWithNuclMajorNormalized %>%
   filter(!is.na(Taxonomy)) %>%
   mutate(
-    Cockroaches = case_when(.$Taxonomy %in% cockroaches ~ 1,
-                            !(.$Taxonomy %in% cockroaches) ~ 0)
+    Termites = case_when(.$Taxonomy %in% cockroaches ~ 0,
+                         !(.$Taxonomy %in% cockroaches) ~ 1)
   )
 
 DFtallMinor <- mutWithNuclMinorNormalized %>% 
-  select(Species, Cockroaches, A_T_norm:C_G_norm) %>%
+  select(Species, Termites, A_T_norm:C_G_norm) %>%
   gather(key = Subs, value = Value, A_T_norm:C_G_norm)
 
 complSubs = unlist(lapply(DFtallMinor$Subs, 
@@ -262,7 +262,7 @@ complSubs = unlist(lapply(DFtallMinor$Subs,
 DFtallMinor$ComplSubs = complSubs
 
 DFtallMajor <- mutWithNuclMajorNormalized %>% 
-  select(Species, Cockroaches, A_T_norm:C_G_norm) %>%
+  select(Species, Termites, A_T_norm:C_G_norm) %>%
   gather(key = Subs, value = Value, A_T_norm:C_G_norm)
 
 DFtallMajor$Subs = sub('_norm', '', DFtallMajor$Subs)
@@ -271,39 +271,60 @@ AllStrands = merge(DFtallMajor, DFtallMinor[, c('Species', 'ComplSubs', 'Value')
                 by.y = c('Species', 'ComplSubs'))
 
 AllStrands$Value = AllStrands$Value.x + AllStrands$Value.y
-AllStrands$Cockroaches = as.factor(AllStrands$Cockroaches)
+AllStrands$Termites = as.factor(AllStrands$Termites)
 
-DFtallMinor$Cockroaches = as.factor(DFtallMinor$Cockroaches)
-DFtallMajor$Cockroaches = as.factor(DFtallMajor$Cockroaches)
+DFtallMinor$Termites = as.factor(DFtallMinor$Termites)
+DFtallMajor$Termites = as.factor(DFtallMajor$Termites)
 
 minor_cockroaches = 
   ggbarplot(DFtallMinor, 'Subs', 'Value', xlab="Substitution types",
-          fill = 'Cockroaches',
+          fill = 'Termites',
           position = position_dodge(),
           add = 'mean_se',
           title = 'Minor genes') + 
-  scale_fill_discrete(name = '', labels = c("Termites", "Cockroaches")) +
+  scale_fill_discrete(name = '', labels = c("Cockroaches", "Termites")) +
   scale_x_discrete(labels = sub('_norm', '', unique(DFtallMinor$Subs)))
 
 major_cockroaches = 
   ggbarplot(DFtallMajor, 'Subs', 'Value', xlab="Substitution types",
-          fill = 'Cockroaches',
+          fill = 'Termites',
           position = position_dodge(),
           add = 'mean_se',
           title = 'Major genes') + 
-  scale_fill_discrete(name = '', labels = c("Termites", "Cockroaches")) + 
+  scale_fill_discrete(name = '', labels = c("Cockroaches", "Termites")) + 
   scale_x_discrete(labels = sub('_norm', '', unique(DFtallMajor$Subs)))
 
 allStrandsCockroaches = ggbarplot(AllStrands, 'Subs', 'Value', xlab="Substitution types",
-                                  fill = 'Cockroaches',
+                                  fill = 'Termites',
                                   position = position_dodge(),
                                   add = 'mean_se',
                                   title = 'All genes') + 
-  scale_fill_discrete(name = '', labels = c("Termites", "Cockroaches"))
+  scale_fill_discrete(name = '', labels = c("Cockroaches", "Termites"))
 
 
 DFtallMajor[DFtallMajor$Value == max(DFtallMajor$Value),] # Reticulitermes_flavipes
 DFtallMinor[DFtallMinor$Value == max(DFtallMinor$Value),] # Cryptocercus_meridianus
+
+
+paletteAlya = c("#bdbdbd", "#7fcdbb", "#bdbdbd", "#bdbdbd", "#bdbdbd", "#feb24c", "#f03b20", "#bdbdbd", "#bdbdbd", "#bdbdbd", "#2c7fb8", "#bdbdbd")
+
+ymax_termites = mean(AllStrands[AllStrands$Subs == 'C_T' & AllStrands$Termites == 1,]$Value)
+
+ggbarplot(AllStrands[AllStrands$Termites == 0,], 'Subs', 'Value', xlab="Substitution types",
+          add = 'mean_se',
+          title = 'All genes, cockroaches',
+          fill = 'Subs',
+          color = 'Subs',
+          palette = paletteAlya,
+          order = rev(unique(AllStrands$Subs))) + ylim(c(0, 2.5))
+
+ggbarplot(AllStrands[AllStrands$Termites == 1,], 'Subs', 'Value', xlab="Substitution types",
+          add = 'mean_se',
+          title = 'All genes, termites',
+          fill = 'Subs',
+          color = 'Subs',
+          palette = paletteAlya,
+          order = rev(unique(AllStrands$Subs)))
 
 ##############################################################################
 ### barplots for cockroaches, less social and more social termites
@@ -312,7 +333,7 @@ mutWithNuclMinorNormalized = mutWithNuclMinorNormalized %>%
   filter(!is.na(Taxonomy)) %>%
   mutate(
     Sociality = case_when(
-      .$Cockroaches == 1 ~ 0,
+      .$Termites == 0 ~ 0,
       .$Taxonomy %in% lessSocial ~ 1,
       .$Taxonomy %in% moreSocial ~ 2
     )
@@ -322,7 +343,7 @@ mutWithNuclMajorNormalized = mutWithNuclMajorNormalized %>%
   filter(!is.na(Taxonomy)) %>%
   mutate(
     Sociality = case_when(
-      .$Cockroaches == 1 ~ 0,
+      .$Termites == 0 ~ 0,
       .$Taxonomy %in% lessSocial ~ 1,
       .$Taxonomy %in% moreSocial ~ 2
     )
