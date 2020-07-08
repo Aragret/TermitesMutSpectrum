@@ -139,10 +139,25 @@ b = ggbarplot(NormFrac[NormFrac$Family == 'Termitidae',], 'Subs', 'Normalised2Nu
 c = ggbarplot(NormFrac[NormFrac$Family == 'Rhinotermitidae',], 'Subs', 'Normalised2Number', xlab="Substitution types", title = 'Rhinotermitidae',
               fill = 'Subs', color = 'Subs', palette = c("#bdbdbd", "#7fcdbb", "#bdbdbd", "#bdbdbd", "#feb24c", "#f03b20", "#bdbdbd", "#bdbdbd", "#bdbdbd", "#2c7fb8", "#bdbdbd"), combine = TRUE)
 
+lower = NormFrac[NormFrac$Family %in% c('Rhinotermitidae', 'Hodotermitidae', 'Termopsidae'),]
+
+all_lower = ggbarplot(lower, 
+                      'Subs', 'Normalised2Number', xlab="Substitution types", title = 'Lower termites',
+fill = 'Subs', color = 'Subs', palette = c("#bdbdbd", "#7fcdbb", "#bdbdbd", "#bdbdbd", "#feb24c", "#f03b20", "#bdbdbd", "#bdbdbd", "#bdbdbd", "#2c7fb8", "#bdbdbd"), combine = TRUE,
+add = 'mean') + ylim(c(0, max(lower$Number + 0.05)))
+
+higher = ggbarplot(NormFrac[NormFrac$Family == 'Termitidae',], 'Subs', 'Normalised2Number', xlab="Substitution types", title = 'Higher termites',
+                   fill = 'Subs', color = 'Subs', palette = c("#bdbdbd", "#7fcdbb", "#bdbdbd", "#bdbdbd", "#bdbdbd", "#feb24c", "#f03b20", "#bdbdbd", "#bdbdbd", "#bdbdbd", "#2c7fb8", "#bdbdbd"), combine = TRUE) +
+ylim(c(0, max(lower$Number + 0.05)))
+
+
 ggarrange(a,                                                 # First row with scatter plot
           ggarrange(b, c, ncol = 2, labels = c("B", "C")), # Second row with box and dot plots
           nrow = 2, 
           labels = "A"                                        # Labels of the scatter plot
 ) 
+
+ggarrange(all_lower, higher,
+          ncol = 2, nrow = 2)
 
 dev.off()
