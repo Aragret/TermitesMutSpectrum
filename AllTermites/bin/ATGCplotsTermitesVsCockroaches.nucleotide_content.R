@@ -288,6 +288,9 @@ all_strands$Termites = as.factor(all_strands$Termites)
 
 all_strands = all_strands[!is.na(all_strands$Sociality),]
 
+a = all_strands %>%
+  
+
 
 a_all = ggplot(all_strands, aes(Sociality, A_fr, fill = Sociality)) +
   geom_violin() + 
@@ -399,3 +402,5 @@ plots3 = plot_grid(a_all, t_all, g_all, c_all, a_all_roaches, t_all_roaches,
 
 save_plot('../results/nucleotide_content06_20/ATGCplotMergedStrands.pdf',
           plots3, base_height = 10)
+
+write.table(all_strands, )
