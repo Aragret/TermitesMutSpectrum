@@ -130,25 +130,40 @@ NormFrac = read.table("../../Body/3Results/Polymorphisms.Normalization.Normalize
 
 pdf("../../Body/4Figures/Polymorphisms.Normalization.R.03.Bars.pdf", width = 15, height = 10)
 
-a = ggbarplot(NormFrac, 'Subs', 'Normalised2Number', xlab="Substitution types", title = 'all',
-              fill = 'Subs', color = 'Subs', palette = c("#bdbdbd", "#7fcdbb", "#bdbdbd", "#bdbdbd", "#bdbdbd", "#feb24c", "#f03b20", "#bdbdbd", "#bdbdbd", "#bdbdbd", "#2c7fb8", "#bdbdbd"), combine = TRUE)
+a = ggbarplot(NormFrac, 'Subs', 'Normalised2Number', xlab="Substitution types", 
+              ylab = 'Normalized frequencies', title = 'all',
+              fill = 'Subs', color = 'Subs', palette = c("#bdbdbd", "#7fcdbb", "#bdbdbd", "#bdbdbd", "#bdbdbd", "#feb24c", "#f03b20", "#bdbdbd", "#bdbdbd", "#bdbdbd", "#2c7fb8", "#bdbdbd"), combine = TRUE) +
+  scale_x_discrete(labels = sort(unique(NormFrac$Subs), decreasing = TRUE))
 
-b = ggbarplot(NormFrac[NormFrac$Family == 'Termitidae',], 'Subs', 'Normalised2Number', xlab="Substitution types", title = 'Termitidae',
-              fill = 'Subs', color = 'Subs', palette = c("#bdbdbd", "#7fcdbb", "#bdbdbd", "#bdbdbd", "#bdbdbd", "#feb24c", "#f03b20", "#bdbdbd", "#bdbdbd", "#bdbdbd", "#2c7fb8", "#bdbdbd"), combine = TRUE)
+b = ggbarplot(NormFrac[NormFrac$Family == 'Termitidae',], 'Subs', 'Normalised2Number', 
+              xlab="Substitution types", ylab = 'Normalized frequencies', title = 'Termitidae',
+              fill = 'Subs', color = 'Subs', palette = c("#bdbdbd", "#7fcdbb", "#bdbdbd", "#bdbdbd", "#bdbdbd", "#feb24c", "#f03b20", "#bdbdbd", "#bdbdbd", "#bdbdbd", "#2c7fb8", "#bdbdbd"), combine = TRUE) +
+  scale_x_discrete(labels = sort(unique(NormFrac$Subs), decreasing = TRUE))
 
-c = ggbarplot(NormFrac[NormFrac$Family == 'Rhinotermitidae',], 'Subs', 'Normalised2Number', xlab="Substitution types", title = 'Rhinotermitidae',
-              fill = 'Subs', color = 'Subs', palette = c("#bdbdbd", "#7fcdbb", "#bdbdbd", "#bdbdbd", "#feb24c", "#f03b20", "#bdbdbd", "#bdbdbd", "#bdbdbd", "#2c7fb8", "#bdbdbd"), combine = TRUE)
+rhino = NormFrac[NormFrac$Family == 'Rhinotermitidae',]
+c = ggbarplot(rhino, 'Subs', 'Normalised2Number', xlab="Substitution types", 
+              ylab = 'Normalized frequencies', title = 'Rhinotermitidae',
+              fill = 'Subs', color = 'Subs', palette = c("#bdbdbd", "#7fcdbb", "#bdbdbd", 
+                                                         "#bdbdbd", "#feb24c", "#f03b20", 
+                                                         "#bdbdbd", "#bdbdbd", "#bdbdbd",
+                                                         "#2c7fb8", "#bdbdbd"), 
+              combine = TRUE) +
+  scale_x_discrete(labels = c('T_G', 'T_C', 'T_A', 'G_T', 'G_A', 'C_T', 'C_G', 
+                              'C_A', 'A_T', 'A_G', 'A_C'))
 
 lower = NormFrac[NormFrac$Family %in% c('Rhinotermitidae', 'Hodotermitidae', 'Termopsidae'),]
 
 all_lower = ggbarplot(lower, 
                       'Subs', 'Normalised2Number', xlab="Substitution types", title = 'Lower termites',
 fill = 'Subs', color = 'Subs', palette = c("#bdbdbd", "#7fcdbb", "#bdbdbd", "#bdbdbd", "#feb24c", "#f03b20", "#bdbdbd", "#bdbdbd", "#bdbdbd", "#2c7fb8", "#bdbdbd"), combine = TRUE,
-add = 'mean') + ylim(c(0, max(lower$Number + 0.05)))
+add = 'mean') + ylim(c(0, max(lower$Number + 0.05))) +
+  scale_x_discrete(labels = c('T_G', 'T_C', 'T_A', 'G_T', 'G_A', 'C_T', 'C_G', 
+                              'C_A', 'A_T', 'A_G', 'A_C'))
 
 higher = ggbarplot(NormFrac[NormFrac$Family == 'Termitidae',], 'Subs', 'Normalised2Number', xlab="Substitution types", title = 'Higher termites',
                    fill = 'Subs', color = 'Subs', palette = c("#bdbdbd", "#7fcdbb", "#bdbdbd", "#bdbdbd", "#bdbdbd", "#feb24c", "#f03b20", "#bdbdbd", "#bdbdbd", "#bdbdbd", "#2c7fb8", "#bdbdbd"), combine = TRUE) +
-ylim(c(0, max(lower$Number + 0.05)))
+ylim(c(0, max(lower$Number + 0.05))) + 
+  scale_x_discrete(labels = sort(unique(NormFrac$Subs), decreasing = TRUE))
 
 
 ggarrange(a,                                                 # First row with scatter plot
