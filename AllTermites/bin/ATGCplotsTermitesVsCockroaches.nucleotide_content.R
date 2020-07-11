@@ -43,6 +43,12 @@ moreSocial = c('Coptotermitinae', 'Nasutitermitinae', 'Amitermes-group',
                'Cephalo-group', 'Mastotermitidae', 'Prorhinotermitinae',
                'pericapritermes-group')
 
+higher_termites = c("Apicotermitinae", "Cephalo-group", "Microcerotermes", 
+                    "Termes-group", "Nasutitermitinae", "Amitermes-group", 
+                    "Promiro", "Macrotermitinae", "Cubitermitinae", "Foraminitermitinae", 
+                    "Syntermitinae", "Sphaerotermitinae", "Neocapri-group", 
+                    'Pericapritermes-group', "pericapritermes-group")
+
 data = data[!is.na(data$Taxonomy),] # remove Mantids
 
 data$A_fr = data$A / (data$A + data$T + data$G + data$C)
@@ -274,25 +280,45 @@ names(minor_strand) = c('Species', 'Gene', 'T', 'A', 'C', 'G', 'MajorStrand',
 
 all_strands = full_join(major_strand, minor_strand)
 
-all_strands = all_strands %>% 
+all_nucl = all_strands %>%
+  group_by(Species) %>%
+  summarise(A_both = sum(A), T_both = sum(T), G_both = sum(G), C_both = sum(C))
+
+# sum(all_strands[all_strands$Species == "B044_Panchlora_nivea_1",]$G)
+
+all_fr = all_nucl %>%
+  mutate(
+    A_fr = A_both / (A_both + T_both + C_both + G_both),
+    T_fr = T_both / (A_both + T_both + C_both + G_both),
+    G_fr = G_both / (A_both + T_both + C_both + G_both),
+    C_fr = C_both / (A_both + T_both + C_both + G_both)
+  )
+
+all_fr_families = left_join(all_fr, families)
+
+all_fr_sociality = all_fr_families %>% 
   mutate(
     Sociality = case_when(
-      .$Termites == 0 ~ 0,
+      .$Taxonomy %in% cockroaches ~ 0,
       .$Taxonomy %in% lessSocial ~ 1,
       .$Taxonomy %in% moreSocial ~ 2
+    ),
+    Termites = case_when(
+      .$Taxonomy %in% cockroaches ~ 0,
+      .$Taxonomy %in% c(lessSocial, moreSocial) ~ 1
     )
   )
 
-all_strands$Sociality = as.factor(all_strands$Sociality)
-all_strands$Termites = as.factor(all_strands$Termites)
 
-all_strands = all_strands[!is.na(all_strands$Sociality),]
+all_fr_sociality$Sociality = as.factor(all_fr_sociality$Sociality)
+all_fr_sociality$Termites = as.factor(all_fr_sociality$Termites)
 
-a = all_strands %>%
+all_fr_sociality = all_fr_sociality[!is.na(all_fr_sociality$Sociality),]
+
   
 
 
-a_all = ggplot(all_strands, aes(Sociality, A_fr, fill = Sociality)) +
+a_all = ggplot(all_fr_sociality, aes(Sociality, A_fr, fill = Sociality)) +
   geom_violin() + 
   # scale_fill_brewer(palette="Set3") +
   theme_minimal() + 
@@ -306,7 +332,7 @@ a_all = ggplot(all_strands, aes(Sociality, A_fr, fill = Sociality)) +
 
 a_all
 
-t_all = ggplot(all_strands, aes(Sociality, T_fr, fill = Sociality)) +
+t_all = ggplot(all_fr_sociality, aes(Sociality, T_fr, fill = Sociality)) +
   geom_violin() + 
   # scale_fill_brewer(palette="Set3") +
   theme_minimal() + 
@@ -320,7 +346,7 @@ t_all = ggplot(all_strands, aes(Sociality, T_fr, fill = Sociality)) +
 
 t_all
 
-c_all = ggplot(all_strands, aes(Sociality, C_fr, fill = Sociality)) +
+c_all = ggplot(all_fr_sociality, aes(Sociality, C_fr, fill = Sociality)) +
   geom_violin() + 
   # scale_fill_brewer(palette="Set3") +
   theme_minimal() + 
@@ -332,7 +358,7 @@ c_all = ggplot(all_strands, aes(Sociality, C_fr, fill = Sociality)) +
   xlab('') + ylab('') + ggtitle('C fraction') +
   scale_fill_brewer(palette="Purples")
 
-g_all = ggplot(all_strands, aes(Sociality, G_fr, fill = Sociality)) +
+g_all = ggplot(all_fr_sociality, aes(Sociality, G_fr, fill = Sociality)) +
   geom_violin() + 
   # scale_fill_brewer(palette="Set3") +
   theme_minimal() + 
@@ -348,7 +374,7 @@ g_all
 
 # cockroaches
 
-a_all_roaches = ggplot(all_strands, aes(Termites, A_fr, fill = Termites)) +
+a_all_roaches = ggplot(all_fr_sociality, aes(Termites, A_fr, fill = Termites)) +
   geom_violin() + 
   # scale_fill_brewer(palette="Set3") +
   theme_minimal() + 
@@ -360,7 +386,7 @@ a_all_roaches = ggplot(all_strands, aes(Termites, A_fr, fill = Termites)) +
   scale_fill_manual(values = my_colors) +
   xlab('') + ylab('') + ggtitle('A fraction')
 
-t_all_roaches = ggplot(all_strands, aes(Termites, T_fr, fill = Termites)) +
+t_all_roaches = ggplot(all_fr_sociality, aes(Termites, T_fr, fill = Termites)) +
   geom_violin() + 
   # scale_fill_brewer(palette="Set3") +
   theme_minimal() + 
@@ -373,7 +399,7 @@ t_all_roaches = ggplot(all_strands, aes(Termites, T_fr, fill = Termites)) +
   xlab('') + ylab('') + ggtitle('T fraction')
   
 
-c_all_roaches = ggplot(all_strands, aes(Termites, C_fr, fill = Termites)) +
+c_all_roaches = ggplot(all_fr_sociality, aes(Termites, C_fr, fill = Termites)) +
   geom_violin() + 
   # scale_fill_brewer(palette="Set3") +
   theme_minimal() + 
@@ -385,7 +411,7 @@ c_all_roaches = ggplot(all_strands, aes(Termites, C_fr, fill = Termites)) +
   scale_fill_manual(values = my_colors) +
   xlab('') + ylab('') + ggtitle('C fraction')
 
-g_all_roaches = ggplot(all_strands, aes(Termites, G_fr, fill = Termites)) +
+g_all_roaches = ggplot(all_fr_sociality, aes(Termites, G_fr, fill = Termites)) +
   geom_violin() + 
   # scale_fill_brewer(palette="Set3") +
   theme_minimal() + 
@@ -403,4 +429,101 @@ plots3 = plot_grid(a_all, t_all, g_all, c_all, a_all_roaches, t_all_roaches,
 save_plot('../results/nucleotide_content06_20/ATGCplotMergedStrands.pdf',
           plots3, base_height = 10)
 
-write.table(all_strands, )
+################################################################################
+### pairwise comparisons
+
+# cockroaches vs termites 
+
+t.test(all_fr_sociality[all_fr_sociality$Termites == 0,]$A_fr,
+       all_fr_sociality[all_fr_sociality$Termites == 1,]$A_fr)
+
+# t = -17.632, df = 109.79, p-value < 2.2e-16
+# alternative hypothesis: true difference in means is not equal to 0
+# 95 percent confidence interval:
+#   -0.1505364 -0.1201153
+# sample estimates:
+#   mean of x mean of y 
+# 0.5599491 0.6952750 
+
+t.test(all_fr_sociality[all_fr_sociality$Termites == 0,]$T_fr,
+       all_fr_sociality[all_fr_sociality$Termites == 1,]$T_fr)
+
+# t = 32.474, df = 108.19, p-value < 2.2e-16
+# alternative hypothesis: true difference in means is not equal to 0
+# 95 percent confidence interval:
+#   0.1780313 0.2011776
+# sample estimates:
+#   mean of x mean of y 
+# 0.3021161 0.1125116 
+
+t.test(all_fr_sociality[all_fr_sociality$Termites == 0,]$G_fr,
+       all_fr_sociality[all_fr_sociality$Termites == 1,]$G_fr)
+
+# t = -14.484, df = 180.91, p-value < 2.2e-16
+# alternative hypothesis: true difference in means is not equal to 0
+# 95 percent confidence interval:
+#   -0.03270325 -0.02486117
+# sample estimates:
+#   mean of x  mean of y 
+# 0.03536801 0.06415021 
+
+t.test(all_fr_sociality[all_fr_sociality$Termites == 0,]$C_fr,
+       all_fr_sociality[all_fr_sociality$Termites == 1,]$C_fr)
+
+# t = -6.6622, df = 120.21, p-value = 8.585e-10
+# alternative hypothesis: true difference in means is not equal to 0
+# 95 percent confidence interval:
+#   -0.03307351 -0.01791924
+# sample estimates:
+#   mean of x mean of y 
+# 0.1025668 0.1280632 
+
+######### kalo vs termitidae
+
+nrow(all_fr_sociality[all_fr_sociality$Taxonomy == 'Kalotermitidae',]) #62
+nrow(all_fr_sociality[all_fr_sociality$Taxonomy %in% higher_termites,]) #272
+
+t.test(all_fr_sociality[all_fr_sociality$Taxonomy == 'Kalotermitidae',]$A_fr,
+       all_fr_sociality[all_fr_sociality$Taxonomy %in% higher_termites,]$A_fr)
+
+# t = -5.0685, df = 69.964, p-value = 3.138e-06
+# alternative hypothesis: true difference in means is not equal to 0
+# 95 percent confidence interval:
+#   -0.04811842 -0.02094295
+# sample estimates:
+#   mean of x mean of y 
+# 0.6649318 0.6994625 
+
+t.test(all_fr_sociality[all_fr_sociality$Taxonomy == 'Kalotermitidae',]$T_fr,
+       all_fr_sociality[all_fr_sociality$Taxonomy %in% higher_termites,]$T_fr)
+
+# t = 5.2714, df = 95.34, p-value = 8.416e-07
+# alternative hypothesis: true difference in means is not equal to 0
+# 95 percent confidence interval:
+#   0.01089211 0.02405170
+# sample estimates:
+#   mean of x mean of y 
+# 0.1307202 0.1132483 
+
+t.test(all_fr_sociality[all_fr_sociality$Taxonomy == 'Kalotermitidae',]$G_fr,
+       all_fr_sociality[all_fr_sociality$Taxonomy %in% higher_termites,]$G_fr)
+
+# t = 0.94508, df = 75.503, p-value = 0.3476
+# alternative hypothesis: true difference in means is not equal to 0
+# 95 percent confidence interval:
+#   -0.003768564  0.010573215
+# sample estimates:
+#   mean of x  mean of y 
+# 0.06667796 0.06327563 
+
+t.test(all_fr_sociality[all_fr_sociality$Taxonomy == 'Kalotermitidae',]$C_fr,
+       all_fr_sociality[all_fr_sociality$Taxonomy %in% higher_termites,]$C_fr)
+
+# t = 3.1812, df = 75.103, p-value = 0.002133
+# alternative hypothesis: true difference in means is not equal to 0
+# 95 percent confidence interval:
+#   0.005104899 0.022208020
+# sample estimates:
+#   mean of x mean of y 
+# 0.1376700 0.1240136 
+
