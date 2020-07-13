@@ -316,23 +316,9 @@ all_fr_sociality$Termites = as.factor(all_fr_sociality$Termites)
 all_fr_sociality = all_fr_sociality[!is.na(all_fr_sociality$Sociality),]
 
   
+my_colors <- RColorBrewer::brewer.pal(2, "Purples")[c(1,3)]
 
-
-a_all = ggplot(all_fr_sociality, aes(Sociality, A_fr, fill = Sociality)) +
-  geom_violin() + 
-  # scale_fill_brewer(palette="Set3") +
-  theme_minimal() + 
-  stat_summary(fun.y = 'median', geom = 'point', shape = 20, size = 3, col = 'midnightblue') +
-  theme(axis.text.x = element_text(color = "black", size = 12), 
-        axis.text.y = element_text(color = "black", size = 12),
-        legend.position = "none") + 
-  scale_x_discrete(labels=c('Cockroaches', 'Less\n social\n termites', 'More\n social\n termites')) +
-  xlab('') + ylab('') + ggtitle('A fraction') +
-  scale_fill_brewer(palette="Purples")
-
-a_all
-
-t_all = ggplot(all_fr_sociality, aes(Sociality, T_fr, fill = Sociality)) +
+t_all = ggplot(all_fr_sociality, aes(Sociality, A_fr, fill = Sociality)) +
   geom_violin() + 
   # scale_fill_brewer(palette="Set3") +
   theme_minimal() + 
@@ -346,7 +332,7 @@ t_all = ggplot(all_fr_sociality, aes(Sociality, T_fr, fill = Sociality)) +
 
 t_all
 
-c_all = ggplot(all_fr_sociality, aes(Sociality, C_fr, fill = Sociality)) +
+a_all = ggplot(all_fr_sociality, aes(Sociality, T_fr, fill = Sociality)) +
   geom_violin() + 
   # scale_fill_brewer(palette="Set3") +
   theme_minimal() + 
@@ -355,10 +341,12 @@ c_all = ggplot(all_fr_sociality, aes(Sociality, C_fr, fill = Sociality)) +
         axis.text.y = element_text(color = "black", size = 12),
         legend.position = "none") + 
   scale_x_discrete(labels=c('Cockroaches', 'Less\n social\n termites', 'More\n social\n termites')) +
-  xlab('') + ylab('') + ggtitle('C fraction') +
+  xlab('') + ylab('') + ggtitle('A fraction') +
   scale_fill_brewer(palette="Purples")
 
-g_all = ggplot(all_fr_sociality, aes(Sociality, G_fr, fill = Sociality)) +
+a_all
+
+g_all = ggplot(all_fr_sociality, aes(Sociality, C_fr, fill = Sociality)) +
   geom_violin() + 
   # scale_fill_brewer(palette="Set3") +
   theme_minimal() + 
@@ -370,11 +358,7 @@ g_all = ggplot(all_fr_sociality, aes(Sociality, G_fr, fill = Sociality)) +
   xlab('') + ylab('') + ggtitle('G fraction') +
   scale_fill_brewer(palette="Purples")
 
-g_all
-
-# cockroaches
-
-a_all_roaches = ggplot(all_fr_sociality, aes(Termites, A_fr, fill = Termites)) +
+c_all = ggplot(all_fr_sociality, aes(Sociality, G_fr, fill = Sociality)) +
   geom_violin() + 
   # scale_fill_brewer(palette="Set3") +
   theme_minimal() + 
@@ -382,11 +366,15 @@ a_all_roaches = ggplot(all_fr_sociality, aes(Termites, A_fr, fill = Termites)) +
   theme(axis.text.x = element_text(color = "black", size = 12), 
         axis.text.y = element_text(color = "black", size = 12),
         legend.position = "none") + 
-  scale_x_discrete(labels=c('Cockroaches', 'Termites')) +
-  scale_fill_manual(values = my_colors) +
-  xlab('') + ylab('') + ggtitle('A fraction')
+  scale_x_discrete(labels=c('Cockroaches', 'Less\n social\n termites', 'More\n social\n termites')) +
+  xlab('') + ylab('') + ggtitle('C fraction') +
+  scale_fill_brewer(palette="Purples")
 
-t_all_roaches = ggplot(all_fr_sociality, aes(Termites, T_fr, fill = Termites)) +
+c_all
+
+# cockroaches
+
+t_all_roaches = ggplot(all_fr_sociality, aes(Termites, A_fr, fill = Termites)) +
   geom_violin() + 
   # scale_fill_brewer(palette="Set3") +
   theme_minimal() + 
@@ -397,9 +385,8 @@ t_all_roaches = ggplot(all_fr_sociality, aes(Termites, T_fr, fill = Termites)) +
   scale_x_discrete(labels=c('Cockroaches', 'Termites')) +
   scale_fill_manual(values = my_colors) +
   xlab('') + ylab('') + ggtitle('T fraction')
-  
 
-c_all_roaches = ggplot(all_fr_sociality, aes(Termites, C_fr, fill = Termites)) +
+a_all_roaches = ggplot(all_fr_sociality, aes(Termites, T_fr, fill = Termites)) +
   geom_violin() + 
   # scale_fill_brewer(palette="Set3") +
   theme_minimal() + 
@@ -409,9 +396,10 @@ c_all_roaches = ggplot(all_fr_sociality, aes(Termites, C_fr, fill = Termites)) +
         legend.position = "none") + 
   scale_x_discrete(labels=c('Cockroaches', 'Termites')) +
   scale_fill_manual(values = my_colors) +
-  xlab('') + ylab('') + ggtitle('C fraction')
+  xlab('') + ylab('') + ggtitle('A fraction')
+  
 
-g_all_roaches = ggplot(all_fr_sociality, aes(Termites, G_fr, fill = Termites)) +
+g_all_roaches = ggplot(all_fr_sociality, aes(Termites, C_fr, fill = Termites)) +
   geom_violin() + 
   # scale_fill_brewer(palette="Set3") +
   theme_minimal() + 
@@ -423,11 +411,26 @@ g_all_roaches = ggplot(all_fr_sociality, aes(Termites, G_fr, fill = Termites)) +
   scale_fill_manual(values = my_colors) +
   xlab('') + ylab('') + ggtitle('G fraction')
 
+c_all_roaches = ggplot(all_fr_sociality, aes(Termites, G_fr, fill = Termites)) +
+  geom_violin() + 
+  # scale_fill_brewer(palette="Set3") +
+  theme_minimal() + 
+  stat_summary(fun.y = 'median', geom = 'point', shape = 20, size = 3, col = 'midnightblue') +
+  theme(axis.text.x = element_text(color = "black", size = 12), 
+        axis.text.y = element_text(color = "black", size = 12),
+        legend.position = "none") + 
+  scale_x_discrete(labels=c('Cockroaches', 'Termites')) +
+  scale_fill_manual(values = my_colors) +
+  xlab('') + ylab('') + ggtitle('C fraction')
+
 plots3 = plot_grid(a_all, t_all, g_all, c_all, a_all_roaches, t_all_roaches, 
                    g_all_roaches, c_all_roaches, nrow = 2)
 
 save_plot('../results/nucleotide_content06_20/ATGCplotMergedStrands.pdf',
           plots3, base_height = 10)
+
+write.table(all_fr_sociality, '../results/nucleotide_content06_20/ATGCplotMergedStrands.txt',
+            sep='\t', quote = FALSE, row.names = FALSE)
 
 ################################################################################
 ### pairwise comparisons
