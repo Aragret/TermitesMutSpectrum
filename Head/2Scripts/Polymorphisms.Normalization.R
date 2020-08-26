@@ -62,7 +62,8 @@ for (i in 1:length(files))
 
 ################### 
 Taxa = read.csv("../../Body/2Derived/TermitesFamilies.csv") 
-
+Final = read.table("../../Body/3Results/Polymorphisms.Normalization.NeutralATGC.txt",
+                   header = TRUE, sep = '\t')
 
 Final = merge(Final,Taxa)
 str(Final)
@@ -176,3 +177,65 @@ ggarrange(all_lower, higher,
           ncol = 2, nrow = 2)
 
 dev.off()
+
+
+### compare An>Gn in higher and lower termites
+
+library(dplyr)
+
+mut = read.table('../../Body/3Results/Polymorphisms.MutSpecData.txt', header = TRUE)
+
+# mann-whitney test for normilized mutspec
+
+normMut = mut %>%
+  group_by(Species) %>% 
+  mutate(
+    AllSubs = length(Subs)
+  ) %>%
+  filter(Subs == 'T_C') %>% 
+  mutate(
+    T_C = length(Subs) / AllSubs
+  ) %>% 
+  distinct(Species, .keep_all = TRUE) %>%
+  mutate(
+    T_fr = T / (A + T + G + C),
+    T_C_norm = T_C / T_fr
+  )
+
+t.test(normMut[normMut$Family == 'Termitidae',]$T_C_norm, normMut[normMut$Family != 'Termitidae',]$T_C_norm)
+
+# t = 3.664, df = 30.091, p-value = 0.0009496
+# alternative hypothesis: true difference in means is not equal to 0
+# 95 percent confidence interval:
+#   0.9909639 3.4861512
+# sample estimates:
+#   mean of x mean of y 
+# 4.973166  2.734609 
+
+wilcox.test(normMut[normMut$Family == 'Termitidae',]$T_C_norm, normMut[normMut$Family != 'Termitidae',]$T_C_norm,
+            conf.int = TRUE)
+
+# W = 235, p-value = 0.00387
+# alternative hypothesis: true location shift is not equal to 0
+# 95 percent confidence interval:
+#   0.7241917 3.4648685
+# sample estimates:
+#   difference in location 
+# 1.855148 
+
+# fisher test
+
+a = nrow(mut[mut$Subs == 'T_C' & mut$Family != 'Termitidae',]) # 250
+b = nrow(mut[mut$Subs == 'T_C' & mut$Family == 'Termitidae',]) # 267
+c = nrow(mut[mut$Subs != 'T_C' & mut$Family != 'Termitidae',]) # 659
+d = nrow(mut[mut$Subs != 'T_C' & mut$Family == 'Termitidae',]) # 499
+
+fisher.test(matrix(c(a, b, c, d), ncol = 2))
+
+# p-value = 0.001208
+# alternative hypothesis: true odds ratio is not equal to 1
+# 95 percent confidence interval:
+#   0.5726741 0.8778123
+# sample estimates:
+#   odds ratio 
+# 0.7091567
