@@ -234,3 +234,78 @@ t.test(data[data$Taxonomy == 'Kalotermitidae',]$C_tstv,
 # sample estimates:
 #   mean of x mean of y 
 # 0.6669161 0.6698073 
+
+# add lower and higher termites
+
+higher_termites = c("Apicotermitinae", "Cephalo-group", "Microcerotermes", 
+                    "Termes-group", "Nasutitermitinae", "Amitermes-group", 
+                    "Promiro", "Macrotermitinae", "Cubitermitinae", "Foraminitermitinae", 
+                    "Syntermitinae", "Sphaerotermitinae", "Neocapri-group", 
+                    'Pericapritermes-group', "pericapritermes-group")
+
+lowerTermites = data[data$Termites == 1 & !(data$Taxonomy %in% higher_termites),]
+higherTermites = data[data$Taxonomy %in% higher_termites,]
+
+t.test(lowerTermites$A_tstv, higherTermites$A_tstv)
+
+# t = -1.8413, df = 181.28, p-value = 0.06722
+# alternative hypothesis: true difference in means is not equal to 0
+# 95 percent confidence interval:
+#   -0.080095907  0.002769091
+# sample estimates:
+#   mean of x mean of y 
+# 0.5537648 0.5924282 
+
+t.test(lowerTermites$T_tstv, higherTermites$T_tstv)
+
+# t = 0.79555, df = 203.86, p-value = 0.4272
+# alternative hypothesis: true difference in means is not equal to 0
+# 95 percent confidence interval:
+#   -0.02468517  0.05808021
+# sample estimates:
+#   mean of x mean of y 
+# 0.6686844 0.6519868 
+
+t.test(lowerTermites$G_tstv, higherTermites$G_tstv)
+
+# t = -0.93722, df = 213.21, p-value = 0.3497
+# alternative hypothesis: true difference in means is not equal to 0
+# 95 percent confidence interval:
+#   -0.08505146  0.03023613
+# sample estimates:
+#   mean of x mean of y 
+# 0.7340598 0.7614675 
+
+t.test(lowerTermites$C_tstv, higherTermites$C_tstv)
+
+# t = -0.56255, df = 208.86, p-value = 0.5743
+# alternative hypothesis: true difference in means is not equal to 0
+# 95 percent confidence interval:
+#   -0.03590626  0.01996348
+# sample estimates:
+#   mean of x mean of y 
+# 0.6618359 0.6698073 
+
+
+# plots
+
+to_plot = DFtallAll %>%
+  filter(Termites == 1) %>%
+  mutate(
+    Higher = as.factor(case_when(.$Taxonomy %in% higherTermites$Taxonomy ~ 1,
+                       .$Taxonomy %in% lowerTermites$Taxonomy ~ 0))
+  )
+
+
+all_higher = ggboxplot(to_plot, 'Tstv', 'Value', xlab="Ts fractions",
+                fill = 'Higher',
+                notch = TRUE,
+                # position = position_dodge(),
+                title = 'All genes') + 
+  scale_fill_manual(name = '', labels = c("Lower termites", "Higher termites"),
+                    values = RColorBrewer::brewer.pal(n = 3, name = "Purples")) +
+  # scale_fill_brewer(palette = "Purples", breaks=c("Cockroaches", "Less sociale termites", 'More Social termites')) +
+  scale_x_discrete(labels = c('A', 'T', 'G', 'C'), limits = c('T_tstv', 'A_tstv',
+                                                              'C_tstv', 'G_tstv'))
+
+all_higher

@@ -530,3 +530,129 @@ t.test(all_fr_sociality[all_fr_sociality$Taxonomy == 'Kalotermitidae',]$C_fr,
 #   mean of x mean of y 
 # 0.1376700 0.1240136 
 
+
+# add lower and higher termites
+
+lowerTermites = all_fr_sociality[all_fr_sociality$Termites == 1 & !(all_fr_sociality$Taxonomy %in% higher_termites),]
+higherTermites = all_fr_sociality[all_fr_sociality$Taxonomy %in% higher_termites,]
+
+# add Stylotermitidae to lower termites
+
+t.test(lowerTermites$A_fr, higherTermites$A_fr)
+
+# t = -2.7213, df = 167.49, p-value = 0.00719
+# alternative hypothesis: true difference in means is not equal to 0
+# 95 percent confidence interval:
+#   -0.022579745 -0.003592539
+# sample estimates:
+#   mean of x mean of y 
+# 0.6863764 0.6994625 
+
+t.test(lowerTermites$T_fr, higherTermites$T_fr)
+
+# t = -0.73293, df = 205.4, p-value = 0.4644
+# alternative hypothesis: true difference in means is not equal to 0
+# 95 percent confidence interval:
+#   -0.008494537  0.003890433
+# sample estimates:
+#   mean of x mean of y 
+# 0.1109462 0.1132483 
+
+t.test(lowerTermites$G_fr, higherTermites$G_fr)
+
+# t = 1.1012, df = 199.35, p-value = 0.2721
+# alternative hypothesis: true difference in means is not equal to 0
+# 95 percent confidence interval:
+#   -0.002161036  0.007627186
+# sample estimates:
+#   mean of x  mean of y 
+# 0.06600871 0.06327563 
+
+t.test(lowerTermites$C_fr, higherTermites$C_fr)
+
+# t = 4.6339, df = 213.29, p-value = 6.243e-06
+# alternative hypothesis: true difference in means is not equal to 0
+# 95 percent confidence interval:
+#   0.007271959 0.018038279
+# sample estimates:
+#   mean of x mean of y 
+# 0.1366687 0.1240136 
+
+all_fr_higher = all_fr_families %>%
+  mutate(
+    Higher = case_when(.$Taxonomy %in% higher_termites ~ 2,
+                       .$Taxonomy %in% c(unique(as.character(lowerTermites$Taxonomy)), 
+                                         'Stylotermitidae') ~ 1,
+                       .$Taxonomy %in% cockroaches ~ 0)
+  )
+
+all_fr_higher$Higher = as.factor(all_fr_higher$Higher)
+
+t_all_higher = ggplot(all_fr_higher, aes(Higher, A_fr, fill = Higher)) +
+  geom_violin() + 
+  # scale_fill_brewer(palette="Set3") +
+  theme_minimal() + 
+  stat_summary(fun.y = 'median', geom = 'point', shape = 20, size = 3, col = 'midnightblue') +
+  theme(axis.text.x = element_text(color = "black", size = 12), 
+        axis.text.y = element_text(color = "black", size = 12),
+        legend.position = "none") + 
+  scale_x_discrete(labels=c('Cockroaches', 'Lower\n termites', 'Higher\n termites')) +
+  xlab('') + ylab('') + ggtitle('T fraction') +
+  scale_fill_brewer(palette="Purples")
+
+t_all_higher
+
+# all_fr_higher[is.na(all_fr_higher$Higher),]
+
+summary(all_fr_higher[all_fr_higher$Taxonomy == 'Coptotermitinae',]$A_fr)
+summary(all_fr_higher[all_fr_higher$Taxonomy == 'Rhinotermitinae',]$A_fr)
+summary(all_fr_higher[all_fr_higher$Taxonomy == 'Kalotermitidae',]$A_fr)
+
+a_all_higher = ggplot(all_fr_higher, aes(Higher, T_fr, fill = Higher)) +
+  geom_violin() + 
+  # scale_fill_brewer(palette="Set3") +
+  theme_minimal() + 
+  stat_summary(fun.y = 'median', geom = 'point', shape = 20, size = 3, col = 'midnightblue') +
+  theme(axis.text.x = element_text(color = "black", size = 12), 
+        axis.text.y = element_text(color = "black", size = 12),
+        legend.position = "none") + 
+  scale_x_discrete(labels=c('Cockroaches', 'Lower\n termites', 'Higher\n termites')) +
+  xlab('') + ylab('') + ggtitle('A fraction') +
+  scale_fill_brewer(palette="Purples")
+
+a_all_higher
+
+
+g_all_higher = ggplot(all_fr_higher, aes(Higher, C_fr, fill = Higher)) +
+  geom_violin() + 
+  # scale_fill_brewer(palette="Set3") +
+  theme_minimal() + 
+  stat_summary(fun.y = 'median', geom = 'point', shape = 20, size = 3, col = 'midnightblue') +
+  theme(axis.text.x = element_text(color = "black", size = 12), 
+        axis.text.y = element_text(color = "black", size = 12),
+        legend.position = "none") + 
+  scale_x_discrete(labels=c('Cockroaches', 'Lower\n termites', 'Higher\n termites')) +
+  xlab('') + ylab('') + ggtitle('G fraction') +
+  scale_fill_brewer(palette="Purples")
+
+g_all_higher
+
+c_all_higher = ggplot(all_fr_higher, aes(Higher, G_fr, fill = Higher)) +
+  geom_violin() + 
+  # scale_fill_brewer(palette="Set3") +
+  theme_minimal() + 
+  stat_summary(fun.y = 'median', geom = 'point', shape = 20, size = 3, col = 'midnightblue') +
+  theme(axis.text.x = element_text(color = "black", size = 12), 
+        axis.text.y = element_text(color = "black", size = 12),
+        legend.position = "none") + 
+  scale_x_discrete(labels=c('Cockroaches', 'Lower\n termites', 'Higher\n termites')) +
+  xlab('') + ylab('') + ggtitle('C fraction') +
+  scale_fill_brewer(palette="Purples")
+
+c_all_higher
+
+
+plots4 = plot_grid(a_all_higher, t_all_higher, g_all_higher, c_all_higher, nrow = 2)
+
+save_plot('../results/nucleotide_content06_20/ATGCplotHigherLowerTermites.pdf',
+          plots4, base_height = 10)
