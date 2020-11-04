@@ -10,7 +10,7 @@ VecOfSynFourFoldDegenerateSites <- c('CTT', 'CTC', 'CTA', 'CTG',
                                      'GGT', 'GGC', 'GGA', 'GGG')
 length(unique(VecOfSynFourFoldDegenerateSites)) # 32
 
-unzip("../../Body/2Derived/POLARIZEDBR_DATA_ML.zip")
+unzip("../../Body/2Derived/POLARIZEDBR_DATA_ML.zip", exdir = '../../Body/2Derived/')
 List = list.files("../../Body/2Derived/POLARIZEDBR_DATA_ML/")
 
 for (i in 1:length(List)){
@@ -239,3 +239,43 @@ fisher.test(matrix(c(a, b, c, d), ncol = 2))
 # sample estimates:
 #   odds ratio 
 # 0.7091567
+
+###################################
+### A>G in more and less social
+
+unique(normMut$Family)
+
+# why only 35 species ?
+
+# more social versus less social
+
+moreSocial = c('Termitidae', 'Rhinotermitidae', 'Mastotermitidae')
+lessSocial = c('Hodotermitidae', 'Termopsidae')
+
+t.test(normMut[normMut$Family %in% moreSocial,]$T_C_norm,
+       normMut[normMut$Family %in% lessSocial,]$T_C_norm)
+
+# t = 0.51448, df = 2.8361, p-value = 0.6443
+# alternative hypothesis: true difference in means is not equal to 0
+# 95 percent confidence interval:
+#   -2.790630  3.825537
+# sample estimates:
+#   mean of x mean of y 
+# 4.058137  3.540684
+
+# fisher
+
+a = nrow(mut[mut$Subs == 'T_C' & mut$Family %in% moreSocial,]) # 439
+b = nrow(mut[mut$Subs == 'T_C' & mut$Family %in% lessSocial,]) # 78
+c = nrow(mut[mut$Subs != 'T_C' & mut$Family %in% moreSocial,]) # 1022
+d = nrow(mut[mut$Subs != 'T_C' & mut$Family %in% lessSocial,]) # 136
+
+fisher.test(matrix(c(a, b, c, d), ncol = 2))
+
+# p-value = 0.06816
+# alternative hypothesis: true odds ratio is not equal to 1
+# 95 percent confidence interval:
+#   0.5498975 1.0255416
+# sample estimates:
+#   odds ratio 
+# 0.749069 
