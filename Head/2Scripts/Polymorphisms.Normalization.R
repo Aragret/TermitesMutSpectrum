@@ -75,9 +75,8 @@ Agg1$FrT = Agg1$T/(Agg1$A+Agg1$T+Agg1$G+Agg1$C)
 Agg1$FrG = Agg1$G/(Agg1$A+Agg1$T+Agg1$G+Agg1$C)
 Agg1$FrC = Agg1$C/(Agg1$A+Agg1$T+Agg1$G+Agg1$C)
 
-Agg2 = aggregate(list(Agg1$FrA,Agg1$FrT,Agg1$FrG,Agg1$FrC), by = list(Agg1$Family), FUN = mean); names(Agg2) = c('Family','FrA','FrT','FrG','FrC')
+Agg2 = aggregate(list(Agg1$FrA,Agg1$FrT,Agg1$FrG,Agg1$FrC), by = list(Agg1$Family), FUN = median); names(Agg2) = c('Family','FrA','FrT','FrG','FrC')
 Agg2$Sum = Agg2$FrA + Agg2$FrT + Agg2$FrG + Agg2$FrC # 1 
-# Agg2 = Agg2[Agg2$Class %in% c('Actinopterygii','Amphibia','Reptilia','Mammalia','Aves'),]
 
 row.names(Agg2)=Agg2$Family
 BARPLOT = t(as.matrix(Agg2[,c(2:5)]))
@@ -125,6 +124,7 @@ dev.off()
 
 ##########barplots########
 library("ggpubr")
+library(cowplot)
 
 NormFrac = read.table("../../Body/3Results/Polymorphisms.Normalization.Normalized12Fractions.txt", header = TRUE)
 
@@ -162,8 +162,25 @@ add = 'mean') + ylim(c(0, max(lower$Number + 0.05))) +
                               'C_A', 'A_T', 'A_G', 'A_C'))
 
 higher = ggbarplot(NormFrac[NormFrac$Family == 'Termitidae',], 'Subs', 'Normalised2Number', xlab="Substitution types", title = 'Higher termites',
-                   fill = 'Subs', color = 'Subs', palette = c("#bdbdbd", "#7fcdbb", "#bdbdbd", "#bdbdbd", "#bdbdbd", "#feb24c", "#f03b20", "#bdbdbd", "#bdbdbd", "#bdbdbd", "#2c7fb8", "#bdbdbd"), combine = TRUE) +
+                   fill = 'Subs', color = 'Subs', palette = c("#bdbdbd", "#7fcdbb", "#bdbdbd", "#bdbdbd", 
+                                                              "#bdbdbd", "#feb24c", "#f03b20", "#bdbdbd", 
+                                                              "#bdbdbd", "#bdbdbd", "#2c7fb8", "#bdbdbd"), combine = TRUE) +
 ylim(c(0, max(lower$Number + 0.05))) + 
+  scale_x_discrete(labels = sort(unique(NormFrac$Subs), decreasing = TRUE))
+
+
+lessSocialPlot = ggbarplot(NormFrac[NormFrac$Family %in% lessSocial,], 
+                       'Subs', 'Normalised2Number', xlab="Substitution types", title = 'Less social termites',
+                       fill = 'Subs', color = 'Subs', palette = c("#bdbdbd", "#7fcdbb", "#bdbdbd", "#bdbdbd", "#feb24c", "#f03b20", "#bdbdbd", "#2c7fb8"), combine = TRUE,
+                       add = 'mean') + ylim(c(0, 0.45)) +
+  scale_x_discrete(labels = c('T_G', 'T_C', 'T_A', 'G_T', 'G_A', 'C_T', 'A_T', 'A_G'))
+
+moreSocialPlot = ggbarplot(NormFrac[NormFrac$Family %in% moreSocial,], 
+                       'Subs', 'Normalised2Number', xlab="Substitution types", title = 'More social termites',
+                       fill = 'Subs', color = 'Subs', palette = c("#bdbdbd", "#7fcdbb", "#bdbdbd", "#bdbdbd", 
+                                                                  "#bdbdbd", "#feb24c", "#f03b20", "#bdbdbd", 
+                                                                  "#bdbdbd", "#bdbdbd", "#2c7fb8", "#bdbdbd"), combine = TRUE,
+                       add = 'mean') + ylim(c(0, 0.45)) +
   scale_x_discrete(labels = sort(unique(NormFrac$Subs), decreasing = TRUE))
 
 
@@ -178,12 +195,19 @@ ggarrange(all_lower, higher,
 
 dev.off()
 
+plots = plot_grid(lessSocialPlot, moreSocialPlot, nrow=1)
+
+save_plot('~/Alina/other_projects/TermitesMutSpectrum/Body/4Figures/Polymorphisms.MoreLessSocial.pdf', 
+          plots, base_height = 7)
 
 ### compare An>Gn in higher and lower termites
 
 library(dplyr)
 
 mut = read.table('../../Body/3Results/Polymorphisms.MutSpecData.txt', header = TRUE)
+
+# External Internal 
+# 662     1013
 
 # mann-whitney test for normilized mutspec
 
@@ -204,13 +228,16 @@ normMut = mut %>%
 
 t.test(normMut[normMut$Family == 'Termitidae',]$T_C_norm, normMut[normMut$Family != 'Termitidae',]$T_C_norm)
 
+# 20 vs 
+
 # t = 3.664, df = 30.091, p-value = 0.0009496
 # alternative hypothesis: true difference in means is not equal to 0
 # 95 percent confidence interval:
 #   0.9909639 3.4861512
 # sample estimates:
 #   mean of x mean of y 
-# 4.973166  2.734609 
+# 4.973166  2.734609
+
 
 wilcox.test(normMut[normMut$Family == 'Termitidae',]$T_C_norm, normMut[normMut$Family != 'Termitidae',]$T_C_norm,
             conf.int = TRUE)
@@ -279,3 +306,141 @@ fisher.test(matrix(c(a, b, c, d), ncol = 2))
 # sample estimates:
 #   odds ratio 
 # 0.749069 
+
+### all transitions in more and less social
+
+# normMutAll = mut %>%
+#   group_by(Species) %>% 
+#   mutate(
+#     AllSubs = length(Subs)
+#   ) %>%
+#   mutate(
+#     T_C = length(Subs[Subs == 'T_C']) / AllSubs,
+#     A_G = length(Subs[Subs == 'A_G']) / AllSubs,
+#     C_T = length(Subs[Subs == 'C_T']) / AllSubs,
+#     G_A = length(Subs[Subs == 'G_A']) / AllSubs
+#   ) %>% 
+#   distinct(Species, .keep_all = TRUE) %>%
+#   mutate(
+#     T_fr = T / (A + T + G + C),
+#     A_fr = A / (A + T + G + C),
+#     C_fr = C / (A + T + G + C),
+#     G_fr = G / (A + T + G + C),
+#     T_C_norm = T_C / T_fr,
+#     A_G_norm = A_G / A_fr,
+#     C_T_norm = C_T / C_fr,
+#     G_A_norm = G_A / G_fr
+#   )
+
+
+a = nrow(mut[mut$Subs == 'G_A' & mut$Family %in% moreSocial,]) # 329
+b = nrow(mut[mut$Subs == 'G_A' & mut$Family %in% lessSocial,]) # 25
+c = nrow(mut[mut$Subs != 'G_A' & mut$Family %in% moreSocial,]) # 1132
+d = nrow(mut[mut$Subs != 'G_A' & mut$Family %in% lessSocial,]) # 189
+
+fisher.test(matrix(c(a, b, c, d), ncol = 2))
+
+# p-value = 0.0001573
+# alternative hypothesis: true odds ratio is not equal to 1
+# 95 percent confidence interval:
+#   1.412716 3.543389
+# sample estimates:
+#   odds ratio 
+# 2.196349 
+
+a = nrow(mut[mut$Subs == 'C_T' & mut$Family %in% moreSocial,]) # 411
+b = nrow(mut[mut$Subs == 'C_T' & mut$Family %in% lessSocial,]) # 76
+c = nrow(mut[mut$Subs != 'C_T' & mut$Family %in% moreSocial,]) # 1050
+d = nrow(mut[mut$Subs != 'C_T' & mut$Family %in% lessSocial,]) # 138
+
+fisher.test(matrix(c(a, b, c, d), ncol = 2))
+
+# p-value = 0.02949
+# alternative hypothesis: true odds ratio is not equal to 1
+# 95 percent confidence interval:
+#   0.5206664 0.9759042
+# sample estimates:
+#   odds ratio 
+# 0.7108976 
+
+a = nrow(mut[mut$Subs == 'A_G' & mut$Family %in% moreSocial,]) # 177
+b = nrow(mut[mut$Subs == 'A_G' & mut$Family %in% lessSocial,]) # 18
+c = nrow(mut[mut$Subs != 'A_G' & mut$Family %in% moreSocial,]) # 1284
+d = nrow(mut[mut$Subs != 'A_G' & mut$Family %in% lessSocial,]) # 196
+
+fisher.test(matrix(c(a, b, c, d), ncol = 2))
+
+# p-value = 0.1372
+# alternative hypothesis: true odds ratio is not equal to 1
+# 95 percent confidence interval:
+#   0.8968913 2.6513302
+# sample estimates:
+#   odds ratio 
+# 1.500698 
+
+##################################################################
+### fisher with external branches
+
+mutExt = mut[mut$Branch == 'External',]
+
+a = nrow(mutExt[mutExt$Subs == 'T_C' & mutExt$Family %in% moreSocial,]) # 177
+b = nrow(mutExt[mutExt$Subs == 'T_C' & mutExt$Family %in% lessSocial,]) # 37
+c = nrow(mutExt[mutExt$Subs != 'T_C' & mutExt$Family %in% moreSocial,]) # 394
+d = nrow(mutExt[mutExt$Subs != 'T_C' & mutExt$Family %in% lessSocial,]) # 57
+
+fisher.test(matrix(c(a, b, c, d), ncol = 2))
+
+# p-value = 0.09572
+# alternative hypothesis: true odds ratio is not equal to 1
+# 95 percent confidence interval:
+#   0.424520 1.101423
+# sample estimates:
+#   odds ratio 
+# 0.6807404 
+
+a = nrow(mutExt[mutExt$Subs == 'G_A' & mutExt$Family %in% moreSocial,]) # 147
+b = nrow(mutExt[mutExt$Subs == 'G_A' & mutExt$Family %in% lessSocial,]) # 13
+c = nrow(mutExt[mutExt$Subs != 'G_A' & mutExt$Family %in% moreSocial,]) # 421
+d = nrow(mutExt[mutExt$Subs != 'G_A' & mutExt$Family %in% lessSocial,]) # 81
+
+fisher.test(matrix(c(a, b, c, d), ncol = 2))
+
+# p-value = 0.01294
+# alternative hypothesis: true odds ratio is not equal to 1
+# 95 percent confidence interval:
+#   1.158943 4.385800
+# sample estimates:
+#   odds ratio 
+# 2.173407 
+
+a = nrow(mutExt[mutExt$Subs == 'C_T' & mutExt$Family %in% moreSocial,]) # 161
+b = nrow(mutExt[mutExt$Subs == 'C_T' & mutExt$Family %in% lessSocial,]) # 35
+c = nrow(mutExt[mutExt$Subs != 'C_T' & mutExt$Family %in% moreSocial,]) # 407
+d = nrow(mutExt[mutExt$Subs != 'C_T' & mutExt$Family %in% lessSocial,]) # 59
+
+fisher.test(matrix(c(a, b, c, d), ncol = 2))
+
+# p-value = 0.0881
+# alternative hypothesis: true odds ratio is not equal to 1
+# 95 percent confidence interval:
+#   0.4138786 1.0875116
+# sample estimates:
+#   odds ratio 
+# 0.6672598 
+
+a = nrow(mutExt[mutExt$Subs == 'A_G' & mutExt$Family %in% moreSocial,]) # 46
+b = nrow(mutExt[mutExt$Subs == 'A_G' & mutExt$Family %in% lessSocial,]) # 1
+c = nrow(mutExt[mutExt$Subs != 'A_G' & mutExt$Family %in% moreSocial,]) # 522
+d = nrow(mutExt[mutExt$Subs != 'A_G' & mutExt$Family %in% lessSocial,]) # 93
+
+fisher.test(matrix(c(a, b, c, d), ncol = 2))
+
+# p-value = 0.00854
+# alternative hypothesis: true odds ratio is not equal to 1
+# 95 percent confidence interval:
+#   1.360119 333.723434
+# sample estimates:
+#   odds ratio 
+# 8.182109 
+
+
