@@ -1,0 +1,928 @@
+"Species";"Gainers";"Losers"
+"[Parrhinotermes microdentiformis]";118;192
+"[Dolichorhinotermes longilabius]";117;193
+"[Astratotermes sp. RDCT147]";115;201
+"[Prorhinotermes canalifrons]";114;200
+"[Aderitotermes sp. TB-2014]";117;200
+"[Astalotermes murcus]";116;200
+"partial [Prorhinotermes simplex]";116;198
+"[Zootermopsis nevadensis]";116;186
+"[Heterotermes cf. occiduus 3.15.2AUS]";114;194
+"[Eupolyphaga sinensis]";111;194
+"[Termitogeton planus]";118;191
+"[Heterotermes tenuis]";116;193
+"[Heterotermes platycephalus]";116;195
+"[Coptotermes amanii]";119;194
+"[Glyptotermes satsumensis]";113;196
+"[Heterotermes nr. tenuis COL.4PUERTO]";117;193
+"[Ateuchotermes sp. TB-2014]";115;200
+"[Apicotermitinae gen. A sp. TB-2017]";115;200
+"[Stylotermes sp. TW5238]";118;192
+"[Coptotermes michaelseni]";117;194
+"[Coptotermes sjoestedti]";118;194
+"[Glyptotermes sp. C TB-2014]";115;194
+"[Porotermes adamsoni]";118;192
+"[Periplaneta fuliginosa]";110;192
+"partial [Periplaneta brunnea]";111;194
+"[Odontotermes sp. K TB-2017]";118;197
+"[Periplaneta australasiae]";110;192
+"[Incisitermes minor]";115;197
+"[Neotermes insularis]";115;195
+"[Astalotermes sp. TB-2014]";114;201
+"[Anoplotermes parvus]";116;200
+"[Aderitotermes cf. fossor BDIT074]";116;200
+"[Odontotermes obesus]";119;196
+"[Compositermes vindai]";116;200
+"[Anoplotermes group nr. E1 TB-2014]";116;200
+"[Hypotermes makhamensis]";118;196
+"[Anoplotermes sp. E1 TB-2017]";117;200
+"[Anoplotermes janus]";116;201
+"[Ateuchotermes sp. C TB-2017]";117;200
+"[Nasutitermes sp. AUS97]";114;199
+"[Tumulitermes recalvus]";116;199
+"[Rugitermes sp. A TB-2014]";118;192
+"[Longustitermes manni]";116;201
+"[Anoplotermes group sp. Q TB-2017]";116;202
+"[Acholotermes chirotus]";116;201
+"[Odontotermes sp. BDIT9-1.3A]";118;200
+"[Syntermes spinosus]";118;201
+"[Heterotermes vagus]";115;192
+"[Macrotermes subhyalinus]";116;197
+"[Odontotermes sp. BDIT085]";118;199
+"[Cyrilliotermes angulariceps]";118;198
+"[Odontotermes sp. C TB-2017]";118;197
+"[Odontotermes sp. BDIT086]";119;199
+"[Anoplotermes group sp. AD TB-2017]";115;200
+"[Pseudacanthotermes militaris]";118;198
+"[Amitermes dentatus]";115;199
+"[Microcerotermes sp. B TB-2017]";118;201
+"[Aparatermes nr. cingulatus G13-81]";115;203
+"[Procapritermes sp. G TB-2017]";118;195
+"[Odontotermes sp. BDIT087]";118;200
+"[Microcerotermes parvus]";116;202
+"[Macrotermes annandalei]";118;197
+"[Odontotermes nr. pauperans RDCT160]";120;199
+"[Microtermes obesi]";117;197
+"[Cryptotermes declivis]";113;195
+"[Euhamitermes hamatus]";115;201
+"[Macrotermes muelleri]";117;197
+"[Odontotermes sp. D TB-2017]";121;198
+"[Microtermes sp. B TB-2017]";117;197
+"[Macrotermes sp. B TB-2017]";118;197
+"[Macrotermes falciger]";118;197
+"[Pseudacanthotermes spiniger]";118;199
+"[Macrotermes barneyi]";118;197
+"[Macrotermes vitrialatus]";117;197
+"[Macrotermes carbonarius]";117;197
+"[Macrotermes yunnanensis]";118;196
+"[Nasutitermes matangensis]";117;200
+"[Ophiotermes grandilabius]";116;200
+"[Cornitermes cumulans]";117;199
+"[Cylindrotermes parvignathus]";118;200
+"[Ephelotermes taylori]";117;196
+"[Ephelotermes melachoma]";116;196
+"[Drepanotermes sp. SLC-2012]";115;202
+"[Pericapritermes sp. A TB-2017]";117;201
+"[Pericapritermes dolichocephalus]";117;199
+"[Furculitermes winifredae]";116;202
+"[Dicuspiditermes sp. 2 TB-2017]";119;199
+"[Nasutitermes matangensis]";118;200
+"[Coptotermes acinaciformis raffrayi]";62;60
+"partial [Blattella bisignata]";53;62
+"partial [Haplosymploce aurantiaca]";53;62
+"[Coptotermes acinaciformis raffrayi]";62;61
+"partial [Blattella germanica]";53;63
+"[Blattella germanica]";53;63
+"partial [Blattella germanica]";53;63
+"[Coptotermes acinaciformis raffrayi]";63;61
+"partial [Blattella germanica]";53;63
+"partial [Blattella germanica]";53;63
+"partial [Coptotermes acinaciformis]";62;61
+"partial [Coptotermes acinaciformis]";62;62
+"partial [Lobopterella dimidiatipes]";55;64
+"partial [Lobopterella dimidiatipes]";60;65
+"[Blattella bisignata]";52;63
+"partial [Perisphaeria cf. substylifera SR-2005]";61;56
+"partial [Blattella nipponica]";54;62
+"[Coptotermes remotus]";62;63
+"[Coptotermes kalshoveni]";63;62
+"[Coptotermes acinaciformis acinaciformis]";62;61
+"[Paratropes sp. 1 DJGI-2006]";62;59
+"[Coptotermes sepangensis]";63;63
+"[Coptotermes travians]";63;64
+"[Coptotermes acinaciformis acinaciformis]";62;59
+"[Coptotermes acinaciformis acinaciformis]";62;59
+"[Coptotermes sepangensis]";63;64
+"partial [Coptotermes kalshoveni]";61;62
+"partial [Blattella asahinai]";51;61
+"partial [Perisphaeria cf. scabrella SR-2005]";58;59
+"[Coptotermes michaelseni]";62;62
+"[Coptotermes acinaciformis raffrayi]";62;60
+"[Coptotermes kalshoveni]";64;62
+"[Coptotermes acinaciformis acinaciformis]";63;60
+"[Coptotermes acinaciformis acinaciformis]";62;61
+"[Stylotermes sp. CN14]";62;63
+"partial [Temnopteryx sp. 1 DJGI-2006]";62;64
+"partial [Coptotermes sp.]";62;61
+"partial [Blattella lituricollis]";54;62
+"partial [Episymploce kunmingi]";55;63
+"partial [Coptotermes acinaciformis]";62;60
+"partial [Lobopterella dimidiatipes]";55;64
+"[Coptotermes acinaciformis acinaciformis]";62;60
+"partial [Coptotermes travians]";62;61
+"partial [Coptotermes acinaciformis]";61;59
+"partial [Coptotermes sp. AP01]";62;61
+"partial [Perisphaerinae sp. MNHN BL155]";52;57
+"partial [Coptotermes michaelseni]";62;60
+"[Coptotermes acinaciformis acinaciformis]";62;60
+"[Coptotermes acinaciformis acinaciformis]";63;60
+"[Neotemnopteryx sp. B]";60;63
+"partial [Episymploce mamillatus]";56;63
+"partial [Coptotermes acinaciformis]";63;60
+"partial [Salganea taylori]";57;63
+"partial [Shelfordina volubilis]";58;61
+"partial [Episymploce hunanensis]";56;64
+"partial [Coptotermes lacteus]";61;60
+"[Coptotermes brunneus]";63;60
+"partial [Shelfordina volubilis]";58;61
+"[Neotemnopteryx styliparedra]";59;64
+"[Coptotermes lacteus]";63;61
+"[Coptotermes acinaciformis acinaciformis]";64;60
+"partial [Coptotermes sp. Ma79Cp]";62;61
+"partial [Coptotermes lacteus]";63;60
+"partial [Coptotermes acinaciformis]";62;60
+"partial [Geoscapheus robustus]";59;57
+"partial [Coptotermes lacteus]";62;61
+"partial [Coptotermes lacteus]";62;60
+"partial [Anaplectoidea spinea]";62;57
+"partial [Panesthiinae sp. FL-2014]";62;57
+"partial [Panesthia birmanica]";62;58
+"partial [Coptotermes formosanus]";62;60
+"[Neotemnopteryx sp. A]";61;64
+"[Symploce pallens]";56;63
+"partial [Pronauphoeta cf. viridula MNHN BL126]";58;61
+"[Macrotermes vitrialatus]";64;62
+"[Coptotermes sp. ISO777]";63;61
+"[Coptotermes formosanus]";63;63
+"[Stylotermes sp. TW5238]";61;64
+"partial [Salganea rossi]";54;62
+"[Coptotermes formosanus]";65;67
+"partial [Stylotermes halumicus]";61;64
+"[Schedorhinotermes putorius]";74;95
+"[Schedorhinotermes lamanianus]";73;94
+"[Rugitermes sp. A TB-2014]";66;102
+"[Serritermes serrifer]";68;97
+"[Heterogamodes hebraica]";67;97
+"[Amitermes sp. 3 TB-2017]";71;107
+"[Odontotermes mathuri]";72;97
+"[Polyphaga plancyi]";69;94
+"[Parrhinotermes microdentiformis]";70;100
+"[Patawatermes sp. A TB-2017]";71;109
+"[Parrhinotermes browni]";70;97
+"[Odontotermes minutus]";74;96
+"[Eupolyphaga sinensis]";67;100
+"[Orientotermes emersoni]";70;107
+"[Odontotermes sp. A TB-2017]";75;99
+"[Hirtitermes hirtiventris]";72;104
+"[Patawatermes turricola]";71;108
+"[Eupolyphaga sinensis]";68;100
+"[Odontotermes hainanensis]";72;99
+"[Termes hospes]";72;105
+"[Schedorhinotermes translucens]";75;94
+"[Amitermes sp. D TB-2017]";70;104
+"[Pericapritermes sp. TBRU1.8]";71;107
+"[Schedorhinotermes breinli]";73;95
+"[Promirotermes pygmaeus]";71;108
+"[Odontotermes formosanus]";72;99
+"[Schedorhinotermes medioobscurus]";75;93
+"[Labritermes buttelreepeni]";73;104
+"[Parrhinotermes sp. C MW-2019]";70;98
+"[Schedorhinotermes sarawakensis]";73;94
+"[Schedorhinotermes sp. 3 MW-2019]";73;93
+"[Aparatermes sp. A TB-2017]";68;110
+"[Microhodotermes viator]";75;99
+"[Schedorhinotermes longirostris]";74;93
+"[Polyphaga plancyi]";68;98
+"[Schedorhinotermes sp. THAI084]";73;94
+"[Schedorhinotermes sp. 5 MW-2019]";74;94
+"[Microtermes obesi]";82;105
+"[Deropeltis paulinoi]";66;96
+"[Globitermes sulphureus]";71;107
+"[Ateuchotermes retifaciens]";71;102
+"[Isognathotermes ugandensis]";72;107
+"[Parrhinotermes aequalis]";69;98
+"[Termes hospes]";72;106
+"[Amitermes meridionalis]";70;107
+"[Polyphaga aegyptiaca]";69;95
+"[Amitermes sp. E TB-2017]";70;106
+"[Dolichorhinotermes longilabius]";70;96
+"[Microtermes sp. 1 TB-2017]";81;105
+"[Astalotermes sp. BDIT120]";69;105
+"[Astalotermes cf. obstructus RDCT140]";69;106
+"[Labiotermes labralis]";69;106
+"[Odontotermes longignathus]";73;97
+"[Microtermes sp. C TB-2017]";73;101
+"[Patawatermes nigripunctatus]";70;107
+"[Odontotermes sp. C TB-2017]";73;98
+"[Astalotermes sp. TB-2014]";70;106
+"[Amitermes capito]";72;106
+"[Euhamitermes hamatus]";70;103
+"[Phoetalia pallida]";66;105
+"[Odontotermes sp. B TB-2017]";72;98
+"[Longipeditermes longipes]";72;105
+"[Odontotermes sp. E TB-2017]";73;99
+"[Hospitalitermes hospitalis]";71;103
+"[Pericapritermes dolichocephalus]";71;108
+"[Euhamitermes hamatus]";70;104
+"[Anoplotermes sp. BRA025]";68;109
+"[Procapritermes sp. G TB-2017]";72;105
+"[Microtermes obesi]";81;106
+"[Macrognathotermes sunteri]";71;107
+"[Hospitalitermes hospitalis]";71;103
+"[Odontotermes sp. K TB-2017]";72;98
+"[Euhamitermes sp. A TB-2017]";70;102
+"[Amitermes sp. 5 TB-2017]";71;105
+"[Ephelotermes taylori]";69;109
+"[Humutermes krishnai]";69;104
+"[Hypotermes makhamensis]";74;96
+"[Prohamitermes mirabilis]";71;105
+"[Lophotermes septentrionalis]";70;108
+"[Termes hospes]";73;106
+"[Astalotermes sp. B TB-2017]";70;106
+"[Caetetermes taquarussu]";71;105
+"[Amitermes obeuntis]";73;106
+"[Patawatermes nigripunctatus]";70;106
+"[Anoplotermes group sp. SB TB-2017]";70;103
+"[Nasutitermes longirostris]";71;105
+"[Parrhinotermes sp. B MW-2019]";70;98
+"[Ectobiidae sp. Z140]";91;134
+"[Cryptotermes havilandi]";106;136
+"[Cryptocercus kyebangensis]";100;127
+"[Microhodotermes viator]";110;130
+"[Ischnoptera sp. B084]";94;128
+"[Neotermes koshunensis]";108;134
+"[Neostylopyga rhombifolia]";97;135
+"[Polyphaga plancyi]";105;127
+"[Parcoblatta lata]";95;136
+"[Parcoblatta divisa]";92;138
+"[Ectobiidae sp. BB]";95;143
+"[Parcoblatta pensylvanica]";94;135
+"[Methana sp. AUS1]";90;133
+"[Cryptocercus relictus]";103;129
+"[Asiablatta kyotensis]";93;135
+"[Anaplecta calosoma]";106;127
+"[Mastotermes darwiniensis]";97;136
+"[Eurycotis sp. B074]";98;129
+"[Eurycotis opaca]";95;134
+"[Melanozosteria nitida]";92;128
+"[Neotermes insularis]";109;132
+"[Gromphadorhina portentosa]";97;141
+"[Anallacta methanoides]";92;127
+"[Tryonicus parvus]";98;137
+"[Blattella lituricollis]";94;141
+"[Zootermopsis angusticollis]";110;128
+"[Eurycotis floridana]";90;137
+"[Parcoblatta uhleriana]";95;135
+"[Zootermopsis nevadensis]";112;130
+"[Coptotermes michaelseni]";107;140
+"[Elliptorhina chopardi]";93;141
+"[Parcoblatta bolliana]";93;138
+"[Parcoblatta fulvescens]";92;138
+"[Glyptotermes sp. C TB-2014]";104;131
+"[Melanozosteria sp. Cairns";133;114
+"";NA;NA
+"[Coptotermes elisae]";110;134
+"[Shelfordella lateralis]";100;137
+"[Roisinitermes ebogoensis]";109;138
+"[Protagonista lugubris]";97;133
+"[Symploce pallens]";95;134
+"[Heterotermes cf. occiduus 3.15.2AUS]";109;140
+"[Ergaula capucina]";95;128
+"[Heterotermes cf. occiduus 3.12.2.AUS]";105;141
+"[Nauphoeta cinerea]";98;141
+"[Glyptotermes sp. A TB-2014]";108;130
+"[Periplaneta americana]";99;138
+"[Neostylopyga rhombifolia]";94;135
+"[Gromphadorhina portentosa]";94;140
+"[Coptotermes acinaciformis raffrayi]";104;135
+"[Lamproblatta albipalpus]";103;118
+"[Platyzosteria sp. AUS3]";92;136
+"[Eurycotis decipiens]";92;134
+"[Prorhinotermes canalifrons]";107;139
+"[Ischnoptera deropeltiformis]";92;136
+"[Gyna capucina]";97;135
+"[Nauphoeta cinerea]";99;141
+"[Coptotermes acinaciformis acinaciformis]";107;136
+"[Rhyparobia grandis]";92;144
+"[Coptotermes gestroi]";106;137
+"[Blaberus sp. B013]";93;133
+"[Blaberus discoidalis]";94;133
+"[Gromphadorhina sp. B040]";94;141
+"[Heterotermes malabaricus]";103;136
+"[Cryptocercus meridianus]";101;130
+"[Coptotermes heimi]";108;138
+"[Microcerotermes nervosus]";105;143
+"[Blattodea sp. MT-2014]";101;123
+"[Beybienkoa kurandanensis]";98;133
+"[Schedorhinotermes medioobscurus]";108;138
+"[Paranauphoeta circumdata]";95;133
+"[Elliptorhina javanica]";93;140
+"[Deropeltis paulinoi]";95;127
+"[Coptotermes formosanus]";109;136
+"[Hodotermopsis sjostedti]";104;126
+"[Schedorhinotermes sp. 3 MW-2019]";107;140
+"[Periplaneta fuliginosa]";94;139
+"[Heterotermes vagus]";108;136
+"[Heterotermes sp. SLC-2012]";106;139
+"[Blattella germanica]";95;143
+"[Blaptica dubia]";100;129
+"[Microcerotermes sp. 3 TB-2017]";109;138
+"[Coptotermes travians]";107;135
+"[Schedorhinotermes sarawakensis]";107;140
+"[Blattella asahinai]";95;142
+"[Eupolyphaga sinensis]";102;140
+"[Ephelotermes melachoma]";108;139
+"[Amitermes meridionalis]";109;139
+"[Microcerotermes parvus]";108;138
+"[Heterotermes tenuis]";107;139
+"[Schedorhinotermes putorius]";105;135
+"[Periplaneta australasiae]";48;146
+"[Periplaneta australasiae]";47;141
+"[Cephalotermes rectangularis]";34;163
+"[Astalotermes cf. obstructus RDCT140]";35;149
+"[Cephalotermes rectangularis]";35;154
+"[Eublaberus distanti]";42;144
+"[Noditermes lamanianus]";39;159
+"[Methana sp. AUS1]";44;149
+"[Compositermes vindai]";35;153
+"[Procapritermes sp. A TB-2017]";38;155
+"[Lobopterella dimidiatipes]";41;138
+"[Aderitotermes cf. fossor BDIT074]";34;156
+"[Noditermes cristifrons]";38;158
+"[Amitermes sp. 3 TB-2017]";35;149
+"[Alyscotermes sp. B TB-2017]";36;151
+"[Periplaneta fuliginosa]";44;150
+"[Astratotermes sp. RDCT147]";36;150
+"[Basidentitermes aurivillii]";38;160
+"[Kemneritermes sarawakensis]";37;156
+"[Melanozosteria sp. Cairns";154;80
+"";NA;NA
+"[Foraminitermes rhinoceros]";35;159
+"[Microcerotermes sp. B TB-2017]";36;162
+"[Melanozosteria nitida]";46;144
+"[Paratemnopteryx couloniana]";43;150
+"[Aderitotermes sp. BDIT109]";36;154
+"[Platyzosteria sp. AUS3]";47;139
+"[Alyscotermes sp. SAF6]";35;151
+"[Astalotermes sp. B TB-2017]";34;149
+"[Aderitotermes sp. TB-2014]";34;165
+"[Cubitermes fulvus]";36;153
+"[Procapritermes martyni]";37;157
+"[Nasutitermes longinasus]";34;153
+"[Leucopitermes leucops]";36;151
+"[Atlantitermes snyderi]";37;153
+"[Mirocapritermes sp. 1 TB-2017]";35;155
+"[Mirocapritermes sp. 2 TB-2017]";38;154
+"[Mirocapritermes connectens]";36;155
+"[Dihoplotermes sp. A TB-2017]";37;152
+"[Hospitalitermes medioflavus]";35;153
+"[Microcerotermes serrula]";37;158
+"[Amitermes sp. 5 TB-2017]";37;148
+"[Eurycotis floridana]";45;147
+"[Paranauphoeta circumdata]";47;139
+"[Nasutitermes nr. perparvus TB-2014]";34;160
+"[Apicotermitinae gen. A sp. TB-2017]";33;154
+"[Isognathotermes ugandensis]";36;153
+"[Pericapritermes dolichocephalus]";37;153
+"[Procapritermes sp. 1 TB-2017]";37;155
+"[Sinocapritermes sp. 1 TB-2017]";36;155
+"[Amalotermes phaeocephalus]";34;156
+"[Galiblatta cribrosa]";46;137
+"[Hospitalitermes sp. C TB-2017]";35;154
+"[Sinocapritermes mushae]";38;158
+"[Procapritermes sp. C TB-2017]";37;154
+"[Pericapritermes latignathus]";37;152
+"[Eurycotis sp. B074]";43;149
+"[Ectobiidae sp. BB]";44;147
+"[Occasitermes occasus]";35;152
+"[Anoplotermes sp. BRA025]";36;151
+"[Euhamitermes hamatus]";35;155
+"[Eurycotis decipiens]";45;140
+"[Aparatermes sp. A TB-2017]";36;152
+"[Eurycotis opaca]";46;145
+"[Pycnoscelus sp. B103]";44;143
+"[Procubitermes undulans]";38;162
+"[Amitermes sp. E TB-2017]";37;146
+"[Trinervitermes sp. A TB-2017]";35;149
+"[Bulbitermes nr. laticephalus THAI100]";34;148
+"[Termes rostratus]";36;154
+"[Nasutitermes banksi]";35;152
+"[Araujotermes parvellus]";34;148
+"[Lophotermes septentrionalis]";37;152
+"[Procapritermes sp. G TB-2017]";36;153
+"[Parrhinotermes microdentiformis]";36;167
+"[Agnathotermes crassinasus]";34;149
+"[Neostylopyga rhombifolia]";42;157
+"[Nasutitermes octopilis]";34;155
+"[Nasutitermes exitiosus]";36;153
+"[Nasutitermes sp. AUS97]";34;151
+"[Globitermes globosus]";34;155
+"[Cubitermes oblectatus]";37;151
+"[Nasutitermes longipennis]";36;149
+"[Hospitalitermes hospitalis]";34;153
+"[Homallotermes foraminifer]";36;155
+"[Nasutitermes similis]";34;154
+"[Pericapritermes sp. G TB-2017]";36;153
+"[Parcoblatta uhleriana]";44;139
+"[Atlantitermes oculatissimus]";33;151
+"[Polyspathotermes sulcifrons]";37;150
+"[Nasutitermes exitiosus]";36;152
+"[Cavitermes parmae]";36;151
+"[Incisitermes minor]";34;167
+"[Termes comis]";36;153
+"[Cubitermes sp. A TB-2017]";35;153
+"[Bulbitermes singaporiensis]";35;149
+"[Microcerotermes sp. G689]";35;158
+"[Microcerotermes parvus]";36;154
+"[Pericapritermes sp. 3 TB-2017]";37;151
+"[Microcerotermes havilandi]";35;158
+"[Anoplotermes group sp. 1 TB-2017]";37;149
+"[Platyzosteria sp. AUS3]";71;110
+"[Cryptocercus kyebangensis]";91;86
+"[Melanozosteria sp. Cairns";131;124
+"";NA;NA
+"[Polyzosteria viridissima]";76;103
+"[Eurycotis floridana]";79;110
+"[Periplaneta australasiae]";70;110
+"[Periplaneta australasiae]";76;110
+"[Periplaneta brunnea]";76;104
+"[Mastotermes darwiniensis]";76;126
+"[Byrsotria rothi]";69;105
+"[Zootermopsis angusticollis]";90;103
+"[Cosmozosteria sp. B117]";72;103
+"[Microhodotermes viator]";96;98
+"[Heterotermes cf. occiduus 3.12.2.AUS]";86;110
+"[Parcoblatta uhleriana]";77;119
+"[Nauphoeta cinerea]";72;121
+"[Panesthia sp. Salganea]";69;106
+"[Nauphoeta cinerea]";74;121
+"[Cryptocercus hirtus]";82;94
+"[Heterotermes platycephalus]";87;112
+"[Methana sp. AUS1]";73;99
+"[Eurycotis opaca]";77;112
+"[Heterotermes cf. paradoxus AUS88]";88;110
+"[Periplaneta americana]";84;108
+"[Byrsotria cabrerai]";69;109
+"[Zootermopsis nevadensis]";95;100
+"partial [Prorhinotermes simplex]";97;111
+"[Heterotermes sp. SLC-2012]";89;114
+"[Byrsotria sp. B018]";73;103
+"[Byrsotria fumigata]";74;103
+"[Symploce macroptera]";76;114
+"[Heterotermes validus]";89;112
+"[Phoetalia pallida]";65;117
+"[Eurycotis decipiens]";73;111
+"[Dolichorhinotermes longilabius]";92;108
+"[Cryptocercus meridianus]";83;88
+"[Neostylopyga rhombifolia]";71;97
+"[Cryptocercus meridianus]";89;88
+"[Asiablatta kyotensis]";72;114
+"[Ectobiidae sp. BB]";71;120
+"[Blattella asahinai]";70;112
+"[Ellipsidion sp. BLA050]";77;108
+"[Parrhinotermes browni]";93;110
+"[Tryonicus parvus]";76;120
+"[Blattella bisignata]";75;112
+"[Parrhinotermes sp. B MW-2019]";96;108
+"[Melanozosteria nitida]";75;105
+"[Blattella germanica]";74;113
+"[Neostylopyga rhombifolia]";75;100
+"[Heterotermes cf. paradoxus AUS121]";88;114
+"[Blaptica dubia]";68;116
+"[Blaptica dubia]";69;117
+"[Paranauphoeta circumdata]";69;112
+"[Nasutitermes triodiae]";89;117
+"[Blattella lituricollis]";69;111
+"[Heterotermes cf. occiduus 3.15.2AUS]";92;111
+"[Parrhinotermes aequalis]";95;107
+"[Blattodea sp. MT-2014]";88;115
+"[Laxta sp. BLA048]";69;109
+"[Nasutitermes sp. FG-ND2-30]";94;118
+"[Blatta orientalis]";69;109
+"[Reticulitermes grassei]";87;116
+"[Reticulitermes lucifugus]";89;111
+"[Procubitermes undulans]";92;115
+"[Rhyparobia sp. B054]";72;113
+"[Glyptotermes sp. A TB-2014]";90;105
+"[Glyptotermes sp. C TB-2014]";91;115
+"[Reticulitermes tibialis]";90;109
+"[Apilitermes longiceps]";93;110
+"[Rhyparobia grandis]";71;111
+"[Reticulitermes tibialis]";90;108
+"[Globitermes globosus]";95;113
+"[Bulbitermes singaporiensis]";91;113
+"[Coptotermes michaelseni]";92;112
+"[Schedorhinotermes sarawakensis]";100;110
+"[Anhangatermes macarthuri]";92;115
+"[Tumulitermes pastinator]";92;117
+"[Postsubulitermes parviconstrictus]";93;114
+"[Neotermes sp. A TB-2014]";96;102
+"[Nasutitermes triodiae]";92;117
+"[Coptotermes gestroi]";93;113
+"[Embiratermes neotenicus]";86;116
+"[Embiratermes neotenicus]";90;116
+"[Coptotermes amanii]";93;111
+"[Pseudacanthotermes spiniger]";28;32
+"[Alyscotermes sp. SAF6]";23;36
+"[Alyscotermes kilimandjaricus]";23;37
+"[Odontotermes sp. E TB-2017]";25;32
+"[Cyrilliotermes sp. BRA012]";24;34
+"[Astratotermes sp. RDCT147]";23;36
+"[Procapritermes sp. A TB-2017]";26;35
+"[Microtermes sp. BDIT051]";29;32
+"[Odontotermes longignathus]";24;33
+"[Astalotermes cf. obstructus RDCT140]";24;34
+"[Euphyllodromia sp. Z257]";24;34
+"[Odontotermes javanicus]";26;35
+"[Compositermes vindai]";25;34
+"[Hypotermes makhamensis]";23;33
+"[Microcerotermes fuscotibialis]";25;37
+"[Postsubulitermes parviconstrictus]";27;35
+"[Pseudacanthotermes militaris]";28;33
+"[Orthotermes depressifrons]";24;34
+"[Jugositermes tuberculatus]";25;32
+"[Orthotermes mansuetus]";23;35
+"[Homallotermes foraminifer]";24;35
+"[Microtermes sp. B TB-2017]";28;33
+"[Jugositermes tuberculatus]";25;32
+"[Reticulitermes hageni]";25;33
+"[Tetimatermes sp. A TB-2017]";25;34
+"[Reticulitermes nelsonae]";25;34
+"[Odontotermes sp. 7 TB-2017]";27;35
+"[Cavitermes tuberosus]";24;33
+"[Odontotermes obesus]";25;34
+"[Cavitermes tuberosus]";24;34
+"[Pericapritermes nigerianus]";26;31
+"[Nasutitermes bikpelanus]";26;35
+"[Reticulitermes virginicus]";24;31
+"[Duplidentitermes sp. TB-2014]";27;33
+"[Bulbitermes singaporiensis]";25;35
+"[Glyptotermes sp. C TB-2014]";21;38
+"[Macrotermes barneyi]";26;34
+"[Procapritermes martyni]";24;34
+"[Ancistrotermes pakistanicus]";31;34
+"[Astalotermes murcus]";24;36
+"[Odontotermes formosanus]";27;32
+"[Crepititermes verruculosus]";25;35
+"[Anoplotermes group sp. Q TB-2017]";26;34
+"[Ophiotermes mirandus]";24;33
+"[Astalotermes cf. qietus RDCT073]";23;35
+"[Microcerotermes progrediens]";25;34
+"[Odontotermes obesus]";26;34
+"[Procapritermes sp. C TB-2017]";25;35
+"[Nasutitermes sp. COL2012L08]";25;32
+"[Cavitermes parmae]";24;33
+"[Odontotermes mathuri]";26;34
+"[Prorhinotermes canalifrons]";25;35
+"[Syntermes spinosus]";28;33
+"[Odontotermes nr. pauperans RDCT160]";29;33
+"[Microcerotermes newmani]";26;34
+"[Hospitalitermes hospitalis]";24;34
+"[Labiotermes labralis]";26;36
+"[Labiotermes labralis]";26;36
+"[Pericapritermes latignathus]";24;34
+"[Aparatermes nr. cingulatus G13-81]";23;35
+"[Neocapritermes taracua]";22;35
+"[Anoplotermes group sp. AF TB-2017]";22;36
+"[Sinocapritermes sp. 1 TB-2017]";25;33
+"[Atlantitermes oculatissimus]";24;35
+"[Microcerotermes parvus]";23;35
+"[Odontotermes sp. 6 TB-2017]";27;32
+"[Nasutitermes sp. 1 TB-2017]";25;31
+"[Microcerotermes crassus]";24;35
+"[Microcerotermes sp. A TB-2017]";24;34
+"[Nasutitermes matangensis]";24;36
+"[Embiratermes brevinasus]";25;36
+"[Silvestritermes heyeri]";24;37
+"[Trichotermes ducis]";27;33
+"[Aciculitermes aciculatus]";25;34
+"[Promirotermes redundans]";21;37
+"[Polyspathotermes sulcifrons]";21;34
+"[Hospitalitermes hospitalis]";26;34
+"[Occasitermes occasus]";26;36
+"[Cephalotermes rectangularis]";23;33
+"[Microcerotermes sp. H TB-2017]";27;35
+"[Macrotermes falciger]";28;32
+"[Anenteotermes cf. polyscolus BDIT101]";23;37
+"[Prohamitermes mirabilis]";25;35
+"[Prohamitermes mirabilis]";25;35
+"[Nasutitermes neoparvus]";27;34
+"[Euhamitermes hamatus]";25;35
+"[Astalotermes sp. B TB-2017]";23;36
+"[Macrotermes annandalei]";29;31
+"[Rhinotermes hispidus]";41;234
+"[Symploce pallens]";55;204
+"[Eupolyphaga sp. NS-2016]";52;199
+"[Parrhinotermes microdentiformis]";42;229
+"[Polyphaga plancyi]";50;219
+"[Deropeltis paulinoi]";59;199
+"[Paratemnopteryx couloniana]";49;210
+"[Blattella bisignata]";54;203
+"[Ectobiidae sp. BB]";50;203
+"[Glyptotermes satsumensis]";54;230
+"[Symploce macroptera]";54;213
+"[Carbrunneria paramaxi]";53;213
+"[Periplaneta fuliginosa]";56;208
+"[Polyzosteria viridissima]";55;209
+"[Therea regularis]";53;222
+"[Rhyparobia maderae]";59;202
+"[Rhyparobia sp. B054]";59;205
+"[Tryonicus parvus]";57;210
+"[Asiablatta kyotensis]";52;207
+"[Parcoblatta pensylvanica]";57;204
+"[Parcoblatta uhleriana]";53;205
+"[Rhyparobia grandis]";59;201
+"[Pycnoscelus femapterus]";55;204
+"[Shelfordella lateralis]";57;204
+"[Ischnoptera deropeltiformis]";53;215
+"[Nasutitermes diabolus]";47;237
+"[Cryptocercus kyebangensis]";54;229
+"[Araujotermes parvellus]";45;231
+"[Parcoblatta divisa]";54;206
+"[Melanozosteria sp. Cairns";237;118
+"";NA;NA
+"[Ischnoptera bilunata]";54;219
+"[Shelfordella lateralis]";55;206
+"[Neocapritermes angusticeps]";46;238
+"[Blatta orientalis]";56;208
+"[Periplaneta americana]";58;209
+"[Periplaneta brunnea]";55;205
+"[Cryptocercus hirtus]";55;227
+"partial [Periplaneta americana]";56;210
+"[Methana sp. AUS1]";55;211
+"[Coatitermes sp. 2 TB-2017]";45;234
+"[Coatitermes kartaboensis]";47;234
+"[Aciculitermes aciculatus]";48;236
+"[Periplaneta australasiae]";58;212
+"[Subulitermes group sp. A TB-2017]";49;236
+"[Havilanditermes proatripennis]";48;235
+"[Anhangatermes macarthuri]";48;234
+"[Eurycotis sp. B074]";58;207
+"[Cryptocercus meridianus]";56;222
+"[Elliptorhina javanica]";66;203
+"[Pycnoscelus nigra]";59;204
+"[Aparatermes sp. A TB-2017]";48;239
+"[Nasutitermes arborum]";43;241
+"[Kemneritermes sarawakensis]";46;239
+"[Cryptocercus relictus]";55;227
+"[Neostylopyga rhombifolia]";59;206
+"[Trinervitermes sp. IND2]";45;238
+"[Melanozosteria nitida]";54;206
+"[Nasutitermes sp. 3 TB-2017]";47;239
+"[Pycnoscelus sp. B103]";59;204
+"[Hospitalitermes sp. D TB-2017]";45;237
+"[Neocapritermes sp. H TB-2017]";45;239
+"[Anoplotermes group sp. 1 TB-2017]";49;243
+"[Eurycotis decipiens]";57;207
+"[Panchlora nivea]";63;197
+"[Procapritermes sp. 1 TB-2017]";46;239
+"[Patawatermes sp. A TB-2017]";50;240
+"[Humutermes krishnai]";51;239
+"[Nasutitermes nr. perparvus TB-2014]";49;235
+"[Nasutitermes longirostris]";47;237
+"[Microcerotermes sp. SB TB-2017]";46;238
+"[Nasutitermes longirostris]";47;239
+"[Reticulitermes speratus kyushuensis]";43;244
+"[Microcerotermes crassus]";42;223
+"[Microcerotermes crassus]";42;223
+"[Microcerotermes sp. COL2012-T09]";46;236
+"[Sphaerotermes sp. A TB-2017]";50;239
+"[Mastotermes darwiniensis]";48;213
+"[Reticulitermes kanmonensis]";42;244
+"[Microcerotermes crassus]";44;233
+"[Microcerotermes parvus]";46;237
+"[Anoplotermes group sp. AF TB-2017]";46;243
+"[Byrsotria sp. B018]";52;203
+"[Reticulitermes lucifugus]";46;244
+"[Procornitermes araujoi]";44;227
+"[Panchlora nivea]";59;202
+"[Nauphoeta cinerea]";85;238
+"[Glyptotermes sp. C TB-2014]";74;271
+"[Diploptera punctata]";88;243
+"[Periplaneta fuliginosa]";84;249
+"[Leptomyxotermes doriae]";71;276
+"[Blatta orientalis]";87;238
+"[Bulbitermes nr. laticephalus THAI100]";69;251
+"[Reticulitermes chinensis]";66;281
+"[Polyzosteria viridissima]";83;240
+"[Schultesia lampyridiformis]";91;223
+"[Procapritermes sp. G TB-2017]";74;252
+"[Reticulitermes kanmonensis]";68;279
+"[Oriensubulitermes inanis]";72;249
+"[Aparatermes nr. cingulatus G13-81]";72;244
+"[Nasutitermes similis]";69;278
+"[Nasutitermes similis]";69;257
+"[Sinocapritermes sp. 1 TB-2017]";69;242
+"[Neocapritermes sp. H TB-2017]";72;248
+"[Havilanditermes proatripennis]";66;250
+"[Inquilinitermes sp. BRA002]";67;247
+"[Oriensubulitermes inanis]";72;249
+"[Ectoneura hanitschi]";87;240
+"[Oriensubulitermes inanis]";73;249
+"[Nasutitermes sp. A TB-2017]";69;250
+"[Opisthoplatia orientalis]";88;232
+"[Pericapritermes nitobei]";70;247
+"[Anoplotermes sp. BRA025]";72;244
+"[Microcerotermes sp. AUS30]";70;253
+"[Periplaneta australasiae]";80;244
+"[Neostylopyga rhombifolia]";79;226
+"[Havilanditermes atripennis]";66;249
+"[Nasutitermes matangensis]";69;256
+"[Periplaneta australasiae]";80;246
+"[Anoplotermes parvus]";73;253
+"[Glyptotermes sp. A TB-2014]";74;263
+"[Aparatermes sp. A TB-2017]";72;247
+"[Termes fatalis]";65;242
+"[Reticulitermes hageni]";65;279
+"[Reticulitermes sp. A TB-2016]";66;280
+"[Termes fatalis]";65;242
+"[Astratotermes sp. RDCT147]";72;245
+"[Cephalotermes rectangularis]";69;257
+"[Astratotermes sp. A TB-2017]";72;246
+"[Reticulitermes flavipes]";65;280
+"[Nasutitermes longinasus]";68;251
+"[Mirocapritermes connectens]";72;247
+"[Pericapritermes sp. 4 TB-2017]";72;255
+"[Reticulitermes flaviceps]";66;277
+"[Reticulitermes nelsonae]";65;277
+"partial [Prorhinotermes simplex]";64;285
+"[Astalotermes cf. qietus RDCT073]";75;245
+"[Nasutitermes macrocephalus]";66;257
+"[Noditermes cristifrons]";73;251
+"[Panchlora nivea]";92;238
+"[Astalotermes cf. quietus RDCT046]";75;243
+"[Anoplotermes janus]";71;252
+"[Anoplotermes group sp. AF TB-2017]";73;250
+"[Procapritermes sp. A TB-2017]";72;244
+"[Reticulitermes virginicus]";67;278
+"[Araujotermes parvellus]";71;256
+"[Cosmozosteria sp. B117]";82;233
+"[Subulitermes sp. G712]";72;249
+"[Humutermes krishnai]";71;246
+"[Opisthoplatia orientalis]";87;243
+"[Aciculitermes sp. T3.10f]";70;249
+"[Noditermes lamanianus]";73;271
+"[Pericapritermes nigerianus]";72;278
+"[Opisthoplatia orientalis]";88;242
+"[Nasutitermes sp. COL2012L08]";72;250
+"[Microcerotermes sp. C TB-2017]";69;257
+"[Nasutitermes longirostris]";69;255
+"[Neocapritermes taracua]";73;253
+"[Nasutitermes matangensis]";67;257
+"[Alyscotermes kilimandjaricus]";75;245
+"[Gyna caffrorum]";85;242
+"[Nasutitermes longirostris]";69;253
+"[Pycnoscelus indicus]";87;245
+"[Nasutitermes sp. 1 TB-2017]";71;251
+"[Reticulitermes flavipes]";65;278
+"[Eurycotis decipiens]";86;224
+"[Polyspathotermes sulcifrons]";69;253
+"[Reticulitermes lucifugus]";66;280
+"[Bulbitermes makhamensis]";68;255
+"[Panchlora nivea]";92;232
+"[Pericapritermes dolichocephalus]";72;254
+"[Microcerotermes sp. F TB-2017]";69;263
+"[Aparatermes sp. A TB-2017]";72;243
+"[Nasutitermes sp. 3 TB-2017]";70;254
+"[Phyllodromica sp. Phil]";10;41
+"[Zootermopsis nevadensis]";7;51
+"[Ectobius sp. Z254C]";11;40
+"[Zootermopsis angusticollis]";7;52
+"[Microtermes sp. BDIT051]";9;51
+"[Cryptocercus kyebangensis]";8;48
+"[Neotermes sp. A TB-2014]";9;49
+"[Microtermes sp. B TB-2017]";6;49
+"[Methana sp. AUS1]";10;44
+"[Neotermes insularis]";8;48
+"[Periplaneta americana]";12;44
+"[Arenivaga sp. B097]";12;45
+"[Therea olegrandjeani]";9;45
+"[Eupolyphaga sp. NS-2016]";11;46
+"[Eublaberus distanti]";9;40
+"[Carbrunneria paramaxi]";11;44
+"[Parcoblatta fulvescens]";12;41
+"[Eupolyphaga sinensis]";11;42
+"[Diploptera punctata]";10;39
+"[Cryptocercus meridianus]";8;49
+"[Microcerotermes nervosus]";11;46
+"[Cryptocercus meridianus]";8;48
+"[Archimandrita tessellata]";10;40
+"[Hodotermopsis sjostedti]";8;49
+"[Odontotermes sp. B TB-2017]";7;51
+"[Macrotermes vitrialatus]";8;51
+"[Paranauphoeta circumdata]";10;43
+"[Rhabdoblatta sp. RHA]";10;42
+"[Microcerotermes newmani]";11;46
+"[Cryptocercus relictus]";8;50
+"[Neostylopyga rhombifolia]";11;46
+"partial [Periplaneta americana]";11;45
+"[Ergaula capucina]";9;48
+"[Blaberus discoidalis]";8;43
+"[Odontotermes sp. C TB-2017]";6;50
+"[Macrotermes sp. PHI4]";9;49
+"[Parcoblatta bolliana]";13;40
+"[Microcerotermes sp. C TB-2017]";12;47
+"[Neostylopyga rhombifolia]";10;46
+"[Therea petiveriana]";8;45
+"[Macrotermes sp. A TB-2017]";9;51
+"[Odontotermes sp. A TB-2017]";6;51
+"[Odontotermes sp. BDIT9-1.3A]";6;52
+"[Acanthotermes acanthothorax]";7;52
+"[Odontotermes formosanus]";6;50
+"[Odontotermes longignathus]";6;49
+"[Asiablatta kyotensis]";12;43
+"[Microcerotermes baluchistanicus]";11;48
+"[Tuberculitermes bycanistes]";9;47
+"[Therea regularis]";8;46
+"[Allodontermes schultzei]";7;51
+"[Pycnoscelus nigra]";10;44
+"[Hypotermes makhamensis]";6;50
+"[Microcerotermes sp. 3 TB-2017]";10;47
+"[Odontotermes minutus]";6;48
+"[Microcerotermes sp. I TB-2017]";10;46
+"[Microcerotermes progrediens]";10;48
+"[Blaberus peruvianus]";9;43
+"[Odontotermes sp. K TB-2017]";6;50
+"[Macrotermes gilvus]";8;49
+"[Macrotermes sp. B TB-2017]";8;52
+"[Microcerotermes sp. G TB-2017]";11;47
+"[Symploce macroptera]";11;42
+"[Odontotermes javanicus]";6;50
+"[Microcerotermes sp. SA TB-2017]";10;48
+"[Odontotermes sp. 10 TB-2017]";6;49
+"[Microcerotermes sp. E TB-2017]";11;48
+"[Odontotermes obesus]";6;50
+"[Ectobiidae sp. BB]";11;42
+"[Microtermes sp. RDCT048]";8;50
+"[Periplaneta fuliginosa]";10;45
+"[Microtermes obesi]";8;48
+"[Macrotermes subhyalinus]";9;53
+"[Microcerotermes parvus]";10;48
+"[Amitermes sp. 5 TB-2017]";10;46
+"[Microcerotermes havilandi]";10;48
+"[Microcerotermes sp. COL2012-T09]";9;48
+"[Microtermes sp. C TB-2017]";8;49
+"[Procubitermes undulans]";9;47
+"[Shelfordella lateralis]";11;46
+"[Odontotermes hainanensis]";6;49
+"[Amitermes sp. 4 TB-2017]";10;47
+"[Odontotermes sp. D TB-2017]";6;49
+"[Microtermes sp. A TB-2017]";8;50
+"[Neolaxta sp. B107]";8;42
+"[Amitermes sp. E TB-2017]";10;47
+"[Periplaneta australasiae]";10;47
+"[Therea regularis]";49;53
+"[Ectobius sp. Z254C]";43;50
+"[Therea olegrandjeani]";45;53
+"[Pycnoscelus sp. B103]";40;51
+"[Therea petiveriana]";48;53
+"[Melanozosteria sp. Cairns";55;71
+"";NA;NA
+"[Periplaneta fuliginosa]";42;51
+"[Protagonista lugubris]";37;51
+"[Porotermes adamsoni]";44;52
+"[Ergaula capucina]";45;50
+"[Microhodotermes viator]";49;41
+"[Pycnoscelus nigra]";42;52
+"[Arenivaga sp. B097]";38;53
+"[Eupolyphaga sinensis]";40;54
+"[Eupolyphaga sinensis]";38;54
+"[Blatta orientalis]";40;49
+"[Pycnoscelus indicus]";42;52
+"[Phyllodromica sp. Phil]";44;49
+"[Cryptocercus meridianus]";50;45
+"[Gromphadorhina portentosa]";44;59
+"[Polyphaga plancyi]";45;52
+"[Gromphadorhina sp. B040]";43;58
+"[Cryptocercus meridianus]";48;45
+"[Cosmozosteria sp. B117]";43;49
+"[Neostylopyga rhombifolia]";40;47
+"[Neostylopyga rhombifolia]";42;48
+"[Periplaneta australasiae]";42;51
+"[Periplaneta australasiae]";43;50
+"[Parcoblatta pensylvanica]";37;57
+"[Pycnoscelus femapterus]";41;50
+"[Pycnoscelus surinamensis]";42;51
+"[Periplaneta americana]";42;50
+"[Aeluropoda insignis]";40;60
+"[Shelfordella lateralis]";40;48
+"[Shelfordella lateralis]";41;48
+"[Anaplecta omei]";45;55
+"[Glyptotermes sp. C TB-2014]";44;44
+"[Glyptotermes sp. B TB-2014]";45;50
+"[Periplaneta brunnea]";44;47
+"[Periplaneta brunnea]";45;47
+"[Parcoblatta divisa]";40;57
+"[Neolaxta sp. B107]";36;61
+"[Eupolyphaga sp. NS-2016]";41;53
+"[Methana sp. AUS1]";41;51
