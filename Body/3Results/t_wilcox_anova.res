@@ -1,3 +1,4 @@
+x = Ter; y = Cock
 t test:
 # t = 7.621, df = 40.123, p-value = 2.549e-09
 # alternative hypothesis: true difference in means is not equal to 0
