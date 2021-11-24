@@ -1,29 +1,30 @@
 x = Ter; y = Cock
 t test:
-# t = 7.621, df = 40.123, p-value = 2.549e-09
+# t = 8.5145, df = 54.382, p-value = 1.392e-11
 # alternative hypothesis: true difference in means is not equal to 0
 # 95 percent confidence interval:
-# 2.200041 3.787887
+#  0.1847356 0.2985031
 # sample estimates:
-#   mean of x mean of y 
-# 4.013784  1.019820 
+#  mean of x  mean of y 
+# 0.32780823 0.08618889 
 wilcox:
-# W = 642, p-value = 6.261e-11
+# W = 684, p-value = 1.581e-07
 # alternative hypothesis: true location shift is not equal to 0
 # 95 percent confidence interval:
-#   1.811509 3.183974
+#   0.1905307 0.3128353
 # sample estimates:
 #   difference in location 
-# 2.490454 
+# 0.2542703 
 anova:
 1) summary
 #             Df Sum Sq Mean Sq F value   Pr(>F)    
-# Group        2  153.3   76.67   30.25 2.18e-09 ***
-# Residuals   51  129.3    2.53                     
+# Group        2 0.8141  0.4071   27.81 4.98e-09 ***
+# Residuals   54 0.7904  0.0146                    
 # ---
 #  Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 2)TukeyHSD
 #                        diff        lwr        upr     p adj
-# Higher Ter-Cockroach  3.953346  2.7220573  5.1846347 0.0000000
-# Lower Ter-Cockroach   1.714788  0.3872827  3.0422942 0.0082643
-# Lower Ter-Higher Ter -2.238558 -3.5513401 -0.9257751 0.0004082
+# Higher Ter-Cockroach  0.27380441  0.18372103 0.36388778 0.0000000
+# Lower Ter-Cockroach   0.19441459  0.09482367 0.29400551 0.0000531
+# Lower Ter-Higher Ter -0.07938982 -0.17702138 0.01824174 0.1321502
+
