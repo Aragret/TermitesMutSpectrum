@@ -71,7 +71,7 @@ dev.off()
 #####################
 
 
-wilcox.test(normMutTer$T_C_norm_fr, normMutCock$T_C_norm_fr, conf.int = TRUE,)
+wilcox.test(normMutTer$T_C_norm_fr, normMutCock$T_C_norm_fr, conf.int = TRUE, exact = FALSE)
 
 # W = 684, p-value = 1.581e-07
 # alternative hypothesis: true location shift is not equal to 0
@@ -108,10 +108,11 @@ HighTers_Norm_T_C <- aov_prep[aov_prep$Group == "Higher Ter",]$T_C_norm
 LowTers_Norm_T_C <- aov_prep[aov_prep$Group == "Lower Ter",]$T_C_norm
 
 boxplot(Cocks_Norm_T_C, HighTers_Norm_T_C, LowTers_Norm_T_C,
-        at = c(1,2,3),
+        at = c(1,3,2),
         names = c("Cockroach", "Higher Ter", "Lower Ter"),
         col = c("chocolate4", "indianred3", "maroon"),
-        ylab = "T_C"
+        ylab = "T_C",
+        notch = F
         )
 
 
