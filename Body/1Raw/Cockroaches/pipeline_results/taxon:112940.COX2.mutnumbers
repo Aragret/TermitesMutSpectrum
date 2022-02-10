@@ -1,0 +1,14 @@
+Position	# of variants	Nucleotides
+26	2	C(1);T(4)
+44	2	T(1);C(4)
+128	2	G(1);A(4)
+188	2	T(1);C(4)
+236	2	C(1);T(4)
+245	2	G(1);A(4)
+266	2	T(1);C(4)
+380	2	A(1);C(4)
+395	2	G(1);A(4)
+560	2	C(1);T(4)
+617	2	G(2);A(3)
+Variable positions	11	636	0.0172955974842767
+Maximum number of substitutions	12	55	0.218181818181818
