@@ -1,6 +1,42 @@
 #!/bin/bash
 
-declare -a sp_names=("Blaberus_craniifer" "Blattella_germanica" "Blattella_germanica" "Cryptocercus_primarius" "Cryptocercus_punctulatus" "Geoscapheus_robustus" "Macropanesthia_lithgowae" "Macropanesthia_rhinoceros" "Panchlora_nivea" "Panesthia_cribrata" "Panesthia_sloanei" "Panesthia_tryoni_tryoni" "Paratemnopteryx_howarthi" "Paratemnopteryx_stonei" "Periplaneta_americana" "Periplaneta_australasiae" "Pycnoscelus_surinamensis" "Salganea_aequaliterspinosa" "Salganea_guentheri" "Salganea_raggei")
+declare -a sp_names=("Nasutitermes_similis"
+"Odontotermes_hainanensis"
+"Reticulitermes_virginicus"
+"Microhodotermes_viator"
+"Macrotermes_malaccensis"
+"Nasutitermes_graveolus"
+"Macrotermes_gilvus"
+"Reticulitermes_aculabialis"
+"Zootermopsis_nevadensis"
+"Nasutitermes_exitiosus"
+"Nasutitermes_corniger"
+"Macrotermes_falciger"
+"Termes_fatalis"
+"Tumulitermes_pastinator"
+"Reticulitermes_santonensis"
+"Labiotermes_labralis"
+"Macrotermes_carbonarius"
+"Nasutitermes_triodiae"
+"Reticulitermes_flaviceps"
+"Nasutitermes_octopilis"
+"Reticulitermes_chinensis"
+"Coptotermes_lacteus"
+"Macrotermes_subhyalinus"
+"Pseudacanthotermes_spiniger"
+"Macrotermes_natalensis"
+"Reticulitermes_labralis"
+"Reticulitermes_leptomandibularis"
+"Mastotermes_darwiniensis"
+"Microcerotermes_crassus"
+"Cavitermes_tuberosus"
+"Reticulitermes_hageni"
+"Zootermopsis_angusticollis"
+"Reticulitermes_flavipes"
+"Coptotermes_formosanus"
+"Embiratermes_brevinasus"
+"Nasutitermes_longipennis"
+"Embiratermes_neotenicus")
 
 for sp_name in ${sp_names[@]}; do
 
