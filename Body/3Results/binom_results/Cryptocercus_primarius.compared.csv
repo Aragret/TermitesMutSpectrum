@@ -1,0 +1,13 @@
+label,mut1,mut2,ratio,pval,pval_adj,asterics
+directional,A>C,C>A,0.08333333333333333,0.0034179687499999996,0.004101562499999999,**
+directional,A>G,G>A,0.0,0.0,0.0,
+directional,A>T,T>A,0.0,0.0,0.0,
+directional,C>G,G>C,0.0,0.0,0.0,
+directional,C>T,T>C,2.875,0.000176327112551443,0.00026449066882716453,***
+directional,G>T,T>G,11.0,0.006347656250000001,0.006347656250000001,**
+reciprocal,A>C,T>G,1.0,1.0,1.0,
+reciprocal,A>G,T>C,0.0,0.0,0.0,
+reciprocal,A>T,T>A,0.0,0.0,0.0,
+reciprocal,C>G,G>C,0.0,0.0,0.0,
+reciprocal,C>T,G>A,1.4375,0.1405382862695224,0.2108074294042836,
+reciprocal,G>T,C>A,0.9166666666666666,0.9999999999999998,1.0,
