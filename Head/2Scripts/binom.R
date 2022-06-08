@@ -1,5 +1,5 @@
 library(dplyr)
-normMut <- read.csv('~/Documents/lab/TermitesMutSpectrum/Body/2Derived/normMutCock.csv')
+normMut <- read.csv('~/Documents/lab/TermitesMutSpectrum/Body/2Derived/normMutTer.csv')
 
 directional_pairs = list(
   c("A>C", "C>A"),
@@ -39,7 +39,7 @@ NucSubst = c(
   "C>G"
 )
 
-for (i in c(1:20)) {
+for (i in c(1:37)) { #swap 37 to the num of species
 
 ObsToExp <- as.numeric(normMut[i, 38:49])
 
